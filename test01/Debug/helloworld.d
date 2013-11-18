@@ -1,0 +1,1 @@
+helloworld.d: ../helloworld.cc
