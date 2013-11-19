@@ -11,9 +11,9 @@ class Game
     Game();
     ~Game();
 
-    createMap();
-    destroyMap();
-    run();
+    void createMap();
+    void destroyMap();
+    int run();
 
   private:
 
