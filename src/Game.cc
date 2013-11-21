@@ -25,7 +25,7 @@ Game::Game() :
   SDL_Surface *tmp_image_tiles;
   SDL_Surface *tmp_image_cards;
   if ((tmp_image_tiles = IMG_Load("graphics/tiles.png")) == NULL ||
-      (tmp_image_cards = IMG_Load("graphics/cards.png")) == NULL ||)
+      (tmp_image_cards = IMG_Load("graphics/cards.png")) == NULL)
   {
     std::cerr << "Failed to load images: " << SDL_GetError() << '\n';
     exit(1);
