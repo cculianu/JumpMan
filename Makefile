@@ -1,9 +1,9 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall -Wextra -Werror -pedantic -g
-LDFLAGS = -lncursesw
+LDFLAGS = -lSDL -lSDL_image
 
 TARGET = roborally
-OBJS = src/main.o
+OBJS = src/Game.o src/main.o
 
 $(TARGET): $(OBJS)
 	        $(CXX) $^ $(LDFLAGS) -o $(TARGET)
