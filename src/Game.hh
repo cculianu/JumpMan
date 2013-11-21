@@ -1,9 +1,8 @@
 #ifndef __ROBORALLY_GAME_HH__
 #define __ROBORALLY_GAME_HH__
 
-// INCLUDE SDL
-// INCLUDE PLAYER
-// INCLUDE TILE
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 
 class Game
 {
@@ -17,15 +16,17 @@ class Game
 
   private:
 
-    const size_t SCREEN_WIDTH;
-    const size_t SCREEN_HEIGHT;
+    const std::string CAPTION = "Roborally";
+    const size_t SCREEN_WIDTH = 600;
+    const size_t SCREEN_HEIGHT = 600;
+    const size_t SCREEN_BPP = 32;
 
-    SDL_Surface *screen;
-    SDL_Surface *image_cards;
-    SDL_Surface *image_tiles;
+    SDL_Surface *screen_;
+    SDL_Surface *image_cards_;
+    SDL_Surface *image_tiles_;
 
-    Player *players;
-    Tile *map;
+    //Player *players_;
+    //Tile *map_;
 
 };
 
