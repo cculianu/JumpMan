@@ -61,15 +61,16 @@ Game::~Game()
 
 int Game::run()
 {
-  SDL_Event *event = NULL;
-  while (SDL_WaitEvent(event))
+  SDL_Event event;
+  while (SDL_WaitEvent(&event))
   {
-    if (event->type == SDL_KEYDOWN)
+    if (event.type == SDL_KEYDOWN)
     {
       /* Q to exit */
-      if (event->key.keysym.sym == SDLK_q)
+      if (event.key.keysym.sym == SDLK_q)
         return 0;
     }
+    continue;
     //else if (event->type == SDL_MOUSEMOTION)
     //else if (event->type == SDL_MOUSEBUTTONDOWN)
   }
