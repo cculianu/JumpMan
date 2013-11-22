@@ -9,11 +9,15 @@
 class Game
 {
   public:
+    /* Constructor and destructor starts/stops SDL */
     Game();
     ~Game();
 
+    /* create/destroyMap will allocate or deallocate map_
+     * which is a 2D grid consisting of Tiles */
     void createMap();
     void destroyMap();
+
     int run();
 
   private:
@@ -28,7 +32,7 @@ class Game
     SDL_Surface *image_tiles_;
 
     //Player *players_;
-    //Tile *map_;
+    //Tile **map_;
 
 };
 
