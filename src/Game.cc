@@ -6,7 +6,7 @@
 Game::Game() :
   screen_(NULL),
   image_cards_(NULL),
-  image_tiles_(NULL),
+  image_tiles_(NULL)
 {
   if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
   {

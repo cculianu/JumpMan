@@ -1,6 +1,8 @@
 #ifndef __ROBORALLY_GAME_HH__
 #define __ROBORALLY_GAME_HH__
 
+#include <string>
+
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
