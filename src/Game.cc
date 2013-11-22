@@ -8,12 +8,14 @@ Game::Game() :
   image_cards_(NULL),
   image_tiles_(NULL)
 {
+  /* Init SDL-stuff */
   if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
   {
     std::cerr << "Failed to initialize SDL: " << SDL_GetError() << '\n';
     exit(1);
   }
 
+  /* Create a main Surface */
   screen_ = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 
                              SCREEN_BPP, SDL_SWSURFACE);
   if (screen_ == NULL)
@@ -22,6 +24,7 @@ Game::Game() :
     exit(1);
   }
 
+  /* Load images from disk */
   SDL_Surface *tmp_image_tiles;
   SDL_Surface *tmp_image_cards;
   if ((tmp_image_tiles = IMG_Load("graphics/tiles.png")) == NULL ||
@@ -31,6 +34,7 @@ Game::Game() :
     exit(1);
   }
 
+  /* Format images to a optimized format */
   if ((image_tiles_ = SDL_DisplayFormat(tmp_image_tiles)) == NULL ||
       (image_cards_ = SDL_DisplayFormat(tmp_image_cards)) == NULL)
   {
@@ -38,14 +42,18 @@ Game::Game() :
     exit(1);
   }
 
+  /* Set caption (the name displayed of the application) */
+  SDL_WM_SetCaption(CAPTION.c_str(), CAPTION.c_str());
+
+  /* Clean up */
   SDL_FreeSurface(tmp_image_tiles);
   SDL_FreeSurface(tmp_image_cards);
-
-  SDL_WM_SetCaption(CAPTION.c_str(), CAPTION.c_str());
 }
 
 Game::~Game()
 {
+  /* Clean up 
+   * screen_ will be autoremoved by SDL_Quit(); */
   SDL_FreeSurface(image_tiles_);
   SDL_FreeSurface(image_cards_);
   SDL_Quit();
