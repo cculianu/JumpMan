@@ -6,6 +6,9 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
+#include "Sprite.hh"
+#include "Tile.hh"
+
 class Game
 {
   public:
@@ -18,6 +21,8 @@ class Game
     void createMap();
     void destroyMap();
 
+    void drawSprite(Sprite *sprite);
+
     int run();
 
   private:
@@ -26,13 +31,14 @@ class Game
     const size_t SCREEN_WIDTH = 600;
     const size_t SCREEN_HEIGHT = 600;
     const size_t SCREEN_BPP = 32;
+    const size_t TILE_SIZE = 20;
 
     SDL_Surface *screen_;
     SDL_Surface *image_cards_;
     SDL_Surface *image_tiles_;
 
     //Player *players_;
-    //Tile **map_;
+    Tile **map_;
 
 };
 

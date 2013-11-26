@@ -48,15 +48,45 @@ Game::Game() :
   /* Clean up */
   SDL_FreeSurface(tmp_image_tiles);
   SDL_FreeSurface(tmp_image_cards);
+
+  createMap();
 }
 
 Game::~Game()
 {
+  destroyMap();
   /* Clean up 
    * screen_ will be autoremoved by SDL_Quit(); */
   SDL_FreeSurface(image_tiles_);
   SDL_FreeSurface(image_cards_);
   SDL_Quit();
+}
+
+void Game::createMap()
+{
+  const uint X_TILES = SCREEN_WIDTH / TILE_SIZE;
+  const uint Y_TILES = SCREEN_HEIGHT / TILE_SIZE;
+
+  map_ = new Tile *[X_TILES * Y_TILES ];
+  for (uint x = 0; x < X_TILES; ++x)
+    for (uint y = 0; y < Y_TILES; ++y)
+      map_[x + y*X_TILES] = new Tile(x, y, 0, 0, FLOOR, UP);
+}
+
+void Game::destroyMap()
+{
+  const uint X_TILES = SCREEN_WIDTH / TILE_SIZE;
+  const uint Y_TILES = SCREEN_HEIGHT / TILE_SIZE;
+
+  if (map_ == NULL)
+    return;
+
+  for (uint x = 0; x < X_TILES; ++x)
+    for (uint y = 0; y < Y_TILES; ++y)
+      delete map_[x + y*X_TILES];
+
+  delete map_;
+  map_ = NULL;
 }
 
 int Game::run()
