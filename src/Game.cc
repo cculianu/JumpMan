@@ -85,7 +85,7 @@ void Game::destroyMap()
     for (uint y = 0; y < Y_TILES; ++y)
       delete map_[x + y*X_TILES];
 
-  delete map_;
+  delete[] map_;
   map_ = NULL;
 }
 
