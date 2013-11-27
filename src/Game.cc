@@ -50,6 +50,7 @@ Game::Game() :
   SDL_FreeSurface(tmp_image_cards);
 
   createMap();
+  drawMap();
 }
 
 Game::~Game()
@@ -64,29 +65,64 @@ Game::~Game()
 
 void Game::createMap()
 {
-  const uint X_TILES = SCREEN_WIDTH / TILE_SIZE;
-  const uint Y_TILES = SCREEN_HEIGHT / TILE_SIZE;
+  const unsigned X_TILES = SCREEN_WIDTH / TILE_SIZE;
+  const unsigned Y_TILES = SCREEN_HEIGHT / TILE_SIZE;
 
   map_ = new Tile *[X_TILES * Y_TILES ];
-  for (uint x = 0; x < X_TILES; ++x)
-    for (uint y = 0; y < Y_TILES; ++y)
+  for (unsigned x = 0; x < X_TILES; ++x)
+    for (unsigned y = 0; y < Y_TILES; ++y)
       map_[x + y*X_TILES] = new Tile(x, y, 0, 0, FLOOR, UP);
 }
 
 void Game::destroyMap()
 {
-  const uint X_TILES = SCREEN_WIDTH / TILE_SIZE;
-  const uint Y_TILES = SCREEN_HEIGHT / TILE_SIZE;
+  const unsigned X_TILES = SCREEN_WIDTH / TILE_SIZE;
+  const unsigned Y_TILES = SCREEN_HEIGHT / TILE_SIZE;
 
   if (map_ == NULL)
     return;
 
-  for (uint x = 0; x < X_TILES; ++x)
-    for (uint y = 0; y < Y_TILES; ++y)
+  for (unsigned x = 0; x < X_TILES; ++x)
+    for (unsigned y = 0; y < Y_TILES; ++y)
       delete map_[x + y*X_TILES];
 
   delete[] map_;
   map_ = NULL;
+}
+
+void Game::drawMap()
+{
+  SDL_Rect srcrect = {0, 0,
+                      static_cast<Uint16>(TILE_SIZE), 
+                      static_cast<Uint16>(TILE_SIZE)};
+  SDL_Rect dstrect = {0, 0,
+                      static_cast<Uint16>(TILE_SIZE), 
+                      static_cast<Uint16>(TILE_SIZE)};
+
+  Tile *tile_p = NULL;
+
+
+  const unsigned X_TILES = SCREEN_WIDTH / TILE_SIZE;
+  const unsigned Y_TILES = SCREEN_HEIGHT / TILE_SIZE;
+
+  if (map_ == NULL)
+    return;
+
+  for (unsigned x = 0; x < X_TILES; ++x)
+    for (unsigned y = 0; y < Y_TILES; ++y)
+    {
+      tile_p = map_[x + y*X_TILES];
+      srcrect.x = tile_p->image_x();
+      srcrect.y = tile_p->image_y();
+
+      dstrect.x = tile_p->x() * TILE_SIZE;
+      dstrect.y = tile_p->y() * TILE_SIZE;
+      
+      SDL_BlitSurface(image_tiles_, &srcrect, screen_, &dstrect);
+    }
+
+  SDL_Flip(screen_);
+
 }
 
 int Game::run()

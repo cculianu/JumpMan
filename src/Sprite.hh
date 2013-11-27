@@ -3,19 +3,25 @@
 #ifndef __ROBORALLY_SPRITE_HH__
 #define __ROBORALLY_SPRITE_HH__
 
-typedef unsigned int uint;
-
 class Sprite
 {
 public:
-    Sprite(uint x, uint y, uint image_x, uint image_y);
+    Sprite(unsigned x, unsigned y, unsigned image_x, unsigned image_y);
     ~Sprite();
+
+    unsigned x();
+    unsigned y();
+
+    unsigned image_x();
+    unsigned image_y();
+
+
     
 protected:
-    uint x_; /**< Coordinate x on game map */
-    uint y_; /**< Coordinate y on game map */
-    uint image_x_; /**< Coordinate x of image on the sprite sheet */
-    uint image_y_; /**< Coordinate y of image on the sprite sheet */
+    unsigned x_; /**< Coordinate x on game map */
+    unsigned y_; /**< Coordinate y on game map */
+    unsigned image_x_; /**< Coordinate x of image on the sprite sheet */
+    unsigned image_y_; /**< Coordinate y of image on the sprite sheet */
 
 private:
 

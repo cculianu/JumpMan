@@ -21,7 +21,7 @@ class Game
     void createMap();
     void destroyMap();
 
-    void drawSprite(Sprite *sprite);
+    void drawMap();
 
     int run();
 
