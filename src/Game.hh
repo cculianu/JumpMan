@@ -1,45 +1,29 @@
-#ifndef __ROBORALLY_GAME_HH__
-#define __ROBORALLY_GAME_HH__
+#ifndef __GAME_HH__
+#define __GAME_HH__
 
 #include <string>
 
-#include <SDL/SDL.h>
-#include <SDL/SDL_image.h>
-
+#include "GraphicsEngine.hh"
 #include "Sprite.hh"
-#include "Tile.hh"
+#include "Player.hh"
 
 class Game
 {
   public:
-    /* Constructor and destructor starts/stops SDL */
     Game();
     ~Game();
-
-    /* create/destroyMap will allocate or deallocate map_
-     * which is a 2D grid consisting of Tiles */
-    void createMap();
-    void destroyMap();
-
-    void drawMap();
 
     int run();
 
   private:
 
-    const std::string CAPTION = "Roborally";
-    const size_t SCREEN_WIDTH = 600;
-    const size_t SCREEN_HEIGHT = 600;
-    const size_t SCREEN_BPP = 32;
-    const size_t TILE_SIZE = 20;
+    GraphicsEngine *graphics_;
+    Player *player_;
 
-    SDL_Surface *screen_;
-    SDL_Surface *image_cards_;
-    SDL_Surface *image_tiles_;
-
-    //Player *players_;
-    Tile **map_;
+    /* These cannot be used: */
+    Game(const Game&);
+    void operator=(const Game&);
 
 };
 
-#endif //__ROBORALLY_GAME_HH__
+#endif //__GAME_HH__

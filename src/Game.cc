@@ -1,144 +1,75 @@
-
 #include <iostream>
+#include <string>
+
+using namespace std;
 
 #include "Game.hh"
 
 Game::Game() :
-  screen_(NULL),
-  image_cards_(NULL),
-  image_tiles_(NULL)
+  graphics_(NULL),
+  player_(NULL)
 {
-  /* Init SDL-stuff */
-  if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
-  {
-    std::cerr << "Failed to initialize SDL: " << SDL_GetError() << '\n';
-    exit(1);
-  }
-
-  /* Create a main Surface */
-  screen_ = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, 
-                             SCREEN_BPP, SDL_SWSURFACE);
-  if (screen_ == NULL)
-  {
-    std::cerr << "Failed to create SDL Surface: " << SDL_GetError() << '\n';
-    exit(1);
-  }
+  /* Start graphics: */
+  const string TITLE = "Jumpman";
+  const unsigned SCREEN_WIDTH = 600;
+  const unsigned SCREEN_HEIGHT = 600;
+  const unsigned SCREEN_BPP = 32;
+  const unsigned FRAME_RATE = 20;
+  graphics_= new GraphicsEngine(TITLE, SCREEN_WIDTH, SCREEN_HEIGHT,
+                                SCREEN_BPP, FRAME_RATE);
 
   /* Load images from disk */
-  SDL_Surface *tmp_image_tiles;
-  SDL_Surface *tmp_image_cards;
-  if ((tmp_image_tiles = IMG_Load("graphics/tiles.png")) == NULL ||
-      (tmp_image_cards = IMG_Load("graphics/cards.png")) == NULL)
+  if (graphics_->loadImage("player") == false ||
+      graphics_->loadImage("jumpy") == false ||
+      graphics_->loadImage("background") == false)
   {
-    std::cerr << "Failed to load images: " << SDL_GetError() << '\n';
+    std::cerr << "Failed to load image: " << graphics_->getLastError() << '\n';
     exit(1);
   }
 
-  /* Format images to a optimized format */
-  if ((image_tiles_ = SDL_DisplayFormat(tmp_image_tiles)) == NULL ||
-      (image_cards_ = SDL_DisplayFormat(tmp_image_cards)) == NULL)
-  {
-    std::cerr << "Failed to format images: " << SDL_GetError() << '\n';
-    exit(1);
-  }
-
-  /* Set caption (the name displayed of the application) */
-  SDL_WM_SetCaption(CAPTION.c_str(), CAPTION.c_str());
-
-  /* Clean up */
-  SDL_FreeSurface(tmp_image_tiles);
-  SDL_FreeSurface(tmp_image_cards);
-
-  createMap();
-  drawMap();
+  /* Spawn player instance */
+  const short PLAYER_START_X = 0;
+  const short PLAYER_START_Y = 0;
+  const unsigned short PLAYER_WIDTH = 40;
+  const unsigned short PLAYER_HEIGHT = 40;
+  player_ = new Player(PLAYER_START_X, PLAYER_START_Y, 
+                       PLAYER_WIDTH, PLAYER_HEIGHT);
 }
 
 Game::~Game()
 {
-  destroyMap();
-  /* Clean up 
-   * screen_ will be autoremoved by SDL_Quit(); */
-  SDL_FreeSurface(image_tiles_);
-  SDL_FreeSurface(image_cards_);
-  SDL_Quit();
-}
-
-void Game::createMap()
-{
-  const unsigned X_TILES = SCREEN_WIDTH / TILE_SIZE;
-  const unsigned Y_TILES = SCREEN_HEIGHT / TILE_SIZE;
-
-  map_ = new Tile *[X_TILES * Y_TILES ];
-  for (unsigned x = 0; x < X_TILES; ++x)
-    for (unsigned y = 0; y < Y_TILES; ++y)
-      map_[x + y*X_TILES] = new Tile(x, y, 0, 0, FLOOR, UP);
-}
-
-void Game::destroyMap()
-{
-  const unsigned X_TILES = SCREEN_WIDTH / TILE_SIZE;
-  const unsigned Y_TILES = SCREEN_HEIGHT / TILE_SIZE;
-
-  if (map_ == NULL)
-    return;
-
-  for (unsigned x = 0; x < X_TILES; ++x)
-    for (unsigned y = 0; y < Y_TILES; ++y)
-      delete map_[x + y*X_TILES];
-
-  delete[] map_;
-  map_ = NULL;
-}
-
-void Game::drawMap()
-{
-  SDL_Rect srcrect = {0, 0,
-                      static_cast<Uint16>(TILE_SIZE), 
-                      static_cast<Uint16>(TILE_SIZE)};
-  SDL_Rect dstrect = {0, 0,
-                      static_cast<Uint16>(TILE_SIZE), 
-                      static_cast<Uint16>(TILE_SIZE)};
-
-  Tile *tile_p = NULL;
-
-
-  const unsigned X_TILES = SCREEN_WIDTH / TILE_SIZE;
-  const unsigned Y_TILES = SCREEN_HEIGHT / TILE_SIZE;
-
-  if (map_ == NULL)
-    return;
-
-  for (unsigned x = 0; x < X_TILES; ++x)
-    for (unsigned y = 0; y < Y_TILES; ++y)
-    {
-      tile_p = map_[x + y*X_TILES];
-      srcrect.x = tile_p->image_x();
-      srcrect.y = tile_p->image_y();
-
-      dstrect.x = tile_p->x() * TILE_SIZE;
-      dstrect.y = tile_p->y() * TILE_SIZE;
-      
-      SDL_BlitSurface(image_tiles_, &srcrect, screen_, &dstrect);
-    }
-
-  SDL_Flip(screen_);
-
+  delete player_;
+  delete graphics_;
 }
 
 int Game::run()
 {
-  SDL_Event event;
-  while (SDL_WaitEvent(&event))
+  event_t event;
+  rect_t dstrect = { 0, 0, player_->width(), player_->height() };
+
+
+  for (;;)
   {
-    if (event.type == SDL_KEYDOWN)
-    {
-      /* Q to exit */
-      if (event.key.keysym.sym == SDLK_q)
-        return 0;
-    }
-    continue;
-    //else if (event->type == SDL_MOUSEMOTION)
-    //else if (event->type == SDL_MOUSEBUTTONDOWN)
+    graphics_->drawImage("background", NULL, NULL);
+
+    while (graphics_->getEvent(event))
+      switch (event)
+      {
+        case QUIT: return 0; break;
+        case LEFT: player_->move(-1); break;
+        case UP: player_->jump(); break;
+        case RIGHT: player_->move(1); break;
+        case STILL: player_->move(0); break;
+        default: break;
+      }
+
+    player_->handleGravity(static_cast<signed>(graphics_->screen_width()));
+    dstrect.x = player_->x();
+    dstrect.y = player_->y();
+    graphics_->drawImage("player", NULL, &dstrect);
+
+    if (graphics_->updateScreen() == false)
+      return 1;
   }
 
   /* END NOT REACHED */

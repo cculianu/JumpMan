@@ -1,30 +1,31 @@
 /*! Sprite Class */
 
-#ifndef __ROBORALLY_SPRITE_HH__
-#define __ROBORALLY_SPRITE_HH__
+#ifndef __SPRITE_HH__
+#define __SPRITE_HH__
 
 class Sprite
 {
 public:
-    Sprite(unsigned x, unsigned y, unsigned image_x, unsigned image_y);
-    ~Sprite();
+    Sprite(short x, short y, unsigned short width, unsigned short height);
+    virtual ~Sprite();
 
-    unsigned x();
-    unsigned y();
-
-    unsigned image_x();
-    unsigned image_y();
-
+    short x() const;
+    short y() const;
+    unsigned short width() const;
+    unsigned short height() const;
 
     
 protected:
-    unsigned x_; /**< Coordinate x on game map */
-    unsigned y_; /**< Coordinate y on game map */
-    unsigned image_x_; /**< Coordinate x of image on the sprite sheet */
-    unsigned image_y_; /**< Coordinate y of image on the sprite sheet */
+    short x_;
+    short y_;
+    unsigned short width_;
+    unsigned short height_;
+
 
 private:
+    Sprite(const Sprite&);
+    void operator=(const Sprite&);
 
 };
 
-#endif //__ROBORALLY_SPRITE_HH__
+#endif //__SPRITE_HH__

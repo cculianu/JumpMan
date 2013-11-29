@@ -1,30 +1,30 @@
 #include "Sprite.hh"
 
-Sprite::Sprite(unsigned x, unsigned y, unsigned image_x, unsigned image_y) :
+Sprite::Sprite(short x, short y, unsigned short width, unsigned short height) :
   x_(x),
   y_(y),
-  image_x_(image_x),
-  image_y_(image_y)
+  width_(width),
+  height_(height)
 {}
 
 Sprite::~Sprite() {}
 
-unsigned Sprite::x()
+short Sprite::x() const
 {
   return this->x_;
 }
 
-unsigned Sprite::y()
+short Sprite::y() const
 {
   return this->y_;
 }
 
-unsigned Sprite::image_x()
+unsigned short Sprite::width() const
 {
-  return this->image_x_;
+  return this->width_;
 }
 
-unsigned Sprite::image_y()
+unsigned short Sprite::height() const
 {
-  return this->image_y_;
+  return this->height_;
 }
