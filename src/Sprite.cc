@@ -56,3 +56,8 @@ unsigned short Sprite::height() const
 {
   return this->height_;
 }
+
+void Sprite::modifyY(int mod)
+{
+  this->y_ += mod;
+}
