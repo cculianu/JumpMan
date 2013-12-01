@@ -1,6 +1,14 @@
 #ifndef __GRAPHICS_ENGINE_HH__
 #define __GRAPHICS_ENGINE_HH__
 
+/*! 
+ * \file GraphicsEngine.hh
+ * \brief File containing the GraphicsEngine class Header
+ *
+ * \author Olle Kvarnström
+ * \date
+ */
+
 #include <string>
 #include <map>
 
@@ -9,66 +17,122 @@
 
 typedef SDL_Rect rect_t;
 
-enum event_t { LEFT, RIGHT, UP, STILL, NOTHING, QUIT };
+/*!
+ * \enum event_t
+ * \brief events describing user input
+ */
+enum event_t 
+{ 
+  LEFT,    /*!< Player wants to move left */
+  RIGHT,   /*!< Player wants to move right */
+  UP,      /*!< Player wants to jump */
+  STILL,   /*!< Player wants to stop moving */
+  NOTHING, /*!< Unknown input received */
+  QUIT     /*!< User wants to exit the game */
+};
 
+/*!
+ * \class GraphicsEngine
+ * \brief Class for managing graphics and events
+ *
+ * GraphicsEngine handles all input from the user and 
+ * handles all drawing of images on the screen.
+ * Only one GraphicsEngine can be active at one time
+ */
 class GraphicsEngine
 {
   public:
+
+    /*!
+     * \brief Contructor
+     * \param title The title that will be seen on the titlebar
+     * \param screen_width Size of game screen's width
+     * \param screen_height Size of the game screen's height
+     * \param screen_bpp The amount of bits per pixel (color)
+     * \param frame_rate The frames per second we want to display
+     */
     GraphicsEngine(const std::string &title,
                    const unsigned screen_width,
                    const unsigned screen_height,
                    const unsigned screen_bpp,
                    const unsigned frame_rate);
+
+    ///Destructor
     ~GraphicsEngine();
 
-    /** loadImage
-     * filename:  name of the file inside graphics/ folder
-     * (example: to load graphics/player.png, filename should be "player")
-     * returns true on success, failse of error */
+    /*!
+     * \brief Loads and image from the disk into the RAM
+     * \param filename  Name of the image file inside graphics/ folder 
+     (example: to load graphics/player.png, filename should be "player")
+     * \return true on success 
+     */
     bool loadImage(const std::string &filename);
 
-    /** getLastError
-     * returns a string describing last error that occurred */
+    /*!
+     * \brief returns a string describing last error that occurred 
+     */
     std::string getLastError() const;
 
-    /** drawImage
-     * image: filename of image to draw
-     * srcrect: part to draw from
-     * dstrect: part to draw to 
-     * returns true on success, false on error */
+    /*!
+     * \brief Draw an image to the game screen
+     * \param image filename of image to draw
+     * \param srcrect rectangle of image to draw from
+     * \param dstrect part to screen to draw to
+     * \return true on success
+     */
     bool drawImage(const std::string &image, rect_t *srcrect, 
                    rect_t *dstrect);
 
-    /** updateScreen
-     * Flushes the screen to it's visible to the user 
-     * return true on success, false on error */
+    /*!
+     * \brief Flushes the screen so it's visible to the user 
+     * \return true on success
+     */
     bool updateScreen();
 
-    /** getEvent
-     * Sets event as event
-     * Returns true if there are more pending events */
+    /*!
+     * \brief Non-blocking function to check event depending on user input.
+     * \param event The event received from user
+     * \return true if there are more pending events 
+     */
     bool getEvent(event_t &event) const;
 
+    ///Returns width of game screen
     unsigned screen_width() const;
+
+    ///Returns height of game screen
     unsigned screen_height() const;
 
 
   private:
-    const std::string TITLE;
-    const unsigned SCREEN_WIDTH = 600;
-    const unsigned SCREEN_HEIGHT = 600;
-    const unsigned SCREEN_BPP = 32;
-    const unsigned short FRAME_RATE = 20;
 
+    ///Title to display on the game's status bar
+    const std::string TITLE;
+
+    ///Width of the game screen
+    const unsigned SCREEN_WIDTH;
+
+    ///Height of the game screen
+    const unsigned SCREEN_HEIGHT;
+
+    ///Screen bits per pixel (color)
+    const unsigned SCREEN_BPP;
+
+    ///Screen frames per second
+    const unsigned short FRAME_RATE;
+
+    ///Map of filename and image we have loaded from disk
     std::map<std::string, SDL_Surface *> images_;
 
+    ///The time updateScreen() last was called
     size_t time_of_last_refresh_;
 
+    ///The game screen
     SDL_Surface *screen_;
 
-
-    /* Just to get rid of compiler warnings: */
+    ///Copy constructor (DO NOT USE)
     GraphicsEngine(const GraphicsEngine&);
+
+    ///Copy constructor (DO NOT USE)
     void operator=(const GraphicsEngine&);
 };
 

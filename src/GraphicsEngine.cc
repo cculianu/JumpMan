@@ -153,8 +153,14 @@ bool GraphicsEngine::getEvent(event_t &event) const
   else if (sdl_event.type == SDL_KEYUP)
     switch (sdl_event.key.keysym.sym)
     {
-      case SDLK_LEFT: event = STILL; break;
-      case SDLK_RIGHT: event = STILL; break;
+      case SDLK_LEFT: 
+        if (!SDL_GetKeyState(NULL)[SDLK_RIGHT]) 
+          event = STILL; 
+        break;
+      case SDLK_RIGHT:
+        if (!SDL_GetKeyState(NULL)[SDLK_LEFT]) 
+          event = STILL; 
+        break;
       default: event = NOTHING;
     }
 
