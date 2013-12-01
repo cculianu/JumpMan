@@ -16,7 +16,7 @@ Player::~Player() {}
 
 bool Player::touches(const Sprite &other)
 {
-  if (sqrt(pow(x_ - other.x(), 2) + pow(y_ - other.y(), 2)) <= 30)
+  if (sqrt(pow(x_ - other.x(), 2) + pow(y_ - other.y(), 2)) <= 20)
   {
     jump(true);
     return true;
@@ -53,7 +53,10 @@ void Player::jump(bool force_push)
   if (force_push || standing_on_floor_)
   {
     standing_on_floor_ = false;
-    this->dy_ += 20;
+    if (dy_ > 10)
+      dy_ += 10;
+    else
+      dy_ = 20;
   }
 }
 
