@@ -12,7 +12,6 @@
 #include <list>
 
 #include "GraphicsEngine.hh"
-#include "Sprite.hh"
 #include "Player.hh"
 #include "BasicEnemy.hh"
 
