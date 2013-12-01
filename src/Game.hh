@@ -16,9 +16,7 @@ class Game
     int run();
 
   private:
-
     GraphicsEngine *graphics_;
-    Player *player_;
 
     /* These cannot be used: */
     Game(const Game&);

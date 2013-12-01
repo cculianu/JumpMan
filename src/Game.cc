@@ -1,13 +1,15 @@
 #include <iostream>
 #include <string>
-
-using namespace std;
+#include <list>
 
 #include "Game.hh"
 
+#include "BasicEnemy.hh"
+
+using namespace std;
+
 Game::Game() :
-  graphics_(NULL),
-  player_(NULL)
+  graphics_(NULL)
 {
   /* Start graphics: */
   const string TITLE = "Jumpman";
@@ -27,46 +29,59 @@ Game::Game() :
     exit(1);
   }
 
-  /* Spawn player instance */
-  const short PLAYER_START_X = 0;
-  const short PLAYER_START_Y = 0;
-  const unsigned short PLAYER_WIDTH = 40;
-  const unsigned short PLAYER_HEIGHT = 40;
-  player_ = new Player(PLAYER_START_X, PLAYER_START_Y, 
-                       PLAYER_WIDTH, PLAYER_HEIGHT);
 }
 
 Game::~Game()
 {
-  delete player_;
   delete graphics_;
 }
 
 int Game::run()
 {
-  event_t event;
-  rect_t dstrect = { 0, 0, player_->width(), player_->height() };
+  Player player("player", 0, 0, 40, 40);
 
+  list<BasicEnemy> enemies;
+  size_t current_highest_enemy;
+  enemies.push_back(BasicEnemy("jumpy", player, 40, 40));
+  do
+  {
+    enemies.push_back(BasicEnemy("jumpy", enemies.back(), 40, 40));
+    current_highest_enemy = enemies.back().y();
+  }
+  while (current_highest_enemy < graphics_->screen_height());
+
+  rect_t draw_to;
 
   for (;;)
   {
-    graphics_->drawImage("background", NULL, NULL);
-
+    /* Receive and handle player input */
+    event_t event;
     while (graphics_->getEvent(event))
       switch (event)
       {
         case QUIT: return 0; break;
-        case LEFT: player_->move(-1); break;
-        case UP: player_->jump(); break;
-        case RIGHT: player_->move(1); break;
-        case STILL: player_->move(0); break;
+        case LEFT: player.move(-1); break;
+        case UP: player.jump(); break;
+        case RIGHT: player.move(1); break;
+        case STILL: player.move(0); break;
         default: break;
       }
 
-    player_->handleGravity(static_cast<signed>(graphics_->screen_width()));
-    dstrect.x = player_->x();
-    dstrect.y = player_->y();
-    graphics_->drawImage("player", NULL, &dstrect);
+    /* Let the objects move and interact with each other */
+    player.handleGravity(static_cast<signed>(graphics_->screen_width()));
+    enemies.remove_if([&player](BasicEnemy enemy) { return player.touches(enemy); });
+
+    /* Draw everything to screen */
+    graphics_->drawImage("background", NULL, NULL);
+
+    for (auto enemy = enemies.begin(); enemy != enemies.end(); ++enemy)
+    {
+      draw_to = {enemy->x(), enemy->y(), enemy->width(), enemy->height()};
+      graphics_->drawImage(enemy->filename(), NULL, &draw_to);
+    }
+
+    draw_to = {player.x(), player.y(), player.width(), player.height()};
+    graphics_->drawImage(player.filename(), NULL, &draw_to);
 
     if (graphics_->updateScreen() == false)
       return 1;
