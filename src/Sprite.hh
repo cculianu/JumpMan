@@ -1,34 +1,89 @@
-/*! Sprite Class */
+/*! 
+ * \file Sprite.hh
+ * \brief File containing the Sprite class Header
+ *
+ * \author Olle Kvarnström
+ * \date
+ */
 
 #ifndef __SPRITE_HH__
 #define __SPRITE_HH__
 
 #include <string>
 
+/*!
+ * \class Sprite
+ * \brief Base class for all images
+ */
 class Sprite
 {
 public:
+    
+    /*!
+     * \brief Constructor
+     * \param filename Name of the object's image-file inside graphics/
+     * \param x starting x-position
+     * \param y starting y-position
+     * \param width width of image
+     * \param height height of image
+     */
     Sprite(std::string filename, short x, short y, 
            unsigned short width, unsigned short height);
+
+    /*!
+     * \brief Copy Constructor
+     * \param other Sprite to copy
+     */
     Sprite(const Sprite &other);
+
+    ///Destructor
     virtual ~Sprite();
 
+    /*!
+     * \brief Copy Constructor
+     * \param other Sprite to copy
+     */
     virtual Sprite &operator=(const Sprite &other);
 
+    /*!
+     * \return filename of image file
+     */
     const std::string &filename() const;
+
+    /*!
+     * \return Sprite's position of the x-axis
+     */
     short x() const;
+
+    /*!
+     * \return Sprite's position of the y-axis
+     */
     short y() const;
+
+    /*!
+     * \return Sprite's image's width
+     */
     unsigned short width() const;
+
+    /*!
+     * \return Sprite's image's height
+     */
     unsigned short height() const;
 
+    /*!
+     * \brief Modifies the Sprite's position of the y-axis
+     * \param mod Y axis modifier
+     */
+    void modifyY(int mod);
+
 protected:
-    short x_;
-    short y_;
-    const unsigned short width_;
-    const unsigned short height_;
+    short x_; /*!< Sprite's position on the x-axis */
+    short y_; /*!< Sprite's position on the y-acis */
+    const unsigned short width_;  /*!< Sprite's image's width */
+    const unsigned short height_; /*!< Sprite's image's height */
 
 private:
-    const std::string filename_;
+    const std::string filename_; /*!< Sprite's image's filename */
 };
 
 #endif //__SPRITE_HH__
