@@ -53,7 +53,7 @@ class Player: public Sprite
 
     /*!
      * \brief Set player to in movement on the x-axis
-     * \param dx Negative for movement to the left and vice versa */
+     * \param dx Negative for movement to the left and vice versa
      */
     void move(short dx);
 
