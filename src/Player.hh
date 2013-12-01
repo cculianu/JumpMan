@@ -8,11 +8,14 @@
 class Player: public Sprite
 {
   public:
-    Player(short x, short y, unsigned short width, unsigned short height);
+    Player(std::string filename, short x, short y, 
+           unsigned short width, unsigned short height);
     ~Player();
 
+    bool touches(const Sprite &other);
+
     void handleGravity(const signed SCREEN_WIDTH);
-    void jump();
+    void jump(bool force_push=false);
     void move(short dx);
 
   private:
