@@ -2,12 +2,11 @@
 #define __GRAPHICS_ENGINE_HH__
 
 #include <string>
-#include <vector>
+#include <map>
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
-typedef SDL_Surface image_t;
 typedef SDL_Rect rect_t;
 
 enum event_t { LEFT, RIGHT, UP, STILL, NOTHING, QUIT };
@@ -23,7 +22,8 @@ class GraphicsEngine
     ~GraphicsEngine();
 
     /** loadImage
-     * filename: location of image from the binarys point of view 
+     * filename:  name of the file inside graphics/ folder
+     * (example: to load graphics/player.png, filename should be "player")
      * returns true on success, failse of error */
     bool loadImage(const std::string &filename);
 
@@ -60,11 +60,11 @@ class GraphicsEngine
     const unsigned SCREEN_BPP = 32;
     const unsigned short FRAME_RATE = 20;
 
-    std::vector<std::pair<std::string, image_t *>> images_;    
+    std::map<std::string, SDL_Surface *> images_;
 
     size_t time_of_last_refresh_;
 
-    image_t *screen_;
+    SDL_Surface *screen_;
 
 
     /* Just to get rid of compiler warnings: */

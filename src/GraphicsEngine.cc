@@ -1,6 +1,7 @@
 #include "GraphicsEngine.hh"
 
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -40,20 +41,20 @@ GraphicsEngine::GraphicsEngine(const std::string &title,
 
 GraphicsEngine::~GraphicsEngine()
 {
-  while (images_.size() > 0)
-  {
-    pair<string, image_t *> image = images_.back();
-    SDL_FreeSurface(image.second);
-    images_.pop_back();
-  }
+  /* Unload all images */
+  for_each(images_.begin(), images_.end(),
+           [] (pair<string, SDL_Surface *> image) 
+           { 
+             SDL_FreeSurface(image.second); 
+             image.second = NULL; 
+           });
   SDL_Quit();
 }
 
 bool GraphicsEngine::loadImage(const string &filename) 
 {
   /* Check if image is already loaded */
-  for (auto it = images_.cbegin(); it != images_.cend(); ++it)
-    if (it->first == filename)
+  if (images_.count(filename))
       return true;
 
   /* Load image from disk: */
@@ -75,7 +76,7 @@ bool GraphicsEngine::loadImage(const string &filename)
     return false;
 
   /* Add it to list of images */
-  images_.push_back(pair<string, image_t *>(filename, optimized_image));
+  images_[filename] = optimized_image;
   return true;
 }
 
@@ -85,22 +86,21 @@ string GraphicsEngine::getLastError() const
   return errormsg;
 }
 
-bool GraphicsEngine::drawImage(const string &image, rect_t *srcrect, 
+bool GraphicsEngine::drawImage(const string &filename, rect_t *srcrect,
                                rect_t *dstrect)
 {
   /* First, check if the image is loaded */
-  image_t *image_to_blit = NULL;
-  for (auto it = images_.cbegin(); it != images_.cend(); ++it)
-    if (it->first == image)
-      image_to_blit = it->second;
+  SDL_Surface *image_to_blit = NULL;
+  if (images_.count(filename))
+    image_to_blit = images_[filename];
 
   /* If image was not found, try to load it */
   if (image_to_blit == NULL)
   {
-    if (loadImage(image) == false)
+    if (loadImage(filename) == false)
       return false;
 
-    image_to_blit = images_.back().second;
+    image_to_blit = images_[filename];
   }
 
   /* Doing some old switcheroo here, 
@@ -120,11 +120,14 @@ bool GraphicsEngine::drawImage(const string &image, rect_t *srcrect,
 
 bool GraphicsEngine::updateScreen()
 {
-  /* If the last refresh was too recent, we'll wait a while */
   const size_t TIME_SINCE_LAST_REFRESH = SDL_GetTicks() - time_of_last_refresh_;
-  if (TIME_SINCE_LAST_REFRESH < 1000 / FRAME_RATE)
-    SDL_Delay((1000 / FRAME_RATE) - TIME_SINCE_LAST_REFRESH);
+  const size_t REFRESH_RATE = 1000 / FRAME_RATE;
 
+  /* If the last refresh was too recent, we'll wait a while */
+  if (TIME_SINCE_LAST_REFRESH < REFRESH_RATE)
+    SDL_Delay(REFRESH_RATE - TIME_SINCE_LAST_REFRESH);
+
+  /* Reset update-time and flush screen */
   time_of_last_refresh_ = SDL_GetTicks();
   return SDL_Flip(screen_) == 0;
 }
