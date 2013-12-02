@@ -75,7 +75,7 @@ int Game::run()
     }
 
     /* If player falls below the screen - return game over */
-    if (player.y() < 0)
+    if (player.y() < -player.height()*2)
       return gameOver();
 
     /* Draw everything to screen */
