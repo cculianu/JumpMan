@@ -20,7 +20,6 @@ bool Player::touches(const Sprite &other)
     /* If x-difference is less than their combined width */
     if (abs(x_ - other.x()) < (width_ + other.width())/2)
     {
-      ++score_;
       jump(true);
       return true;
     }
@@ -41,6 +40,8 @@ void Player::handleGravity(const signed SCREEN_WIDTH)
   {
     y_ += dy_;
     dy_ -= 1;
+    if (dy_ > 0)
+      score_ += dy_;
   }
 }
 
@@ -68,5 +69,5 @@ void Player::move(short dx)
 
 size_t Player::score() const
 {
-  return this->score_;
+  return this->score_ / 10;
 }
