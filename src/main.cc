@@ -4,5 +4,8 @@
 int main()
 {
   Game game;
-  return game.run();
+  int return_value;
+  while ((return_value = game.run()) == 2)
+      ;
+  return return_value;
 }

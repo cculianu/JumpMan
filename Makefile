@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall -Wextra -Werror -pedantic -Weffc++ -g
-LDFLAGS = -lSDL -lSDL_image
+LDFLAGS = -lSDL -lSDL_image -lSDL_ttf
 
 TARGET = jumpman
 OBJS = src/Sprite.o src/Player.o src/BasicEnemy.o\

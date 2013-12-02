@@ -91,6 +91,9 @@ int Game::run()
     draw_to = {player.x(), player.y(), player.width(), player.height()};
     graphics_->drawImage(player.filename(), NULL, &draw_to);
 
+    graphics_->drawText("Score: " + to_string(player.score()), 
+                        graphics_->screen_width(), 100);
+
     if (graphics_->updateScreen() == false)
       return 1;
   }
@@ -115,8 +118,11 @@ int Game::addEnemies(list<BasicEnemy> &enemies)
 
 int Game::gameOver()
 {
-  //ADD GAME OVER MESSAGE
-  //ADD PRESS ESCAPE TO RETURN TO MENU
-  //ADD WaitEvent FROM GRAPHICS
-  return 0;
+  graphics_->drawText("OH NO! You fell!", graphics_->screen_width(), 
+                                          graphics_->screen_height());
+  graphics_->drawText("Press any key to continue", graphics_->screen_width(), 
+                                          graphics_->screen_height() + 30);
+  graphics_->updateScreen();
+  graphics_->waitForKeypress();
+  return 2;
 }

@@ -14,6 +14,7 @@
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
+#include <SDL/SDL_ttf.h>
 
 typedef SDL_Rect rect_t;
 
@@ -84,6 +85,14 @@ class GraphicsEngine
                    rect_t *dstrect);
 
     /*!
+     * \brief Draw some text at the given location
+     * \param text text to draw
+     * \param x the center on the x-axis where we will draw
+     * \param y the center on the y-axis where we will draw
+     */
+    void drawText(const std::string &text, unsigned x, unsigned y);
+
+    /*!
      * \brief Flushes the screen so it's visible to the user 
      * \return true on success
      */
@@ -95,6 +104,9 @@ class GraphicsEngine
      * \return true if there are more pending events 
      */
     bool getEvent(event_t &event) const;
+
+    /// Waits until a key is pressed
+    void waitForKeypress() const;
 
     ///Returns width of game screen
     unsigned screen_width() const;
@@ -128,6 +140,9 @@ class GraphicsEngine
 
     ///The game screen
     SDL_Surface *screen_;
+
+    ///Font to use
+    TTF_Font *font_;
 
     ///Copy constructor (DO NOT USE)
     GraphicsEngine(const GraphicsEngine&);

@@ -17,12 +17,26 @@ GraphicsEngine::GraphicsEngine(const std::string &title,
   FRAME_RATE(frame_rate),
   images_(),
   time_of_last_refresh_(SDL_GetTicks()),
-  screen_(NULL)
+  screen_(NULL),
+  font_(NULL)
 {
   /* Init SDL*/
   if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
   {
     std::cerr << "Failed to initialize SDL: " << SDL_GetError() << '\n';
+    exit(1);
+  }
+
+  if (TTF_Init() == -1)
+  {
+    std::cerr << "Failed to initialize TTF: " << TTF_GetError() << '\n';
+    exit(1);
+  }
+
+  font_ = TTF_OpenFont("graphics/font.ttf", 20);
+  if (font_ == NULL)
+  {
+    std::cerr << "Failed to load font: " << TTF_GetError() << '\n';
     exit(1);
   }
 
@@ -48,6 +62,8 @@ GraphicsEngine::~GraphicsEngine()
              SDL_FreeSurface(image.second); 
              image.second = NULL; 
            });
+  TTF_CloseFont(font_);
+  TTF_Quit();
   SDL_Quit();
 }
 
@@ -118,6 +134,21 @@ bool GraphicsEngine::drawImage(const string &filename, rect_t *srcrect,
   return true;
 }
 
+void GraphicsEngine::drawText(const string &text, unsigned x, unsigned y)
+{
+  SDL_Color text_color = {0, 127, 127, 0};
+  SDL_Color background_color = {255, 255, 255, 0};
+  SDL_Surface *text_surface = TTF_RenderText_Shaded(font_, text.c_str(), 
+                                                    text_color,
+                                                    background_color);
+  SDL_SetColorKey(text_surface, SDL_SRCCOLORKEY,
+                  SDL_MapRGB(text_surface->format, 255, 255, 255));
+  SDL_Rect dstrect = {static_cast<short>(x/2 - text_surface->w/2), 
+                      static_cast<short>(y/2 - text_surface->h/2), 0, 0};
+  SDL_BlitSurface(text_surface, NULL, screen_, &dstrect);
+  SDL_FreeSurface(text_surface);
+}
+
 bool GraphicsEngine::updateScreen()
 {
   const size_t TIME_SINCE_LAST_REFRESH = SDL_GetTicks() - time_of_last_refresh_;
@@ -168,6 +199,17 @@ bool GraphicsEngine::getEvent(event_t &event) const
     event = NOTHING;
 
   return status;
+}
+
+void GraphicsEngine::waitForKeypress() const
+{
+  SDL_Event event;
+  while (1)
+  {
+    SDL_WaitEvent(&event);
+    if (event.type == SDL_KEYDOWN)
+      break;
+  }
 }
 
 unsigned GraphicsEngine::screen_width() const

@@ -57,11 +57,16 @@ class Player: public Sprite
      */
     void move(short dx);
 
+    /*!
+     * \return the current player score
+     */
+    size_t score() const;
+
   private:
     short dx_;               /*!< Current x-axis movement */
     short dy_;               /*!< Current y-axis movement */
     bool standing_on_floor_; /*!< True if player has not yet jumped */
-    size_t points_;          /*!< Current points */
+    size_t score_;           /*!< Current player score */
 };
 
 
