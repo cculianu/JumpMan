@@ -40,8 +40,8 @@ int Game::run()
 
   list<BasicStar> star_list;
 
-  rect_t draw_to;
   rect_t draw_from;
+  rect_t draw_to;
 
   for (;;)
   {
@@ -60,18 +60,22 @@ int Game::run()
 
     /* Let the objects move and interact with each other */
     player.handleGravity(static_cast<signed>(graphics_->screen_width()));
-    star_list.remove_if([&player](BasicStar enemy) 
-        { return player.touches(enemy) || enemy.y() < 0; });
+    star_list.remove_if([&player](BasicStar star) 
+        { 
+          return player.touches(star) || star.y() < 0; 
+        });
     addStars(star_list);
 
     /* If player is above the middle of the screen, 
      * lower everything to center the player */
-    int offset_y = player.y() - graphics_->screen_height()/2;
+    const int offset_y = player.y() - graphics_->screen_height()/2;
     if (offset_y > 0)
     {
+      for_each(star_list.begin(), star_list.end(), [offset_y](BasicStar &star)
+          { 
+            star.modifyY(-offset_y); 
+          });
       player.modifyY(-offset_y);
-      for_each(star_list.begin(), star_list.end(), [offset_y](BasicStar &enemy)
-          { enemy.modifyY(-offset_y); });
     }
 
     /* If player falls below the screen - return game over */
