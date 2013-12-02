@@ -3,17 +3,6 @@
 using namespace std;
 
 Sprite::Sprite(string filename, short x, short y, 
-               unsigned short width, unsigned short height) :
-  rotation_(0),
-  rotations_(1),
-  x_(x),
-  y_(y),
-  width_(width),
-  height_(height),
-  filename_(filename)
-{}
-
-Sprite::Sprite(string filename, short x, short y, 
                unsigned short width, unsigned short height, short rotations) :
   rotation_(0),
   rotations_(rotations),

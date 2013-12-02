@@ -26,18 +26,6 @@ public:
      * \param y starting y-position
      * \param width width of image
      * \param height height of image
-     */
-    Sprite(std::string filename, short x, short y, 
-           unsigned short width, unsigned short height);
-
-    
-    /*!
-     * \brief Constructor
-     * \param filename Name of the object's image-file inside graphics/
-     * \param x starting x-position
-     * \param y starting y-position
-     * \param width width of image
-     * \param height height of image
      * \param rotations how many images this Sprite has
      */
     Sprite(std::string filename, short x, short y, 
@@ -55,7 +43,7 @@ public:
      * \brief Copy Constructor
      * \param other Sprite to copy
      */
-    virtual Sprite &operator=(const Sprite &other);
+    Sprite &operator=(const Sprite &other);
 
     /*!
      * \return filename of image file

@@ -5,7 +5,7 @@
 using namespace std;
 
 Player::Player() :
-  Sprite("player", 0, 0, 20, 20),
+  Sprite("player", 0, 0, 20, 20, 1),
   dx_(0),
   dy_(0),
   standing_on_floor_(true),

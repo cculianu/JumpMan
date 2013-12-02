@@ -5,16 +5,12 @@
 
 using namespace std;
 
-BasicStar::BasicStar(string filename, const Sprite &reference,
-                       unsigned short width, unsigned short height,
-                       int edge_coord) :
-  Sprite(filename, 0, 0, width, height)
-{ randomizeSpawn(reference, edge_coord); }
-
-
-BasicStar::BasicStar(string filename, const Sprite &reference,
-                       unsigned short width, unsigned short height,
-                       int edge_coord, int rotations) :
+BasicStar::BasicStar(string filename, 
+                     const Sprite &reference,
+                     unsigned short width, 
+                     unsigned short height,
+                     int edge_coord, 
+                     int rotations) :
   Sprite(filename, 0, 0, width, height, rotations)
 { randomizeSpawn(reference, edge_coord); }
 
