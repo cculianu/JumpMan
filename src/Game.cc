@@ -37,28 +37,35 @@ Game::~Game()
 int Game::run()
 {
   Player player;
-
   list<BasicStar> star_list;
 
   for (;;)
   {
-    /* Receive and handle player input */
+    /** PART 1 - HANDLE PLAYER INPUT **/
+
     event_t event;
     while (graphics_->getEvent(event))
       switch (event)
       {
-        case QUIT: return 0; break;
         case LEFT: player.move(-1); break;
-        case UP: player.jump(); break;
         case RIGHT: player.move(1); break;
         case STILL: player.move(0); break;
+        case UP: player.jump(); break;
+        case QUIT: return 0; break;
         default: break;
       }
 
-    /* Let the objects move and interact with each other */
+
+
+    /** PART 2 - OBJECTS MOVE/ITERACT **/
+
     player.handleGravity(static_cast<signed>(graphics_->screen_width()));
+
+    /* Remove stars if the player touches them or they disappear off screen */
     star_list.remove_if([&player](BasicStar star) 
         { return player.touches(star) || star.y() < 0; });
+
+    /* Add stars if there is room */
     addStars(star_list);
 
     /* If player falls below the screen - return game over */
@@ -75,9 +82,14 @@ int Game::run()
       player.modifyY(-offset_y);
     }
 
-    /* Draw everything to screen */
+
+
+    /** PART 3 - DRAW TO SCREEN **/
+
+    /* Draw background */
     graphics_->drawImage("background", NULL, NULL);
 
+    /* Draw all stars */
     for (auto star = star_list.begin(); star != star_list.end(); ++star)
     {
       rect_t draw_to = {star->x(), star->y(), star->width(), star->height() };
@@ -85,12 +97,15 @@ int Game::run()
       graphics_->drawImage(star->filename(), &draw_from, &draw_to);
     }
 
+    /* Draw player */
     rect_t draw_to = {player.x(), player.y(), player.width(), player.height() };
     graphics_->drawImage(player.filename(), NULL, &draw_to);
 
+    /* Draw score */
     graphics_->drawText("Score: " + to_string(player.score()), 
                         graphics_->screen_width(), 100);
 
+    /* Flush */
     if (graphics_->updateScreen() == false)
       return 1;
   }
