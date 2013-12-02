@@ -9,29 +9,29 @@ using namespace std;
 Game::Game() :
   graphics_(NULL)
 {
-  /* Start graphics: */
-  const string TITLE = "Jumpman";
-  const unsigned SCREEN_WIDTH = 1000;
-  const unsigned SCREEN_HEIGHT = 600;
-  const unsigned SCREEN_BPP = 32;
-  const unsigned FRAME_RATE = 24;
-  graphics_= new GraphicsEngine(TITLE, SCREEN_WIDTH, SCREEN_HEIGHT,
-                                SCREEN_BPP, FRAME_RATE);
+  this->graphics_= new GraphicsEngine( "Jumpman" /* Title */
+                                     , 1000      /* Screen width */
+                                     , 600       /* Screen height */
+                                     , 32        /* Bits per pixel */
+                                     , 24        /* Frame rate */
+                                     );
 
   /* Load images from disk */
-  if (graphics_->loadImage("background") == false ||
-      graphics_->loadImage("player") == false ||
-      graphics_->loadImage("basic_star") == false ||
-      graphics_->loadImage("moving_star") == false )
+  if (this->graphics_->loadImage("background")  == false ||
+      this->graphics_->loadImage("player")      == false ||
+      this->graphics_->loadImage("basic_star")  == false ||
+      this->graphics_->loadImage("moving_star") == false )
   {
-    std::cerr << "Failed to load image: " << graphics_->getLastError() << '\n';
+    std::cerr 
+      << "Failed to load image: " 
+      << this->graphics_->getLastError() << '\n';
     exit(1);
   }
 }
 
 Game::~Game()
 {
-  delete graphics_;
+  delete this->graphics_;
 }
 
 int Game::run()
@@ -44,7 +44,7 @@ int Game::run()
     /** PART 1 - HANDLE PLAYER INPUT **/
 
     event_t event;
-    while (graphics_->getEvent(event))
+    while (this->graphics_->getEvent(event))
       switch (event)
       {
         case LEFT: player.move(-1); break;
@@ -59,26 +59,33 @@ int Game::run()
 
     /** PART 2 - OBJECTS MOVE/ITERACT **/
 
-    player.handleGravity(static_cast<signed>(graphics_->screen_width()));
+    player.handleGravity(static_cast<signed>(this->graphics_->screen_width()));
 
     /* Remove stars if the player touches them or they disappear off screen */
-    star_list.remove_if([&player](BasicStar &star) 
-        { return player.touches(star) || star.y() < 0; });
+    star_list.remove_if(
+        [&player](BasicStar &star) 
+        { 
+          return player.touches(star) || star.y() < 0; 
+        });
 
     /* Add stars if there is room */
-    addStars(star_list);
+    this->addStars(star_list);
 
     /* If player falls below the screen - return game over */
     if (player.y() < -player.height()*2)
-      return gameOver();
+      return this->gameOver();
 
     /* If player is above the middle of the screen, 
      * lower everything to center the player */
-    const int offset_y = player.y() - graphics_->screen_height()/2;
+    const int offset_y = player.y() - this->graphics_->screen_height()/2;
     if (offset_y > 0)
     {
-      for_each(star_list.begin(), star_list.end(), [offset_y](BasicStar &star)
-          { star.modifyY(-offset_y); });
+      for_each(star_list.begin(), 
+               star_list.end(), 
+               [offset_y](BasicStar &star)
+               { 
+                 star.modifyY(-offset_y); 
+               });
       player.modifyY(-offset_y);
     }
 
@@ -87,26 +94,26 @@ int Game::run()
     /** PART 3 - DRAW TO SCREEN **/
 
     /* Draw background */
-    graphics_->drawImage("background", NULL, NULL);
+    this->graphics_->drawImage("background", NULL, NULL);
 
     /* Draw all stars */
     for (auto star = star_list.begin(); star != star_list.end(); ++star)
     {
       rect_t draw_to = {star->x(), star->y(), star->width(), star->height() };
       rect_t draw_from = {star->imageX(), 0, draw_to.w, draw_to.h };
-      graphics_->drawImage(star->filename(), &draw_from, &draw_to);
+      this->graphics_->drawImage(star->filename(), &draw_from, &draw_to);
     }
 
     /* Draw player */
     rect_t draw_to = {player.x(), player.y(), player.width(), player.height() };
-    graphics_->drawImage(player.filename(), NULL, &draw_to);
+    this->graphics_->drawImage(player.filename(), NULL, &draw_to);
 
     /* Draw score */
-    graphics_->drawText("Score: " + to_string(player.score()), 
-                        graphics_->screen_width(), 100);
+    this->graphics_->drawText("Score: " + to_string(player.score()), 
+                              this->graphics_->screen_width(), 100);
 
     /* Flush */
-    if (graphics_->updateScreen() == false)
+    if (this->graphics_->updateScreen() == false)
       return 1;
   }
 
@@ -116,8 +123,8 @@ int Game::run()
 
 void Game::addStars(list<BasicStar> &star_list)
 {
-  signed screen_height = static_cast<signed>(graphics_->screen_height());
-  signed half_screen_width  = graphics_->screen_width()/2;
+  signed screen_height = static_cast<signed>(this->graphics_->screen_height());
+  signed half_screen_width  = this->graphics_->screen_width()/2;
 
   if (star_list.size() <= 0)
     star_list.push_back(BasicStar(0, half_screen_width));
@@ -129,11 +136,13 @@ void Game::addStars(list<BasicStar> &star_list)
 
 int Game::gameOver()
 {
-  graphics_->drawText("OH NO! You fell!", graphics_->screen_width(), 
-                                          graphics_->screen_height());
-  graphics_->drawText("Press any key to continue", graphics_->screen_width(), 
-                                          graphics_->screen_height() + 30);
-  graphics_->updateScreen();
-  graphics_->waitForKeypress();
+  const signed screen_width = this->graphics_->screen_width();
+  const signed screen_height = this->graphics_->screen_height();
+
+  this->graphics_->drawText("OH NO! You fell!", screen_width, screen_height);
+  this->graphics_->drawText("Press any key to continue", screen_width, 
+                                                         screen_height + 30);
+  this->graphics_->updateScreen();
+  this->graphics_->waitForKeypress();
   return 2;
 }

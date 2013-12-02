@@ -33,9 +33,9 @@ class Player: public Sprite
 
     /*!
      * \brief Manages player's movement depending on dx and dy
-     * \param SCREEN_WIDTH width of game screen
+     * \param screen_width width of game screen
      */
-    void handleGravity(const signed SCREEN_WIDTH);
+    void handleGravity(const signed screen_width);
 
     /*!
      * \brief Jump a short distance into the air

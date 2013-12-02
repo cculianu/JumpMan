@@ -15,56 +15,64 @@ Player::~Player() {}
 bool Player::touches(const Sprite &other)
 {
   /* If y-difference is less than their combines height */
-  if (abs(y_ - other.y()) < (height_ + other.height()/2))
+  if (abs(this->y_ - other.y()) < (this->height_ + other.height()/2))
   {
     /* If x-difference is less than their combined width */
-    if (abs(x_ - other.x()) < (width_ + other.width())/2)
+    if (abs(this->x_ - other.x()) < (this->width_ + other.width())/2)
     {
-      jump(true);
+      this->jump(true);
       return true;
     }
   }
   return false;
 }
 
-void Player::handleGravity(const signed SCREEN_WIDTH)
+void Player::handleGravity(const signed screen_width)
 {
   /* X-axis - Make sure that the player does not escape the screen */
-  if (dx_ != 0 &&
-      -(SCREEN_WIDTH -width_)/2 <= x_ + dx_ && 
-      x_ + dx_ <= (SCREEN_WIDTH -width_)/2)
-        x_ += dx_;
+  if (this->dx_ != 0 &&
+      this->x_ + this->dx_ >= -(screen_width - this->width_)/2 &&
+      this->x_ + this->dx_ <=  (screen_width - this->width_)/2)
+        this->x_ += this->dx_;
 
   /* Y-axis */
-  if (dy_ != 0 || y_ > 0)
+  if (this->dy_ != 0 || this->y_ > 0)
   {
-    y_ += dy_;
-    dy_ -= 1;
-    if (dy_ > 0)
-      score_ += dy_;
+    this->y_ += this->dy_;
+    this->dy_ -= 1;
+
+    /* If we gain height, gain score */
+    if (this->dy_ > 0)
+      this->score_ += this->dy_;
   }
 }
 
 void Player::jump(bool force_push)
 {
-  if (force_push || standing_on_floor_)
+  if (force_push)
   {
-    standing_on_floor_ = false;
-    if (dy_ > 10)
-      dy_ += 10;
-    else
-      dy_ = 20;
+    /* Set speed to at least 20, after that, add 10 */
+    if (this->dy_ < 10)
+      this->dy_ = 10;
+    this->dy_ += 10;
+  }
+
+  else if (this->standing_on_floor_)
+  {
+    /* If we manually jump, remove standing_on_floor_ and recurse */
+    this->standing_on_floor_ = false;
+    return this->jump(true);
   }
 }
 
 void Player::move(short dx)
 {
   if (dx > 0)
-    dx_ = 10;
+    this->dx_ = 10;
   else if (dx < 0)
-    dx_ = -10;
+    this->dx_ = -10;
   else
-    dx_ = 0;
+    this->dx_ = 0;
 }
 
 size_t Player::score() const

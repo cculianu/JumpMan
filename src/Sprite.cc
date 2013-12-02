@@ -63,7 +63,7 @@ unsigned short Sprite::height() const
 
 short Sprite::imageX()
 {
-  if (num_images_ > 1)
+  if (this->num_images_ > 1)
     return (++this->current_image_ % this->num_images_) * this->width_;
   else
     return 0;
