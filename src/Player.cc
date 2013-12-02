@@ -1,5 +1,3 @@
-#include <cmath>
-
 #include "Player.hh"
 
 using namespace std;
@@ -16,11 +14,16 @@ Player::~Player() {}
 
 bool Player::touches(const Sprite &other)
 {
-  if (sqrt(pow(x_ - other.x(), 2) + pow(y_ - other.y(), 2)) <= 20)
+  /* If y-difference is less than their combines height */
+  if (abs(y_ - other.y()) < (height_ + other.height()/4))
   {
-    ++score_;
-    jump(true);
-    return true;
+    /* If x-difference is less than their combined width */
+    if (abs(x_ - other.x()) < (width_ + other.width())/4)
+    {
+      ++score_;
+      jump(true);
+      return true;
+    }
   }
   return false;
 }

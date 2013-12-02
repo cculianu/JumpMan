@@ -63,7 +63,10 @@ unsigned short Sprite::height() const
 
 short Sprite::imageX()
 {
-  return (++this->current_image_ % num_images_) * width_;
+  if (num_images_ > 1)
+    return (++this->current_image_ % this->num_images_) * this->width_;
+  else
+    return 0;
 }
 
 void Sprite::modifyY(int mod)

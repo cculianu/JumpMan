@@ -40,9 +40,6 @@ int Game::run()
 
   list<BasicStar> star_list;
 
-  rect_t draw_from;
-  rect_t draw_to;
-
   for (;;)
   {
     /* Receive and handle player input */
@@ -61,10 +58,12 @@ int Game::run()
     /* Let the objects move and interact with each other */
     player.handleGravity(static_cast<signed>(graphics_->screen_width()));
     star_list.remove_if([&player](BasicStar star) 
-        { 
-          return player.touches(star) || star.y() < 0; 
-        });
+        { return player.touches(star) || star.y() < 0; });
     addStars(star_list);
+
+    /* If player falls below the screen - return game over */
+    if (player.y() < -player.height()*2)
+      return gameOver();
 
     /* If player is above the middle of the screen, 
      * lower everything to center the player */
@@ -72,27 +71,21 @@ int Game::run()
     if (offset_y > 0)
     {
       for_each(star_list.begin(), star_list.end(), [offset_y](BasicStar &star)
-          { 
-            star.modifyY(-offset_y); 
-          });
+          { star.modifyY(-offset_y); });
       player.modifyY(-offset_y);
     }
-
-    /* If player falls below the screen - return game over */
-    if (player.y() < -player.height()*2)
-      return gameOver();
 
     /* Draw everything to screen */
     graphics_->drawImage("background", NULL, NULL);
 
-    for (auto enemy = star_list.begin(); enemy != star_list.end(); ++enemy)
+    for (auto star = star_list.begin(); star != star_list.end(); ++star)
     {
-      draw_from = {enemy->imageX(), 0, enemy->width(), enemy->height() };
-      draw_to = {enemy->x(), enemy->y(), enemy->width(), enemy->height()};
-      graphics_->drawImage(enemy->filename(), &draw_from, &draw_to);
+      rect_t draw_to = {star->x(), star->y(), star->width(), star->height() };
+      rect_t draw_from = {star->imageX(), 0, draw_to.w, draw_to.h };
+      graphics_->drawImage(star->filename(), &draw_from, &draw_to);
     }
 
-    draw_to = {player.x(), player.y(), player.width(), player.height()};
+    rect_t draw_to = {player.x(), player.y(), player.width(), player.height() };
     graphics_->drawImage(player.filename(), NULL, &draw_to);
 
     graphics_->drawText("Score: " + to_string(player.score()), 
