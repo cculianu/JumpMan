@@ -30,6 +30,18 @@ public:
     Sprite(std::string filename, short x, short y, 
            unsigned short width, unsigned short height);
 
+    
+    /*!
+     * \brief Constructor
+     * \param filename Name of the object's image-file inside graphics/
+     * \param x starting x-position
+     * \param y starting y-position
+     * \param width width of image
+     * \param height height of image
+     * \param rotations how many images this Sprite has
+     */
+    Sprite(std::string filename, short x, short y, 
+           unsigned short width, unsigned short height, short rotations);
     /*!
      * \brief Copy Constructor
      * \param other Sprite to copy
@@ -71,12 +83,19 @@ public:
     unsigned short height() const;
 
     /*!
+     * \return x of the image the Sprite wants to draw
+     */
+    short imageX(); 
+
+    /*!
      * \brief Modifies the Sprite's position of the y-axis
      * \param mod Y axis modifier
      */
     void modifyY(int mod);
 
 protected:
+    short rotation_; /*!< If the sprite has many images, this handles them */
+    short rotations_; /*!< How many images a Sprite has */
     short x_; /*!< Sprite's position on the x-axis */
     short y_; /*!< Sprite's position on the y-acis */
     const unsigned short width_;  /*!< Sprite's image's width */

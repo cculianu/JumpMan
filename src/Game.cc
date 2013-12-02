@@ -38,9 +38,10 @@ int Game::run()
   Player player("player", 0, 0, 20, 20);
 
   list<BasicEnemy> enemies;
-  enemies.push_back(BasicEnemy("jumpy", player, 20, 20, graphics_->screen_width()/2));
+  enemies.push_back(BasicEnemy("jumpy", player, 20, 20, graphics_->screen_width()/2, 4));
 
   rect_t draw_to;
+  rect_t draw_from;
 
   for (;;)
   {
@@ -82,8 +83,9 @@ int Game::run()
 
     for (auto enemy = enemies.begin(); enemy != enemies.end(); ++enemy)
     {
+      draw_from = {enemy->imageX(), 0, enemy->width(), enemy->height() };
       draw_to = {enemy->x(), enemy->y(), enemy->width(), enemy->height()};
-      graphics_->drawImage(enemy->filename(), NULL, &draw_to);
+      graphics_->drawImage(enemy->filename(), &draw_from, &draw_to);
     }
 
     draw_to = {player.x(), player.y(), player.width(), player.height()};
@@ -105,7 +107,7 @@ int Game::addEnemies(list<BasicEnemy> &enemies)
   while (enemies.back().y() < screen_height)
   {
     enemies.push_back(BasicEnemy("jumpy", enemies.back(), 20, 20,
-                      graphics_->screen_width()/2));
+                      graphics_->screen_width()/2, 4));
     ++counter;
   }
   return counter;
