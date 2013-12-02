@@ -61,6 +61,7 @@ class Player: public Sprite
     short dx_;               /*!< Current x-axis movement */
     short dy_;               /*!< Current y-axis movement */
     bool standing_on_floor_; /*!< True if player has not yet jumped */
+    size_t points_;          /*!< Current points */
 };
 
 

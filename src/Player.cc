@@ -9,7 +9,8 @@ Player::Player(string filename, short x, short y,
   Sprite(filename, x, y, width, height),
   dx_(0),
   dy_(0),
-  standing_on_floor_(true)
+  standing_on_floor_(true),
+  points_(0)
 {}
 
 Player::~Player() {}
@@ -18,6 +19,7 @@ bool Player::touches(const Sprite &other)
 {
   if (sqrt(pow(x_ - other.x(), 2) + pow(y_ - other.y(), 2)) <= 20)
   {
+    ++points_;
     jump(true);
     return true;
   }
