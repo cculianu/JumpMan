@@ -13,7 +13,7 @@
 
 #include "GraphicsEngine.hh"
 #include "Player.hh"
-#include "BasicEnemy.hh"
+#include "BasicStar.hh"
 
 /*! 
  * \class Game
@@ -43,11 +43,11 @@ class Game
   private:
 
     /*!
-     * \brief Add enemies until they fill up the screen 
-     * \param enemies list of enemies in run()-function
-     * \return numbers of enemies added
+     * \brief Add stars until they fill up the screen 
+     * \param star_list list of stars in game
+     * \return numbers of stars added
      */
-    int addEnemies(std::list<BasicEnemy> &enemies);
+    int addStars(std::list<BasicStar> &star_list);
 
     /*!
      * \brief Triggers when the player fails

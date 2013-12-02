@@ -19,9 +19,10 @@ Game::Game() :
                                 SCREEN_BPP, FRAME_RATE);
 
   /* Load images from disk */
-  if (graphics_->loadImage("player") == false ||
-      graphics_->loadImage("jumpy") == false ||
-      graphics_->loadImage("background") == false)
+  if (graphics_->loadImage("background") == false ||
+      graphics_->loadImage("player") == false ||
+      graphics_->loadImage("star_yellow") == false ||
+      graphics_->loadImage("star_orange") == false )
   {
     std::cerr << "Failed to load image: " << graphics_->getLastError() << '\n';
     exit(1);
@@ -37,8 +38,8 @@ int Game::run()
 {
   Player player;
 
-  list<BasicEnemy> enemies;
-  enemies.push_back(BasicEnemy("jumpy", player, 20, 20, graphics_->screen_width()/2, 4));
+  list<BasicStar> star_list;
+  star_list.push_back(BasicStar("star_yellow", player, 20, 20, graphics_->screen_width()/2, 4));
 
   rect_t draw_to;
   rect_t draw_from;
@@ -60,9 +61,9 @@ int Game::run()
 
     /* Let the objects move and interact with each other */
     player.handleGravity(static_cast<signed>(graphics_->screen_width()));
-    enemies.remove_if([&player](BasicEnemy enemy) 
+    star_list.remove_if([&player](BasicStar enemy) 
         { return player.touches(enemy) || enemy.y() < 0; });
-    addEnemies(enemies);
+    addStars(star_list);
 
     /* If player is above the middle of the screen, 
      * lower everything to center the player */
@@ -70,7 +71,7 @@ int Game::run()
     if (offset_y > 0)
     {
       player.modifyY(-offset_y);
-      for_each(enemies.begin(), enemies.end(), [offset_y](BasicEnemy &enemy)
+      for_each(star_list.begin(), star_list.end(), [offset_y](BasicStar &enemy)
           { enemy.modifyY(-offset_y); });
     }
 
@@ -81,7 +82,7 @@ int Game::run()
     /* Draw everything to screen */
     graphics_->drawImage("background", NULL, NULL);
 
-    for (auto enemy = enemies.begin(); enemy != enemies.end(); ++enemy)
+    for (auto enemy = star_list.begin(); enemy != star_list.end(); ++enemy)
     {
       draw_from = {enemy->imageX(), 0, enemy->width(), enemy->height() };
       draw_to = {enemy->x(), enemy->y(), enemy->width(), enemy->height()};
@@ -102,14 +103,14 @@ int Game::run()
   return 1;
 }
 
-int Game::addEnemies(list<BasicEnemy> &enemies)
+int Game::addStars(list<BasicStar> &star_list)
 {
   int counter = 0;
   signed screen_height = static_cast<signed>(graphics_->screen_height());
 
-  while (enemies.back().y() < screen_height)
+  while (star_list.back().y() < screen_height)
   {
-    enemies.push_back(BasicEnemy("jumpy", enemies.back(), 20, 20,
+    star_list.push_back(BasicStar("star_yellow", star_list.back(), 20, 20,
                       graphics_->screen_width()/2, 4));
     ++counter;
   }

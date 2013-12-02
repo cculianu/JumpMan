@@ -1,9 +1,9 @@
-#ifndef __BASIC_ENEMY_HH__
-#define __BASIC_ENEMY_HH__
+#ifndef __BASIC_STAR_HH__
+#define __BASIC_STAR_HH__
 
 /*! 
- * \file BasicEnemy.hh
- * \brief File containing the BasicEnemy class Header
+ * \file BasicStar.hh
+ * \brief File containing the BasicStar class Header
  *
  * \author Olle Kvarnström
  * \date
@@ -12,11 +12,11 @@
 #include "Sprite.hh"
 
 /*!
- * \class BasicEnemy
- * \brief The most basic type of enemy, cannot move
+ * \class BasicStar
+ * \brief The most basic type of star, cannot move
  *
  */
-class BasicEnemy : public Sprite
+class BasicStar : public Sprite
 {
   public:
 
@@ -28,9 +28,9 @@ class BasicEnemy : public Sprite
      * \param height height of image
      * \param edge_coord the max pixels we can go in either direction without moving outside the screen
      */
-    BasicEnemy(std::string filename, const Sprite &reference,
-               unsigned short width, unsigned short height,
-               int edge_coord);
+    BasicStar(std::string filename, const Sprite &reference,
+              unsigned short width, unsigned short height,
+              int edge_coord);
 
     /*!
      * \brief Constructor
@@ -41,12 +41,12 @@ class BasicEnemy : public Sprite
      * \param edge_coor the max pixels we can go in either direction without moving outside the screen
      * \param rotations how many images this Sprite has
      */
-    BasicEnemy(std::string filename, const Sprite &reference,
-               unsigned short width, unsigned short height,
-               int edge_coord, int rotations);
+    BasicStar(std::string filename, const Sprite &reference,
+              unsigned short width, unsigned short height,
+              int edge_coord, int rotations);
 
     ///Destructor
-    ~BasicEnemy();
+    ~BasicStar();
 
   private:
 
@@ -60,4 +60,4 @@ class BasicEnemy : public Sprite
 
 };
 
-#endif //__BASIC_ENEMY_HH__
+#endif //__BASIC_STAR_HH__
