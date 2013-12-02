@@ -15,10 +15,10 @@ Player::~Player() {}
 bool Player::touches(const Sprite &other)
 {
   /* If y-difference is less than their combines height */
-  if (abs(y_ - other.y()) < (height_ + other.height()/4))
+  if (abs(y_ - other.y()) < (height_ + other.height()/2))
   {
     /* If x-difference is less than their combined width */
-    if (abs(x_ - other.x()) < (width_ + other.width())/4)
+    if (abs(x_ - other.x()) < (width_ + other.width())/2)
     {
       ++score_;
       jump(true);
