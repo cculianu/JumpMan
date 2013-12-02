@@ -39,7 +39,6 @@ int Game::run()
   Player player;
 
   list<BasicStar> star_list;
-  star_list.push_back(BasicStar("star_yellow", player, 20, 20, graphics_->screen_width()/2, 4));
 
   rect_t draw_to;
   rect_t draw_from;
@@ -103,18 +102,17 @@ int Game::run()
   return 1;
 }
 
-int Game::addStars(list<BasicStar> &star_list)
+void Game::addStars(list<BasicStar> &star_list)
 {
-  int counter = 0;
   signed screen_height = static_cast<signed>(graphics_->screen_height());
+  signed half_screen_width  = graphics_->screen_width()/2;
+
+  if (star_list.size() <= 0)
+    star_list.push_back(BasicStar(0, half_screen_width));
 
   while (star_list.back().y() < screen_height)
-  {
-    star_list.push_back(BasicStar("star_yellow", star_list.back(), 20, 20,
-                      graphics_->screen_width()/2, 4));
-    ++counter;
-  }
-  return counter;
+    star_list.push_back(BasicStar(star_list.back().y(), half_screen_width));
+
 }
 
 int Game::gameOver()

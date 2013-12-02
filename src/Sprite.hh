@@ -26,10 +26,10 @@ public:
      * \param y starting y-position
      * \param width width of image
      * \param height height of image
-     * \param rotations how many images this Sprite has
+     * \param num_images how many images this Sprite has
      */
     Sprite(std::string filename, short x, short y, 
-           unsigned short width, unsigned short height, short rotations);
+           unsigned short width, unsigned short height, short num_images);
     /*!
      * \brief Copy Constructor
      * \param other Sprite to copy
@@ -82,8 +82,8 @@ public:
     void modifyY(int mod);
 
 protected:
-    short rotation_; /*!< If the sprite has many images, this handles them */
-    short rotations_; /*!< How many images a Sprite has */
+    short current_image_; /*!< If the sprite has many images, this handles them */
+    short num_images_;    /*!< How many images a Sprite has */
     short x_; /*!< Sprite's position on the x-axis */
     short y_; /*!< Sprite's position on the y-acis */
     const unsigned short width_;  /*!< Sprite's image's width */

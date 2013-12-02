@@ -3,9 +3,9 @@
 using namespace std;
 
 Sprite::Sprite(string filename, short x, short y, 
-               unsigned short width, unsigned short height, short rotations) :
-  rotation_(0),
-  rotations_(rotations),
+               unsigned short width, unsigned short height, short num_images) :
+  current_image_(0),
+  num_images_(num_images),
   x_(x),
   y_(y),
   width_(width),
@@ -14,8 +14,8 @@ Sprite::Sprite(string filename, short x, short y,
 {}
 
 Sprite::Sprite(const Sprite &other) :
-  rotation_(0),
-  rotations_(other.rotations_),
+  current_image_(0),
+  num_images_(other.num_images_),
   x_(other.x_),
   y_(other.y_),
   width_(other.width_),
@@ -63,7 +63,7 @@ unsigned short Sprite::height() const
 
 short Sprite::imageX()
 {
-  return (++this->rotation_ % rotations_) * width_;
+  return (++this->current_image_ % num_images_) * width_;
 }
 
 void Sprite::modifyY(int mod)
