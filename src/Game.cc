@@ -21,8 +21,8 @@ Game::Game() :
   /* Load images from disk */
   if (graphics_->loadImage("background") == false ||
       graphics_->loadImage("player") == false ||
-      graphics_->loadImage("star_yellow") == false ||
-      graphics_->loadImage("star_orange") == false )
+      graphics_->loadImage("basic_star") == false ||
+      graphics_->loadImage("moving_star") == false )
   {
     std::cerr << "Failed to load image: " << graphics_->getLastError() << '\n';
     exit(1);
@@ -62,7 +62,7 @@ int Game::run()
     player.handleGravity(static_cast<signed>(graphics_->screen_width()));
 
     /* Remove stars if the player touches them or they disappear off screen */
-    star_list.remove_if([&player](BasicStar star) 
+    star_list.remove_if([&player](BasicStar &star) 
         { return player.touches(star) || star.y() < 0; });
 
     /* Add stars if there is room */

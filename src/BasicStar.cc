@@ -6,7 +6,7 @@
 using namespace std;
 
 BasicStar::BasicStar(short y, int edge_coord) :
-  Sprite("star_yellow", 0, y + 50, 20, 20, 4)
+  Sprite("basic_star", 0, y + 50, 20, 20, 4)
 { 
   randomizeSpawn(edge_coord); 
 }
