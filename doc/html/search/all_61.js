@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['addenemies',['addEnemies',['../classGame.html#aed445257fc658cf0d8be31c174c0e42e',1,'Game']]]
+  ['addstars',['addStars',['../classGame.html#a758c6e31e784bf869133a2274ebc98c7',1,'Game']]]
 ];

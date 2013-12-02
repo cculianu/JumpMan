@@ -19,13 +19,13 @@ Inheritance diagram for Sprite\-:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classSprite_adf4666af1bdec5e29b921dfb60952671}{Sprite} (std\-::string \hyperlink{classSprite_aae3514a9a1f77ab5e8e213e44ec618a3}{filename}, short \hyperlink{classSprite_a18eb1c5b90418641d3eabda8f7fe56c9}{x}, short \hyperlink{classSprite_afca2c03aad9d2526427470688ae76439}{y}, unsigned short \hyperlink{classSprite_ac56c9242f797a1a2f76687fca636a3c4}{width}, unsigned short \hyperlink{classSprite_ae96d42c46af7aad1f9031da62f878b21}{height})
+\hyperlink{classSprite_a848f031c098042b68984b3840ce64604}{Sprite} (std\-::string \hyperlink{classSprite_aae3514a9a1f77ab5e8e213e44ec618a3}{filename}, short \hyperlink{classSprite_a18eb1c5b90418641d3eabda8f7fe56c9}{x}, short \hyperlink{classSprite_afca2c03aad9d2526427470688ae76439}{y}, unsigned short \hyperlink{classSprite_ac56c9242f797a1a2f76687fca636a3c4}{width}, unsigned short \hyperlink{classSprite_ae96d42c46af7aad1f9031da62f878b21}{height}, short num\-\_\-images)
 \begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
 \hyperlink{classSprite_ac17f0e18a22c84234a659b1c0bbb69de}{Sprite} (const \hyperlink{classSprite}{Sprite} \&other)
 \begin{DoxyCompactList}\small\item\em Copy Constructor. \end{DoxyCompactList}\item 
 virtual \hyperlink{classSprite_a8accab430f9d90ae5117b57d67e32b84}{$\sim$\-Sprite} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
-virtual \hyperlink{classSprite}{Sprite} \& \hyperlink{classSprite_abb3f0673884d42b6b116f0c4d1a47b77}{operator=} (const \hyperlink{classSprite}{Sprite} \&other)
+\hyperlink{classSprite}{Sprite} \& \hyperlink{classSprite_abb3f0673884d42b6b116f0c4d1a47b77}{operator=} (const \hyperlink{classSprite}{Sprite} \&other)
 \begin{DoxyCompactList}\small\item\em Copy Constructor. \end{DoxyCompactList}\item 
 const std\-::string \& \hyperlink{classSprite_aae3514a9a1f77ab5e8e213e44ec618a3}{filename} () const 
 \item 
@@ -37,10 +37,16 @@ unsigned short \hyperlink{classSprite_ac56c9242f797a1a2f76687fca636a3c4}{width} 
 \item 
 unsigned short \hyperlink{classSprite_ae96d42c46af7aad1f9031da62f878b21}{height} () const 
 \item 
+short \hyperlink{classSprite_a2703a7a7b2acc1dec83dd1c4f5054aef}{image\-X} ()
+\item 
 void \hyperlink{classSprite_a587e5f7d415b1210ffeb091c69818914}{modify\-Y} (int mod)
 \begin{DoxyCompactList}\small\item\em Modifies the \hyperlink{classSprite}{Sprite}'s position of the y-\/axis. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
+\item 
+short \hyperlink{classSprite_a8654a8729656ba13695c20c2030de5d0}{current\-\_\-image\-\_\-}
+\item 
+short \hyperlink{classSprite_a5a6ae065c674bfb85b6d90c1cbfcdca2}{num\-\_\-images\-\_\-}
 \item 
 short \hyperlink{classSprite_ac66af2df2e5990c07252b8aa0d384346}{x\-\_\-}
 \item 
@@ -61,7 +67,7 @@ const std\-::string \hyperlink{classSprite_aaa19414e23ba5ea1b20bd8a04281a9f0}{fi
 Base class for all images. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classSprite_adf4666af1bdec5e29b921dfb60952671}{\index{Sprite@{Sprite}!Sprite@{Sprite}}
+\hypertarget{classSprite_a848f031c098042b68984b3840ce64604}{\index{Sprite@{Sprite}!Sprite@{Sprite}}
 \index{Sprite@{Sprite}!Sprite@{Sprite}}
 \subsubsection[{Sprite}]{\setlength{\rightskip}{0pt plus 5cm}Sprite\-::\-Sprite (
 \begin{DoxyParamCaption}
@@ -69,9 +75,10 @@ Base class for all images.
 \item[{short}]{x, }
 \item[{short}]{y, }
 \item[{unsigned short}]{width, }
-\item[{unsigned short}]{height}
+\item[{unsigned short}]{height, }
+\item[{short}]{num\-\_\-images}
 \end{DoxyParamCaption}
-)}}\label{classSprite_adf4666af1bdec5e29b921dfb60952671}
+)}}\label{classSprite_a848f031c098042b68984b3840ce64604}
 
 
 Constructor. 
@@ -87,6 +94,8 @@ Constructor.
 {\em width} & width of image \\
 \hline
 {\em height} & height of image \\
+\hline
+{\em num\-\_\-images} & how many images this \hyperlink{classSprite}{Sprite} has \\
 \hline
 \end{DoxyParams}
 \hypertarget{classSprite_ac17f0e18a22c84234a659b1c0bbb69de}{\index{Sprite@{Sprite}!Sprite@{Sprite}}
@@ -139,6 +148,16 @@ filename of image file
 \begin{DoxyReturn}{Returns}
 \hyperlink{classSprite}{Sprite}'s image's height 
 \end{DoxyReturn}
+\hypertarget{classSprite_a2703a7a7b2acc1dec83dd1c4f5054aef}{\index{Sprite@{Sprite}!image\-X@{image\-X}}
+\index{image\-X@{image\-X}!Sprite@{Sprite}}
+\subsubsection[{image\-X}]{\setlength{\rightskip}{0pt plus 5cm}short Sprite\-::image\-X (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSprite_a2703a7a7b2acc1dec83dd1c4f5054aef}
+\begin{DoxyReturn}{Returns}
+x of the image the \hyperlink{classSprite}{Sprite} wants to draw 
+\end{DoxyReturn}
 \hypertarget{classSprite_a587e5f7d415b1210ffeb091c69818914}{\index{Sprite@{Sprite}!modify\-Y@{modify\-Y}}
 \index{modify\-Y@{modify\-Y}!Sprite@{Sprite}}
 \subsubsection[{modify\-Y}]{\setlength{\rightskip}{0pt plus 5cm}void Sprite\-::modify\-Y (
@@ -161,7 +180,7 @@ Modifies the \hyperlink{classSprite}{Sprite}'s position of the y-\/axis.
 \begin{DoxyParamCaption}
 \item[{const {\bf Sprite} \&}]{other}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classSprite_abb3f0673884d42b6b116f0c4d1a47b77}
+)}}\label{classSprite_abb3f0673884d42b6b116f0c4d1a47b77}
 
 
 Copy Constructor. 
@@ -204,13 +223,19 @@ Copy Constructor.
 
 
 \subsection{Member Data Documentation}
-\hypertarget{classSprite_aaa19414e23ba5ea1b20bd8a04281a9f0}{\index{Sprite@{Sprite}!filename\-\_\-@{filename\-\_\-}}
+\hypertarget{classSprite_a8654a8729656ba13695c20c2030de5d0}{\index{Sprite@{Sprite}!current\-\_\-image\-\_\-@{current\-\_\-image\-\_\-}}
+\index{current\-\_\-image\-\_\-@{current\-\_\-image\-\_\-}!Sprite@{Sprite}}
+\subsubsection[{current\-\_\-image\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}short Sprite\-::current\-\_\-image\-\_\-\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSprite_a8654a8729656ba13695c20c2030de5d0}
+If the sprite has many images, this handles them \hypertarget{classSprite_aaa19414e23ba5ea1b20bd8a04281a9f0}{\index{Sprite@{Sprite}!filename\-\_\-@{filename\-\_\-}}
 \index{filename\-\_\-@{filename\-\_\-}!Sprite@{Sprite}}
 \subsubsection[{filename\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::string Sprite\-::filename\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classSprite_aaa19414e23ba5ea1b20bd8a04281a9f0}
 \hyperlink{classSprite}{Sprite}'s image's filename \hypertarget{classSprite_ae2ddd489c30852d32b7a88d20af9df1e}{\index{Sprite@{Sprite}!height\-\_\-@{height\-\_\-}}
 \index{height\-\_\-@{height\-\_\-}!Sprite@{Sprite}}
 \subsubsection[{height\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned short Sprite\-::height\-\_\-\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSprite_ae2ddd489c30852d32b7a88d20af9df1e}
-\hyperlink{classSprite}{Sprite}'s image's height \hypertarget{classSprite_ac0c8b57b52d82f2753c1726e51ed0490}{\index{Sprite@{Sprite}!width\-\_\-@{width\-\_\-}}
+\hyperlink{classSprite}{Sprite}'s image's height \hypertarget{classSprite_a5a6ae065c674bfb85b6d90c1cbfcdca2}{\index{Sprite@{Sprite}!num\-\_\-images\-\_\-@{num\-\_\-images\-\_\-}}
+\index{num\-\_\-images\-\_\-@{num\-\_\-images\-\_\-}!Sprite@{Sprite}}
+\subsubsection[{num\-\_\-images\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}short Sprite\-::num\-\_\-images\-\_\-\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSprite_a5a6ae065c674bfb85b6d90c1cbfcdca2}
+How many images a \hyperlink{classSprite}{Sprite} has \hypertarget{classSprite_ac0c8b57b52d82f2753c1726e51ed0490}{\index{Sprite@{Sprite}!width\-\_\-@{width\-\_\-}}
 \index{width\-\_\-@{width\-\_\-}!Sprite@{Sprite}}
 \subsubsection[{width\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned short Sprite\-::width\-\_\-\hspace{0.3cm}{\ttfamily [protected]}}}\label{classSprite_ac0c8b57b52d82f2753c1726e51ed0490}
 \hyperlink{classSprite}{Sprite}'s image's width \hypertarget{classSprite_ac66af2df2e5990c07252b8aa0d384346}{\index{Sprite@{Sprite}!x\-\_\-@{x\-\_\-}}

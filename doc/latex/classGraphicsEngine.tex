@@ -23,10 +23,14 @@ std\-::string \hyperlink{classGraphicsEngine_a0141ef903d368eedea2aaf6e47001efa}{
 \begin{DoxyCompactList}\small\item\em returns a string describing last error that occurred \end{DoxyCompactList}\item 
 bool \hyperlink{classGraphicsEngine_a47be08aa9a766dce3b32b6814fb5b6ed}{draw\-Image} (const std\-::string \&image, \hyperlink{GraphicsEngine_8hh_a9a150f1ad43ec7de65cfe698cdae8bee}{rect\-\_\-t} $\ast$srcrect, \hyperlink{GraphicsEngine_8hh_a9a150f1ad43ec7de65cfe698cdae8bee}{rect\-\_\-t} $\ast$dstrect)
 \begin{DoxyCompactList}\small\item\em Draw an image to the game screen. \end{DoxyCompactList}\item 
+void \hyperlink{classGraphicsEngine_a82d4584abba7fd03c321a3e418964cac}{draw\-Text} (const std\-::string \&text, unsigned x, unsigned y)
+\begin{DoxyCompactList}\small\item\em Draw some text at the given location. \end{DoxyCompactList}\item 
 bool \hyperlink{classGraphicsEngine_aeadd04c5518ef05b039241cbb7d09b59}{update\-Screen} ()
 \begin{DoxyCompactList}\small\item\em Flushes the screen so it's visible to the user. \end{DoxyCompactList}\item 
 bool \hyperlink{classGraphicsEngine_acdcf6935481bebcc5f45e7fd18dcf016}{get\-Event} (\hyperlink{GraphicsEngine_8hh_a2fb9b58e4e5f14f40af8b4a1425841f8}{event\-\_\-t} \&event) const 
 \begin{DoxyCompactList}\small\item\em Non-\/blocking function to check event depending on user input. \end{DoxyCompactList}\item 
+void \hyperlink{classGraphicsEngine_a4fe915afad2a770445f34ad1f597474a}{wait\-For\-Keypress} () const 
+\begin{DoxyCompactList}\small\item\em Waits until a key is pressed. \end{DoxyCompactList}\item 
 unsigned \hyperlink{classGraphicsEngine_a7598618ef7de1ba7813e41471938f2c1}{screen\-\_\-width} () const 
 \begin{DoxyCompactList}\small\item\em Returns width of game screen. \end{DoxyCompactList}\item 
 unsigned \hyperlink{classGraphicsEngine_af7d7440d76fda157dae03aabc9388a83}{screen\-\_\-height} () const 
@@ -57,7 +61,9 @@ S\-D\-L\-\_\-\-Surface $\ast$ $>$ \hyperlink{classGraphicsEngine_a5058ffe9d65389
 size\-\_\-t \hyperlink{classGraphicsEngine_a03732739efdf1f24a3bda1a202b6b866}{time\-\_\-of\-\_\-last\-\_\-refresh\-\_\-}
 \begin{DoxyCompactList}\small\item\em The time \hyperlink{classGraphicsEngine_aeadd04c5518ef05b039241cbb7d09b59}{update\-Screen()} last was called. \end{DoxyCompactList}\item 
 S\-D\-L\-\_\-\-Surface $\ast$ \hyperlink{classGraphicsEngine_a4d89c081a99c7512a070c9cb77809322}{screen\-\_\-}
-\begin{DoxyCompactList}\small\item\em The game screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The game screen. \end{DoxyCompactList}\item 
+T\-T\-F\-\_\-\-Font $\ast$ \hyperlink{classGraphicsEngine_aea94592fe91edfb3983a0ee088f2888b}{font\-\_\-}
+\begin{DoxyCompactList}\small\item\em Font to use. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -144,6 +150,28 @@ Draw an image to the game screen.
 \begin{DoxyReturn}{Returns}
 true on success 
 \end{DoxyReturn}
+\hypertarget{classGraphicsEngine_a82d4584abba7fd03c321a3e418964cac}{\index{Graphics\-Engine@{Graphics\-Engine}!draw\-Text@{draw\-Text}}
+\index{draw\-Text@{draw\-Text}!GraphicsEngine@{Graphics\-Engine}}
+\subsubsection[{draw\-Text}]{\setlength{\rightskip}{0pt plus 5cm}void Graphics\-Engine\-::draw\-Text (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{text, }
+\item[{unsigned}]{x, }
+\item[{unsigned}]{y}
+\end{DoxyParamCaption}
+)}}\label{classGraphicsEngine_a82d4584abba7fd03c321a3e418964cac}
+
+
+Draw some text at the given location. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & text to draw \\
+\hline
+{\em x} & the center on the x-\/axis where we will draw \\
+\hline
+{\em y} & the center on the y-\/axis where we will draw \\
+\hline
+\end{DoxyParams}
 \hypertarget{classGraphicsEngine_acdcf6935481bebcc5f45e7fd18dcf016}{\index{Graphics\-Engine@{Graphics\-Engine}!get\-Event@{get\-Event}}
 \index{get\-Event@{get\-Event}!GraphicsEngine@{Graphics\-Engine}}
 \subsubsection[{get\-Event}]{\setlength{\rightskip}{0pt plus 5cm}bool Graphics\-Engine\-::get\-Event (
@@ -240,9 +268,27 @@ Flushes the screen so it's visible to the user.
 \begin{DoxyReturn}{Returns}
 true on success 
 \end{DoxyReturn}
+\hypertarget{classGraphicsEngine_a4fe915afad2a770445f34ad1f597474a}{\index{Graphics\-Engine@{Graphics\-Engine}!wait\-For\-Keypress@{wait\-For\-Keypress}}
+\index{wait\-For\-Keypress@{wait\-For\-Keypress}!GraphicsEngine@{Graphics\-Engine}}
+\subsubsection[{wait\-For\-Keypress}]{\setlength{\rightskip}{0pt plus 5cm}void Graphics\-Engine\-::wait\-For\-Keypress (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classGraphicsEngine_a4fe915afad2a770445f34ad1f597474a}
+
+
+Waits until a key is pressed. 
+
 
 
 \subsection{Member Data Documentation}
+\hypertarget{classGraphicsEngine_aea94592fe91edfb3983a0ee088f2888b}{\index{Graphics\-Engine@{Graphics\-Engine}!font\-\_\-@{font\-\_\-}}
+\index{font\-\_\-@{font\-\_\-}!GraphicsEngine@{Graphics\-Engine}}
+\subsubsection[{font\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}T\-T\-F\-\_\-\-Font$\ast$ Graphics\-Engine\-::font\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classGraphicsEngine_aea94592fe91edfb3983a0ee088f2888b}
+
+
+Font to use. 
+
 \hypertarget{classGraphicsEngine_a488d694ad4eea9bbbe68fc4d98cde8bf}{\index{Graphics\-Engine@{Graphics\-Engine}!F\-R\-A\-M\-E\-\_\-\-R\-A\-T\-E@{F\-R\-A\-M\-E\-\_\-\-R\-A\-T\-E}}
 \index{F\-R\-A\-M\-E\-\_\-\-R\-A\-T\-E@{F\-R\-A\-M\-E\-\_\-\-R\-A\-T\-E}!GraphicsEngine@{Graphics\-Engine}}
 \subsubsection[{F\-R\-A\-M\-E\-\_\-\-R\-A\-T\-E}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned short Graphics\-Engine\-::\-F\-R\-A\-M\-E\-\_\-\-R\-A\-T\-E\hspace{0.3cm}{\ttfamily [private]}}}\label{classGraphicsEngine_a488d694ad4eea9bbbe68fc4d98cde8bf}

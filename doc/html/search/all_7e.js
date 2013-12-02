@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['_7ebasicenemy',['~BasicEnemy',['../classBasicEnemy.html#afd165e8d0d0ebed94c0ab4a66f8cb2d9',1,'BasicEnemy']]],
+  ['_7ebasicstar',['~BasicStar',['../classBasicStar.html#a6ac994000481a4e155a16c4f96f9e17b',1,'BasicStar']]],
   ['_7egame',['~Game',['../classGame.html#ae3d112ca6e0e55150d2fdbc704474530',1,'Game']]],
   ['_7egraphicsengine',['~GraphicsEngine',['../classGraphicsEngine.html#ab67afeefbc9f1c284f6ce310c31ae8f6',1,'GraphicsEngine']]],
   ['_7eplayer',['~Player',['../classPlayer.html#a749d2c00e1fe0f5c2746f7505a58c062',1,'Player']]],

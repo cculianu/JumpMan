@@ -114,12 +114,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a47be08aa9a766dce3b32b6814fb5b6ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphicsEngine.html#a47be08aa9a766dce3b32b6814fb5b6ed">drawImage</a> (const std::string &amp;image, <a class="el" href="GraphicsEngine_8hh.html#a9a150f1ad43ec7de65cfe698cdae8bee">rect_t</a> *srcrect, <a class="el" href="GraphicsEngine_8hh.html#a9a150f1ad43ec7de65cfe698cdae8bee">rect_t</a> *dstrect)</td></tr>
 <tr class="memdesc:a47be08aa9a766dce3b32b6814fb5b6ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw an image to the game screen.  <a href="#a47be08aa9a766dce3b32b6814fb5b6ed">More...</a><br/></td></tr>
 <tr class="separator:a47be08aa9a766dce3b32b6814fb5b6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82d4584abba7fd03c321a3e418964cac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphicsEngine.html#a82d4584abba7fd03c321a3e418964cac">drawText</a> (const std::string &amp;text, unsigned x, unsigned y)</td></tr>
+<tr class="memdesc:a82d4584abba7fd03c321a3e418964cac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw some text at the given location.  <a href="#a82d4584abba7fd03c321a3e418964cac">More...</a><br/></td></tr>
+<tr class="separator:a82d4584abba7fd03c321a3e418964cac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeadd04c5518ef05b039241cbb7d09b59"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphicsEngine.html#aeadd04c5518ef05b039241cbb7d09b59">updateScreen</a> ()</td></tr>
 <tr class="memdesc:aeadd04c5518ef05b039241cbb7d09b59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flushes the screen so it's visible to the user.  <a href="#aeadd04c5518ef05b039241cbb7d09b59">More...</a><br/></td></tr>
 <tr class="separator:aeadd04c5518ef05b039241cbb7d09b59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdcf6935481bebcc5f45e7fd18dcf016"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphicsEngine.html#acdcf6935481bebcc5f45e7fd18dcf016">getEvent</a> (<a class="el" href="GraphicsEngine_8hh.html#a2fb9b58e4e5f14f40af8b4a1425841f8">event_t</a> &amp;event) const </td></tr>
 <tr class="memdesc:acdcf6935481bebcc5f45e7fd18dcf016"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-blocking function to check event depending on user input.  <a href="#acdcf6935481bebcc5f45e7fd18dcf016">More...</a><br/></td></tr>
 <tr class="separator:acdcf6935481bebcc5f45e7fd18dcf016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fe915afad2a770445f34ad1f597474a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphicsEngine.html#a4fe915afad2a770445f34ad1f597474a">waitForKeypress</a> () const </td></tr>
+<tr class="memdesc:a4fe915afad2a770445f34ad1f597474a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until a key is pressed.  <a href="#a4fe915afad2a770445f34ad1f597474a">More...</a><br/></td></tr>
+<tr class="separator:a4fe915afad2a770445f34ad1f597474a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7598618ef7de1ba7813e41471938f2c1"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphicsEngine.html#a7598618ef7de1ba7813e41471938f2c1">screen_width</a> () const </td></tr>
 <tr class="memdesc:a7598618ef7de1ba7813e41471938f2c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns width of game screen.  <a href="#a7598618ef7de1ba7813e41471938f2c1">More...</a><br/></td></tr>
 <tr class="separator:a7598618ef7de1ba7813e41471938f2c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,6 +169,9 @@ SDL_Surface * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="
 <tr class="memitem:a4d89c081a99c7512a070c9cb77809322"><td class="memItemLeft" align="right" valign="top">SDL_Surface *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphicsEngine.html#a4d89c081a99c7512a070c9cb77809322">screen_</a></td></tr>
 <tr class="memdesc:a4d89c081a99c7512a070c9cb77809322"><td class="mdescLeft">&#160;</td><td class="mdescRight">The game screen.  <a href="#a4d89c081a99c7512a070c9cb77809322">More...</a><br/></td></tr>
 <tr class="separator:a4d89c081a99c7512a070c9cb77809322"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea94592fe91edfb3983a0ee088f2888b"><td class="memItemLeft" align="right" valign="top">TTF_Font *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraphicsEngine.html#aea94592fe91edfb3983a0ee088f2888b">font_</a></td></tr>
+<tr class="memdesc:aea94592fe91edfb3983a0ee088f2888b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Font to use.  <a href="#aea94592fe91edfb3983a0ee088f2888b">More...</a><br/></td></tr>
+<tr class="separator:aea94592fe91edfb3983a0ee088f2888b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for managing graphics and events. </p>
@@ -311,6 +320,48 @@ SDL_Surface * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="
 
 </div>
 </div>
+<a class="anchor" id="a82d4584abba7fd03c321a3e418964cac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GraphicsEngine::drawText </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Draw some text at the given location. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">text</td><td>text to draw </td></tr>
+    <tr><td class="paramname">x</td><td>the center on the x-axis where we will draw </td></tr>
+    <tr><td class="paramname">y</td><td>the center on the y-axis where we will draw </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="acdcf6935481bebcc5f45e7fd18dcf016"></a>
 <div class="memitem">
 <div class="memproto">
@@ -456,7 +507,46 @@ SDL_Surface * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="
 
 </div>
 </div>
+<a class="anchor" id="a4fe915afad2a770445f34ad1f597474a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GraphicsEngine::waitForKeypress </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Waits until a key is pressed. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="aea94592fe91edfb3983a0ee088f2888b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TTF_Font* GraphicsEngine::font_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Font to use. </p>
+
+</div>
+</div>
 <a class="anchor" id="a488d694ad4eea9bbbe68fc4d98cde8bf"></a>
 <div class="memitem">
 <div class="memproto">
@@ -640,7 +730,7 @@ SDL_Surface * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 2 2013 00:13:45 for Jumpman by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 2 2013 15:43:32 for Jumpman by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>
