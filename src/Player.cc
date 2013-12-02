@@ -39,12 +39,6 @@ void Player::handleGravity(const signed SCREEN_WIDTH)
   {
     y_ += dy_;
     dy_ -= 1;
-    if (y_ <= 0)
-    {
-      dy_ = 0;
-      y_ = 0;
-    standing_on_floor_ = true;
-    }
   }
 }
 

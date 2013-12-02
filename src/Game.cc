@@ -63,7 +63,8 @@ int Game::run()
         { return player.touches(enemy) || enemy.y() < 0; });
     addEnemies(enemies);
 
-    /* If player is above the middle of the screen, lower everything */
+    /* If player is above the middle of the screen, 
+     * lower everything to center the player */
     int offset_y = player.y() - graphics_->screen_height()/2;
     if (offset_y > 0)
     {
@@ -71,6 +72,10 @@ int Game::run()
       for_each(enemies.begin(), enemies.end(), [offset_y](BasicEnemy &enemy)
           { enemy.modifyY(-offset_y); });
     }
+
+    /* If player falls below the screen - return game over */
+    if (player.y() < 0)
+      return gameOver();
 
     /* Draw everything to screen */
     graphics_->drawImage("background", NULL, NULL);
@@ -104,4 +109,12 @@ int Game::addEnemies(list<BasicEnemy> &enemies)
     ++counter;
   }
   return counter;
+}
+
+int Game::gameOver()
+{
+  //ADD GAME OVER MESSAGE
+  //ADD PRESS ESCAPE TO RETURN TO MENU
+  //ADD WaitEvent FROM GRAPHICS
+  return 0;
 }

@@ -41,11 +41,19 @@ class Game
     int run();
 
   private:
+
     /*!
      * \brief Add enemies until they fill up the screen 
      * \param enemies list of enemies in run()-function
+     * \return numbers of enemies added
      */
     int addEnemies(std::list<BasicEnemy> &enemies);
+
+    /*!
+     * \brief Triggers when the player fails
+     * \return always returns 0 
+     */
+    int gameOver();
 
     ///Instance for managing graphics
     GraphicsEngine *graphics_;
