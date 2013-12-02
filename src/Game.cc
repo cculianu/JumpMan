@@ -35,7 +35,7 @@ Game::~Game()
 
 int Game::run()
 {
-  Player player("player", 0, 0, 20, 20);
+  Player player;
 
   list<BasicEnemy> enemies;
   enemies.push_back(BasicEnemy("jumpy", player, 20, 20, graphics_->screen_width()/2, 4));

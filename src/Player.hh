@@ -18,16 +18,8 @@ class Player: public Sprite
 {
   public:
 
-    /*!
-     * \brief Constructor
-     * \param filename Name of object's image-file inside graphics/
-     * \param x starting x-position
-     * \param y starting y-position
-     * \param width width of image
-     * \param height height of image
-     */
-    Player(std::string filename, short x, short y, 
-           unsigned short width, unsigned short height);
+    ///Constructor
+    Player();
 
     ///Destructor
     ~Player();
@@ -53,7 +45,7 @@ class Player: public Sprite
 
     /*!
      * \brief Set player to in movement on the x-axis
-     * \param dx Negative for movement to the left and vice versa
+     * \param dx -1 to move left, +1 to move right, 0 to stay still
      */
     void move(short dx);
 

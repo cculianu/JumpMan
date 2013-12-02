@@ -4,9 +4,8 @@
 
 using namespace std;
 
-Player::Player(string filename, short x, short y, 
-               unsigned short width, unsigned short height) :
-  Sprite(filename, x, y, width, height),
+Player::Player() :
+  Sprite("player", 0, 0, 20, 20),
   dx_(0),
   dy_(0),
   standing_on_floor_(true),
@@ -28,15 +27,13 @@ bool Player::touches(const Sprite &other)
 
 void Player::handleGravity(const signed SCREEN_WIDTH)
 {
-  /* dx can be 
-   * -1: go left
-   *  0: stand still
-   *  1: go right */
+  /* X-axis - Make sure that the player does not escape the screen */
   if (dx_ != 0 &&
       -(SCREEN_WIDTH -width_)/2 <= x_ + dx_ && 
       x_ + dx_ <= (SCREEN_WIDTH -width_)/2)
         x_ += dx_;
 
+  /* Y-axis */
   if (dy_ != 0 || y_ > 0)
   {
     y_ += dy_;
