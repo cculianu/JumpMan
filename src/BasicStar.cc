@@ -24,3 +24,5 @@ void BasicStar::randomizeSpawn(int edge_coord)
 
   this->x_ = rand_x(gen);
 }
+
+void BasicStar::takeAction() {}

@@ -152,7 +152,7 @@ void GraphicsEngine::drawText(const string &text, unsigned x, unsigned y)
   const SDL_Color background_color = {255, 255, 255, 0};
 
   /* Craete text */
-  const SDL_Surface *text_surface = 
+  SDL_Surface *text_surface = 
     TTF_RenderText_Shaded(this->font_, text.c_str(), 
                           text_color, background_color);
 
@@ -161,7 +161,7 @@ void GraphicsEngine::drawText(const string &text, unsigned x, unsigned y)
                   SDL_MapRGB(text_surface->format, 255, 255, 255));
 
   /* Set target rect */
-  const SDL_Rect dstrect = 
+  SDL_Rect dstrect = 
     {static_cast<short>(x/2 - text_surface->w/2), 
      static_cast<short>(y/2 - text_surface->h/2), 0, 0};
 

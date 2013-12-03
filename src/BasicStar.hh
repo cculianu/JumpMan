@@ -30,6 +30,12 @@ class BasicStar : public Sprite
     ///Destructor
     ~BasicStar();
 
+    /*!
+     * \brief The common star method for doing things 
+     */
+    virtual void takeAction();
+
+
   private:
 
     /*!

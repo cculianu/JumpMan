@@ -29,7 +29,7 @@ class Player: public Sprite
      * \param other Sprite to check if they touch
      * \return true if they touch
      */
-    bool touches(const Sprite &other);
+    bool touches(Sprite *other);
 
     /*!
      * \brief Manages player's movement depending on dx and dy

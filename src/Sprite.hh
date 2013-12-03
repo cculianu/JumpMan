@@ -88,9 +88,9 @@ protected:
     short y_; /*!< Sprite's position on the y-acis */
     const unsigned short width_;  /*!< Sprite's image's width */
     const unsigned short height_; /*!< Sprite's image's height */
+    std::string filename_; /*!< Sprite's image's filename */
 
 private:
-    const std::string filename_; /*!< Sprite's image's filename */
 };
 
 #endif //__SPRITE_HH__

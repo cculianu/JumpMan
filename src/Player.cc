@@ -12,13 +12,13 @@ Player::Player() :
 
 Player::~Player() {}
 
-bool Player::touches(const Sprite &other)
+bool Player::touches(Sprite *other)
 {
   /* If y-difference is less than their combines height */
-  if (abs(this->y_ - other.y()) < (this->height_ + other.height()/2))
+  if (abs(this->y_ - other->y()) < (this->height_ + other->height()/2))
   {
     /* If x-difference is less than their combined width */
-    if (abs(this->x_ - other.x()) < (this->width_ + other.width())/2)
+    if (abs(this->x_ - other->x()) < (this->width_ + other->width())/2)
     {
       this->jump(true);
       return true;

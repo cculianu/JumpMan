@@ -1,8 +1,12 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <chrono>
+#include <random>
 
 #include "Game.hh"
+
+#include "MovingStar.hh"
 
 using namespace std;
 
@@ -37,7 +41,7 @@ Game::~Game()
 int Game::run()
 {
   Player player;
-  list<BasicStar> star_list;
+  list<BasicStar *> star_list;
 
   for (;;)
   {
@@ -60,12 +64,19 @@ int Game::run()
     /** PART 2 - OBJECTS MOVE/ITERACT **/
 
     player.handleGravity(static_cast<signed>(this->graphics_->screen_width()));
+    for_each(star_list.begin(), star_list.end(), 
+             [](BasicStar *star) { star->takeAction(); });
 
     /* Remove stars if the player touches them or they disappear off screen */
     star_list.remove_if(
-        [&player](BasicStar &star) 
+        [&player](BasicStar *star) 
         { 
-          return player.touches(star) || star.y() < 0; 
+          if (player.touches(star) || star->y() < 0)
+          {
+            delete star;
+            return true;
+          }
+          return  false;
         });
 
     /* Add stars if there is room */
@@ -82,9 +93,9 @@ int Game::run()
     {
       for_each(star_list.begin(), 
                star_list.end(), 
-               [offset_y](BasicStar &star)
+               [offset_y](BasicStar *star)
                { 
-                 star.modifyY(-offset_y); 
+                 star->modifyY(-offset_y); 
                });
       player.modifyY(-offset_y);
     }
@@ -97,7 +108,7 @@ int Game::run()
     this->graphics_->drawImage("background", NULL, NULL);
 
     /* Draw all stars */
-    for (auto star = star_list.begin(); star != star_list.end(); ++star)
+    for (auto star : star_list)
     {
       rect_t draw_to = {star->x(), star->y(), star->width(), star->height() };
       rect_t draw_from = {star->imageX(), 0, draw_to.w, draw_to.h };
@@ -121,16 +132,29 @@ int Game::run()
   return 1;
 }
 
-void Game::addStars(list<BasicStar> &star_list)
+void Game::addStars(list<BasicStar *> &star_list)
 {
-  signed screen_height = static_cast<signed>(this->graphics_->screen_height());
-  signed half_screen_width  = this->graphics_->screen_width()/2;
+  default_random_engine
+    gen(chrono::system_clock::now().time_since_epoch().count());
+  uniform_int_distribution<int> rand(0, 100);
+
+  const signed screen_height = 
+    static_cast<signed>(this->graphics_->screen_height());
+  const signed half_screen_width = 
+    this->graphics_->screen_width()/2;
 
   if (star_list.size() <= 0)
-    star_list.push_back(BasicStar(0, half_screen_width));
+    star_list.push_back(new BasicStar(0, half_screen_width));
 
-  while (star_list.back().y() < screen_height)
-    star_list.push_back(BasicStar(star_list.back().y(), half_screen_width));
+  while (star_list.back()->y() < screen_height)
+  {
+    const short last_y = star_list.back()->y();
+
+    star_list.push_back(new BasicStar(last_y, half_screen_width));
+
+    if (rand(gen) % 10 == 1)
+      star_list.push_back(new MovingStar(last_y, half_screen_width));
+  }
 
 }
 

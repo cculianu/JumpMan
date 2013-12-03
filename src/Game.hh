@@ -46,7 +46,7 @@ class Game
      * \brief Add stars until they fill up the screen 
      * \param star_list list of stars in game
      */
-    void addStars(std::list<BasicStar> &star_list);
+    void addStars(std::list<BasicStar *> &star_list);
 
     /*!
      * \brief Triggers when the player fails
