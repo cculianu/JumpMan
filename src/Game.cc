@@ -11,14 +11,17 @@
 using namespace std;
 
 Game::Game() :
-  graphics_(NULL)
+  graphics_(NULL),
+  star_list_()
 {
-  this->graphics_= new GraphicsEngine( "Jumpman" /* Title */
-                                     , 1000      /* Screen width */
-                                     , 600       /* Screen height */
-                                     , 32        /* Bits per pixel */
-                                     , 24        /* Frame rate */
-                                     );
+  /* Initialize graphics */
+  this->graphics_= new GraphicsEngine
+    ( "Jumpman" /* Title */
+    , 1000      /* Screen width */
+    , 600       /* Screen height */
+    , 32        /* Bits per pixel */
+    , 24        /* Frame rate */
+    );
 
   /* Load images from disk */
   if (this->graphics_->loadImage("background")  == false ||
@@ -36,12 +39,20 @@ Game::Game() :
 Game::~Game()
 {
   delete this->graphics_;
+  for (auto star : this->star_list_)
+    delete star;
 }
 
 int Game::run()
 {
   Player player;
-  list<BasicStar *> star_list;
+
+  if (this->star_list_.size() > 0)
+  {
+    for (auto star : this->star_list_)
+      delete star;
+    this->star_list_.clear();
+  }
 
   for (;;)
   {
@@ -63,24 +74,24 @@ int Game::run()
 
     /** PART 2 - OBJECTS MOVE/ITERACT **/
 
+    //TODO: Rename handleGravity to takeAction
     player.handleGravity(static_cast<signed>(this->graphics_->screen_width()));
-    for_each(star_list.begin(), star_list.end(), 
-             [](BasicStar *star) { star->takeAction(); });
+    for (auto star : this->star_list_)
+      star->takeAction(); 
 
     /* Remove stars if the player touches them or they disappear off screen */
-    star_list.remove_if(
-        [&player](BasicStar *star) 
-        { 
-          if (player.touches(star) || star->y() < 0)
-          {
-            delete star;
-            return true;
-          }
-          return  false;
-        });
+    this->star_list_.remove_if([&player](BasicStar *star) 
+    { 
+      if (player.touches(star) || star->y() < 0)
+      {
+        delete star;
+        return true;
+      }
+      return  false;
+    });
 
     /* Add stars if there is room */
-    this->addStars(star_list);
+    this->addStars();
 
     /* If player falls below the screen - return game over */
     if (player.y() < -player.height()*2)
@@ -91,13 +102,9 @@ int Game::run()
     const int offset_y = player.y() - this->graphics_->screen_height()/2;
     if (offset_y > 0)
     {
-      for_each(star_list.begin(), 
-               star_list.end(), 
-               [offset_y](BasicStar *star)
-               { 
-                 star->modifyY(-offset_y); 
-               });
       player.modifyY(-offset_y);
+      for (auto star : this->star_list_)
+        star->modifyY(-offset_y); 
     }
 
 
@@ -108,7 +115,7 @@ int Game::run()
     this->graphics_->drawImage("background", NULL, NULL);
 
     /* Draw all stars */
-    for (auto star : star_list)
+    for (auto star : this->star_list_)
     {
       rect_t draw_to = {star->x(), star->y(), star->width(), star->height() };
       rect_t draw_from = {star->imageX(), 0, draw_to.w, draw_to.h };
@@ -132,7 +139,7 @@ int Game::run()
   return 1;
 }
 
-void Game::addStars(list<BasicStar *> &star_list)
+void Game::addStars()
 {
   default_random_engine
     gen(chrono::system_clock::now().time_since_epoch().count());
@@ -143,17 +150,17 @@ void Game::addStars(list<BasicStar *> &star_list)
   const signed half_screen_width = 
     this->graphics_->screen_width()/2;
 
-  if (star_list.size() <= 0)
-    star_list.push_back(new BasicStar(0, half_screen_width));
+  if (this->star_list_.size() <= 0)
+    this->star_list_.push_back(new BasicStar(0, half_screen_width));
 
-  while (star_list.back()->initialY() < screen_height)
+  while (this->star_list_.back()->initialY() < screen_height)
   {
-    const short last_y = star_list.back()->initialY();
+    const short last_y = this->star_list_.back()->initialY();
 
-    star_list.push_back(new BasicStar(last_y, half_screen_width));
+    this->star_list_.push_back(new BasicStar(last_y, half_screen_width));
 
     if (rand(gen) % 10 == 1)
-      star_list.push_back(new MovingStar(last_y, half_screen_width));
+      this->star_list_.push_back(new MovingStar(last_y, half_screen_width));
   }
 
 }

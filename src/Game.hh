@@ -42,11 +42,8 @@ class Game
 
   private:
 
-    /*!
-     * \brief Add stars until they fill up the screen 
-     * \param star_list list of stars in game
-     */
-    void addStars(std::list<BasicStar *> &star_list);
+    ///Add stars to star_list_ until they fill up the screen 
+    void addStars();
 
     /*!
      * \brief Triggers when the player fails
@@ -56,6 +53,9 @@ class Game
 
     ///Instance for managing graphics
     GraphicsEngine *graphics_;
+
+    ///List of all flying objects that the player can hit
+    std::list <BasicStar *> star_list_;
 
     ///Disabled copy constructor
     Game(const Game&);
