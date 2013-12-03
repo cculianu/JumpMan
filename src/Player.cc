@@ -12,6 +12,16 @@ Player::Player() :
 
 Player::~Player() {}
 
+void Player::reset()
+{
+  this->x_ = 0;
+  this->y_ = 0;
+  this->dx_ = 0;
+  this->dy_ = 0;
+  this->standing_on_floor_ = true;
+  this->score_ = 0;
+}
+
 bool Player::touches(Sprite *other)
 {
   /* If y-difference is less than their combines height */

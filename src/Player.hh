@@ -25,6 +25,11 @@ class Player: public Sprite
     ~Player();
 
     /*!
+     * \brief resets player to starting position
+     */
+    void reset();
+
+    /*!
      * \brief Check if player touches another Sprite class
      * \param other Sprite to check if they touch
      * \return true if they touch

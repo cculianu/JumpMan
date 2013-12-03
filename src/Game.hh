@@ -42,6 +42,35 @@ class Game
 
   private:
 
+    ///Instance for managing graphics
+    GraphicsEngine *graphics_;
+
+    ///List of all flying objects that the player can hit
+    std::list <BasicStar *> star_list_;
+
+    ///Player instance
+    Player player_;
+
+    /*!
+     * \brief handles player input
+     * \return 1 if user want to quit the game
+     */
+    int handlePlayerInput();
+
+    /*!
+     * All action happens here
+     * 
+     * \brief lets objects interact with each other
+     * \return 1 if player has died
+     */
+    int letObjectsInteract();
+
+    /*!
+     * \brief draw updates to screen
+     * \return 1 on graphics failure
+     */
+    int drawObjectsToScreen();
+
     ///Add stars to star_list_ until they fill up the screen 
     void addStars();
 
@@ -50,12 +79,6 @@ class Game
      * \return always returns 2 
      */
     int gameOver();
-
-    ///Instance for managing graphics
-    GraphicsEngine *graphics_;
-
-    ///List of all flying objects that the player can hit
-    std::list <BasicStar *> star_list_;
 
     ///Disabled copy constructor
     Game(const Game&);
