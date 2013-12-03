@@ -76,6 +76,11 @@ public:
     short imageX(); 
 
     /*!
+     * \brief the position of the y-axis this sprite was initiated at
+     */
+    short initialY() const;
+
+    /*!
      * \brief Modifies the Sprite's position of the y-axis
      * \param mod Y axis modifier
      */
@@ -86,6 +91,7 @@ protected:
     short num_images_;    /*!< How many images a Sprite has */
     short x_; /*!< Sprite's position on the x-axis */
     short y_; /*!< Sprite's position on the y-acis */
+    short initial_y_; /*! Sprite's original position on the y-axis */
     const unsigned short width_;  /*!< Sprite's image's width */
     const unsigned short height_; /*!< Sprite's image's height */
     std::string filename_; /*!< Sprite's image's filename */

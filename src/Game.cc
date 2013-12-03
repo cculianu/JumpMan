@@ -146,9 +146,9 @@ void Game::addStars(list<BasicStar *> &star_list)
   if (star_list.size() <= 0)
     star_list.push_back(new BasicStar(0, half_screen_width));
 
-  while (star_list.back()->y() < screen_height)
+  while (star_list.back()->initialY() < screen_height)
   {
-    const short last_y = star_list.back()->y();
+    const short last_y = star_list.back()->initialY();
 
     star_list.push_back(new BasicStar(last_y, half_screen_width));
 

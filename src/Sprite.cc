@@ -8,6 +8,7 @@ Sprite::Sprite(string filename, short x, short y,
   num_images_(num_images),
   x_(x),
   y_(y),
+  initial_y_(y_),
   width_(width),
   height_(height),
   filename_(filename)
@@ -18,6 +19,7 @@ Sprite::Sprite(const Sprite &other) :
   num_images_(other.num_images_),
   x_(other.x_),
   y_(other.y_),
+  initial_y_(y_),
   width_(other.width_),
   height_(other.height_),
   filename_(other.filename_)
@@ -69,7 +71,13 @@ short Sprite::imageX()
     return 0;
 }
 
+short Sprite::initialY() const
+{
+  return this->initial_y_;
+}
+
 void Sprite::modifyY(int mod)
 {
   this->y_ += mod;
+  this->initial_y_ += mod;
 }
