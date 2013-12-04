@@ -194,7 +194,7 @@ bool GraphicsEngine::getEvent(event_t &event) const
   if (sdl_event.type == SDL_QUIT)
     event = QUIT;
 
-  /* If user presses a relevant key, return it */
+  /* User presses a relevant key, return info */
   else if (sdl_event.type == SDL_KEYDOWN)
     switch (sdl_event.key.keysym.sym)
     {
@@ -205,19 +205,29 @@ bool GraphicsEngine::getEvent(event_t &event) const
       default: event = NOTHING; break;
     }
 
-  /* If user releases both arrow keys, return STILL */
+  /* If user releases 
+   * 1. Right arrow key but still holds the left: event = LEFT
+   * 2. Left arrow key but still hold the right: event = RIGHT
+   * 3. Any arrow key and does not hold any arrow key: event = STILL
+   */
   else if (sdl_event.type == SDL_KEYUP)
     switch (sdl_event.key.keysym.sym)
     {
       case SDLK_LEFT: 
-        if (!SDL_GetKeyState(NULL)[SDLK_RIGHT]) 
+        if (SDL_GetKeyState(NULL)[SDLK_RIGHT]) 
+          event = RIGHT;
+        else
           event = STILL; 
         break;
+
       case SDLK_RIGHT:
-        if (!SDL_GetKeyState(NULL)[SDLK_LEFT]) 
+        if (SDL_GetKeyState(NULL)[SDLK_LEFT]) 
+          event = LEFT;
+        else
           event = STILL; 
         break;
-      default: event = NOTHING;
+
+      default: event = NOTHING; break;
     }
 
   /* All other SDL_Events are set to NOTHING */

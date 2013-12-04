@@ -135,7 +135,7 @@ int Game::drawObjectsToScreen()
   for (auto star : this->star_list_)
   {
     rect_t draw_to = { star->x(), star->y(), star->width(), star->height() };
-    rect_t draw_from = {star->imageX(), 0, draw_to.w, draw_to.h };
+    rect_t draw_from = { star->imageX(), 0, draw_to.w, draw_to.h };
     this->graphics_->drawImage(star->filename(), &draw_from, &draw_to);
   }
 
