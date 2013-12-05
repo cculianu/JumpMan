@@ -128,24 +128,32 @@ int Game::letObjectsInteract()
 
 int Game::drawObjectsToScreen()
 {
+  rect_t draw_to;
+  rect_t draw_from;
+
   /* Draw background */
   this->graphics_->drawImage("background", NULL, NULL);
 
   /* Draw all stars */
   for (auto star : this->star_list_)
   {
-    rect_t draw_to = { star->x(), star->y(), star->width(), star->height() };
-    rect_t draw_from = { star->imageX(), 0, draw_to.w, draw_to.h };
+    draw_to = { star->x(), star->y(), star->width(), star->height() };
+    draw_from = { star->imageX(), 0, draw_to.w, draw_to.h };
     this->graphics_->drawImage(star->filename(), &draw_from, &draw_to);
   }
 
   /* Draw player */
-  rect_t draw_to = { this->player_.x()
-                   , this->player_.y()
-                   , this->player_.width()
-                   , this->player_.height() 
-                   };
-  this->graphics_->drawImage(this->player_.filename(), NULL, &draw_to);
+  draw_to = { this->player_.x() 
+            , this->player_.y() 
+            , this->player_.width() 
+            , this->player_.height() 
+            };
+  draw_from = { this->player_.imageX()
+              , this->player_.imageY()
+              , this->player_.width()
+              , this->player_.height() 
+              };
+  this->graphics_->drawImage(this->player_.filename(), &draw_from, &draw_to);
 
   /* Draw score */
   this->graphics_->drawText("Score: " + to_string(this->player_.score()), 

@@ -73,7 +73,7 @@ public:
     /*!
      * \return x of the image the Sprite wants to draw
      */
-    short imageX(); 
+    virtual short imageX(); 
 
     /*!
      * \brief the position of the y-axis this sprite was initiated at

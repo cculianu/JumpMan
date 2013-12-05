@@ -59,11 +59,24 @@ class Player: public Sprite
      */
     size_t score() const;
 
+    /*!
+     * Player image is a bit special so it has its own imageX()
+     * \return x of the image the Sprite wants to draw
+     */
+    short imageX();
+
+    /*!
+     * \returns y of the image the Sprite wants to draw
+     */
+    short imageY();
+
+
   private:
     short dx_;               /*!< Current x-axis movement */
     short dy_;               /*!< Current y-axis movement */
     bool standing_on_floor_; /*!< True if player has not yet jumped */
     size_t score_;           /*!< Current player score */
+    bool facing_direction_;  /*!< Direction the player is facing, false = right */
 };
 
 

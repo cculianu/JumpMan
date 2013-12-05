@@ -3,11 +3,12 @@
 using namespace std;
 
 Player::Player() :
-  Sprite("player", 0, 0, 20, 20, 1),
+  Sprite("player", 0, 0, 20, 40, 1),
   dx_(0),
   dy_(0),
   standing_on_floor_(true),
-  score_(0)
+  score_(0),
+  facing_direction_(true)
 {}
 
 Player::~Player() {}
@@ -20,6 +21,7 @@ void Player::reset()
   this->dy_ = 0;
   this->standing_on_floor_ = true;
   this->score_ = 0;
+  this->facing_direction_ = true;
 }
 
 bool Player::touches(Sprite *other)
@@ -78,9 +80,15 @@ void Player::jump(bool force_push)
 void Player::move(short dx)
 {
   if (dx > 0)
+  {
     this->dx_ = 10;
+    this->facing_direction_ = true;
+  }
   else if (dx < 0)
+  {
     this->dx_ = -10;
+    this->facing_direction_ = false;
+  }
   else
     this->dx_ = 0;
 }
@@ -88,4 +96,22 @@ void Player::move(short dx)
 size_t Player::score() const
 {
   return this->score_ / 10;
+}
+
+short Player::imageX()
+{
+  /* If standing on ground, the walking images are 3-4 */
+  if (this->standing_on_floor_)
+    return ((++this->current_image_ % 2) + 3) * this->width_;
+
+  /* If player is gaining speed, use images 1-2 */
+  else if (this->dy_ > 0)
+    return ((++this->current_image_ % 2) + 1) * this->width_;
+
+  else return 0;
+}
+
+short Player::imageY()
+{
+  return this->facing_direction_ * this->height_;
 }
