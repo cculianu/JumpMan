@@ -170,9 +170,13 @@ void Game::addStars()
   const signed half_screen_width = 
     this->graphics_->screen_width()/2;
 
+  /* Make sure there's always at least one star in the starlist 
+   * This is just to avoid segfaults */
   if (this->star_list_.size() <= 0)
     this->star_list_.push_back(new BasicStar(0, half_screen_width));
 
+  /* Make sure there's a BasicStar every 50 y-pixels,
+   * Also add other types of stars if the RNG is with you */
   while (this->star_list_.back()->initialY() < screen_height)
   {
     const short last_y = this->star_list_.back()->initialY();
