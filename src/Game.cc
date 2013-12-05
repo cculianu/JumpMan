@@ -25,8 +25,7 @@ Game::Game() :
     );
 
   /* Load images from disk */
-  if (this->graphics_->loadImage("background")  == false ||
-      this->graphics_->loadImage("player")      == false ||
+   if(this->graphics_->loadImage("player")      == false ||
       this->graphics_->loadImage("basic_star")  == false ||
       this->graphics_->loadImage("moving_star") == false )
   {
@@ -131,8 +130,8 @@ int Game::drawObjectsToScreen()
   rect_t draw_to;
   rect_t draw_from;
 
-  /* Draw background */
-  this->graphics_->drawImage("background", NULL, NULL);
+  /* Draw background black */
+  this->graphics_->makeScreenBlack();
 
   /* Draw all stars */
   for (auto star : this->star_list_)
@@ -156,8 +155,8 @@ int Game::drawObjectsToScreen()
   this->graphics_->drawImage(this->player_.filename(), &draw_from, &draw_to);
 
   /* Draw score */
-  this->graphics_->drawText("Score: " + to_string(this->player_.score()), 
-                            this->graphics_->screen_width(), 100);
+  const string score_string = "Score: " + to_string(this->player_.score());
+  this->graphics_->drawText(score_string, this->graphics_->screen_width(), 20);
 
   /* Flush */
   if (this->graphics_->updateScreen() == false)
@@ -204,7 +203,7 @@ int Game::gameOver()
 
   this->graphics_->drawText("OH NO! You fell!", screen_width, screen_height);
   this->graphics_->drawText("Press any key to continue", screen_width, 
-                                                         screen_height + 30);
+                                                         screen_height + 40);
   this->graphics_->updateScreen();
   this->graphics_->waitForKeypress();
   return 2;

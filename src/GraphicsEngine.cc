@@ -114,6 +114,11 @@ string GraphicsEngine::getLastError() const
   return errormsg;
 }
 
+void GraphicsEngine::makeScreenBlack()
+{
+  SDL_FillRect(this->screen_, NULL, 0);
+}
+
 bool GraphicsEngine::drawImage(const string &filename, rect_t *srcrect,
                                rect_t *dstrect)
 {
@@ -149,7 +154,7 @@ bool GraphicsEngine::drawImage(const string &filename, rect_t *srcrect,
 void GraphicsEngine::drawText(const string &text, unsigned x, unsigned y)
 {
   const SDL_Color text_color = {0, 127, 127, 0};
-  const SDL_Color background_color = {255, 255, 255, 0};
+  const SDL_Color background_color = {0, 0, 0, 0};
 
   /* Craete text */
   SDL_Surface *text_surface = 
@@ -158,7 +163,7 @@ void GraphicsEngine::drawText(const string &text, unsigned x, unsigned y)
 
   /* Set transparency */
   SDL_SetColorKey(text_surface, SDL_SRCCOLORKEY,
-                  SDL_MapRGB(text_surface->format, 255, 255, 255));
+                  SDL_MapRGB(text_surface->format, 0, 0, 0));
 
   /* Set target rect */
   SDL_Rect dstrect = 

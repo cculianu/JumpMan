@@ -100,8 +100,8 @@ size_t Player::score() const
 
 short Player::imageX()
 {
-  /* If standing on ground, the walking images are 3-4 */
-  if (this->standing_on_floor_)
+  /* If standing on ground and moving, the walking images are 3-4 */
+  if (this->standing_on_floor_ and this->dx_ != 0)
     return ((++this->current_image_ % 2) + 3) * this->width_;
 
   /* If player is gaining speed, use images 1-2 */

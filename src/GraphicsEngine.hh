@@ -75,6 +75,11 @@ class GraphicsEngine
     std::string getLastError() const;
 
     /*!
+     * \brief fills screen width black paint
+     */
+    void makeScreenBlack();
+
+    /*!
      * \brief Draw an image to the game screen
      * \param image filename of image to draw
      * \param srcrect rectangle of image to draw from
