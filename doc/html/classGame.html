@@ -111,9 +111,18 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a758c6e31e784bf869133a2274ebc98c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a758c6e31e784bf869133a2274ebc98c7">addStars</a> (std::list&lt; <a class="el" href="classBasicStar.html">BasicStar</a> &gt; &amp;star_list)</td></tr>
-<tr class="memdesc:a758c6e31e784bf869133a2274ebc98c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add stars until they fill up the screen.  <a href="#a758c6e31e784bf869133a2274ebc98c7">More...</a><br/></td></tr>
-<tr class="separator:a758c6e31e784bf869133a2274ebc98c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a882d8ea87fc0ee4bb827f1de818c8aa1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a882d8ea87fc0ee4bb827f1de818c8aa1">handlePlayerInput</a> ()</td></tr>
+<tr class="memdesc:a882d8ea87fc0ee4bb827f1de818c8aa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">handles player input  <a href="#a882d8ea87fc0ee4bb827f1de818c8aa1">More...</a><br/></td></tr>
+<tr class="separator:a882d8ea87fc0ee4bb827f1de818c8aa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcf97122d591ec030faf6125205a8a6e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#adcf97122d591ec030faf6125205a8a6e">letObjectsInteract</a> ()</td></tr>
+<tr class="memdesc:adcf97122d591ec030faf6125205a8a6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">lets objects interact with each other  <a href="#adcf97122d591ec030faf6125205a8a6e">More...</a><br/></td></tr>
+<tr class="separator:adcf97122d591ec030faf6125205a8a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fc66dc51ec497791258a8ab5263afe8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a4fc66dc51ec497791258a8ab5263afe8">drawObjectsToScreen</a> ()</td></tr>
+<tr class="memdesc:a4fc66dc51ec497791258a8ab5263afe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">draw updates to screen  <a href="#a4fc66dc51ec497791258a8ab5263afe8">More...</a><br/></td></tr>
+<tr class="separator:a4fc66dc51ec497791258a8ab5263afe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac64e91bd895186e51ab2e1f23bcc5508"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#ac64e91bd895186e51ab2e1f23bcc5508">addStars</a> ()</td></tr>
+<tr class="memdesc:ac64e91bd895186e51ab2e1f23bcc5508"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add stars to star_list_ until they fill up the screen.  <a href="#ac64e91bd895186e51ab2e1f23bcc5508">More...</a><br/></td></tr>
+<tr class="separator:ac64e91bd895186e51ab2e1f23bcc5508"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98788d98f37433c3a4575c644c0540b9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a98788d98f37433c3a4575c644c0540b9">gameOver</a> ()</td></tr>
 <tr class="memdesc:a98788d98f37433c3a4575c644c0540b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers when the player fails.  <a href="#a98788d98f37433c3a4575c644c0540b9">More...</a><br/></td></tr>
 <tr class="separator:a98788d98f37433c3a4575c644c0540b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,6 +138,12 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ac96e150f595f287b0e32ff2ad15ef663"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGraphicsEngine.html">GraphicsEngine</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#ac96e150f595f287b0e32ff2ad15ef663">graphics_</a></td></tr>
 <tr class="memdesc:ac96e150f595f287b0e32ff2ad15ef663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instance for managing graphics.  <a href="#ac96e150f595f287b0e32ff2ad15ef663">More...</a><br/></td></tr>
 <tr class="separator:ac96e150f595f287b0e32ff2ad15ef663"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fa0a46a8891c42b6d57a475e130ee32"><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="classBasicStar.html">BasicStar</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#a6fa0a46a8891c42b6d57a475e130ee32">star_list_</a></td></tr>
+<tr class="memdesc:a6fa0a46a8891c42b6d57a475e130ee32"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of all flying objects that the player can hit.  <a href="#a6fa0a46a8891c42b6d57a475e130ee32">More...</a><br/></td></tr>
+<tr class="separator:a6fa0a46a8891c42b6d57a475e130ee32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae152cbdfd498d72b27aaa01a2ed5fe9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPlayer.html">Player</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame.html#ae152cbdfd498d72b27aaa01a2ed5fe9b">player_</a></td></tr>
+<tr class="memdesc:ae152cbdfd498d72b27aaa01a2ed5fe9b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classPlayer.html" title="Player class. ">Player</a> instance.  <a href="#ae152cbdfd498d72b27aaa01a2ed5fe9b">More...</a><br/></td></tr>
+<tr class="separator:ae152cbdfd498d72b27aaa01a2ed5fe9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main game class. </p>
@@ -195,7 +210,7 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a758c6e31e784bf869133a2274ebc98c7"></a>
+<a class="anchor" id="ac64e91bd895186e51ab2e1f23bcc5508"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -205,8 +220,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Game::addStars </td>
           <td>(</td>
-          <td class="paramtype">std::list&lt; <a class="el" href="classBasicStar.html">BasicStar</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>star_list</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -217,13 +231,33 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Add stars until they fill up the screen. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">star_list</td><td>list of stars in game </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Add stars to star_list_ until they fill up the screen. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4fc66dc51ec497791258a8ab5263afe8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Game::drawObjectsToScreen </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>draw updates to screen </p>
+<dl class="section return"><dt>Returns</dt><dd>1 on graphics failure </dd></dl>
 
 </div>
 </div>
@@ -250,6 +284,59 @@ Private Attributes</h2></td></tr>
 
 <p>Triggers when the player fails. </p>
 <dl class="section return"><dt>Returns</dt><dd>always returns 2 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a882d8ea87fc0ee4bb827f1de818c8aa1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Game::handlePlayerInput </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>handles player input </p>
+<dl class="section return"><dt>Returns</dt><dd>1 if user want to quit the game </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adcf97122d591ec030faf6125205a8a6e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Game::letObjectsInteract </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>lets objects interact with each other </p>
+<p>All action happens here</p>
+<dl class="section return"><dt>Returns</dt><dd>1 if player has died </dd></dl>
 
 </div>
 </div>
@@ -320,6 +407,50 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ae152cbdfd498d72b27aaa01a2ed5fe9b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPlayer.html">Player</a> Game::player_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classPlayer.html" title="Player class. ">Player</a> instance. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6fa0a46a8891c42b6d57a475e130ee32"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::list&lt;<a class="el" href="classBasicStar.html">BasicStar</a> *&gt; Game::star_list_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of all flying objects that the player can hit. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="Game_8hh_source.html">Game.hh</a></li>
 <li>src/<a class="el" href="Game_8cc.html">Game.cc</a></li>
@@ -327,7 +458,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 2 2013 15:43:32 for Jumpman by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Dec 7 2013 12:42:58 for Jumpman by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

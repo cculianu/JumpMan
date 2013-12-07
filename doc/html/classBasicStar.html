@@ -101,7 +101,8 @@ Inheritance diagram for BasicStar:</div>
  <div class="center">
   <img src="classBasicStar.png" usemap="#BasicStar_map" alt=""/>
   <map id="BasicStar_map" name="BasicStar_map">
-<area href="classSprite.html" title="Base class for all images. " alt="Sprite" shape="rect" coords="0,0,66,24"/>
+<area href="classSprite.html" title="Base class for all images. " alt="Sprite" shape="rect" coords="0,0,77,24"/>
+<area href="classMovingStar.html" title="A BasicStar which moves around. " alt="MovingStar" shape="rect" coords="0,112,77,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -113,6 +114,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6ac994000481a4e155a16c4f96f9e17b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBasicStar.html#a6ac994000481a4e155a16c4f96f9e17b">~BasicStar</a> ()</td></tr>
 <tr class="memdesc:a6ac994000481a4e155a16c4f96f9e17b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#a6ac994000481a4e155a16c4f96f9e17b">More...</a><br/></td></tr>
 <tr class="separator:a6ac994000481a4e155a16c4f96f9e17b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadca2b88ce5766a1a6cd95accbb72bfb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBasicStar.html#aadca2b88ce5766a1a6cd95accbb72bfb">takeAction</a> ()</td></tr>
+<tr class="memdesc:aadca2b88ce5766a1a6cd95accbb72bfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The common star method for doing things.  <a href="#aadca2b88ce5766a1a6cd95accbb72bfb">More...</a><br/></td></tr>
+<tr class="separator:aadca2b88ce5766a1a6cd95accbb72bfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classSprite"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classSprite')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classSprite.html">Sprite</a></td></tr>
 <tr class="memitem:a848f031c098042b68984b3840ce64604 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a848f031c098042b68984b3840ce64604">Sprite</a> (std::string <a class="el" href="classSprite.html#aae3514a9a1f77ab5e8e213e44ec618a3">filename</a>, short <a class="el" href="classSprite.html#a18eb1c5b90418641d3eabda8f7fe56c9">x</a>, short <a class="el" href="classSprite.html#afca2c03aad9d2526427470688ae76439">y</a>, unsigned short <a class="el" href="classSprite.html#ac56c9242f797a1a2f76687fca636a3c4">width</a>, unsigned short <a class="el" href="classSprite.html#ae96d42c46af7aad1f9031da62f878b21">height</a>, short num_images)</td></tr>
 <tr class="memdesc:a848f031c098042b68984b3840ce64604 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a848f031c098042b68984b3840ce64604">More...</a><br/></td></tr>
@@ -136,8 +140,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac56c9242f797a1a2f76687fca636a3c4 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae96d42c46af7aad1f9031da62f878b21 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#ae96d42c46af7aad1f9031da62f878b21">height</a> () const </td></tr>
 <tr class="separator:ae96d42c46af7aad1f9031da62f878b21 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2703a7a7b2acc1dec83dd1c4f5054aef inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a2703a7a7b2acc1dec83dd1c4f5054aef">imageX</a> ()</td></tr>
+<tr class="memitem:a2703a7a7b2acc1dec83dd1c4f5054aef inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">virtual short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a2703a7a7b2acc1dec83dd1c4f5054aef">imageX</a> ()</td></tr>
 <tr class="separator:a2703a7a7b2acc1dec83dd1c4f5054aef inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa12cd0f64262dcc3c72e0ba2fa39c82d inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#aa12cd0f64262dcc3c72e0ba2fa39c82d">initialY</a> () const </td></tr>
+<tr class="memdesc:aa12cd0f64262dcc3c72e0ba2fa39c82d inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">the position of the y-axis this sprite was initiated at  <a href="#aa12cd0f64262dcc3c72e0ba2fa39c82d">More...</a><br/></td></tr>
+<tr class="separator:aa12cd0f64262dcc3c72e0ba2fa39c82d inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a587e5f7d415b1210ffeb091c69818914 inherit pub_methods_classSprite"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a587e5f7d415b1210ffeb091c69818914">modifyY</a> (int mod)</td></tr>
 <tr class="memdesc:a587e5f7d415b1210ffeb091c69818914 inherit pub_methods_classSprite"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifies the <a class="el" href="classSprite.html" title="Base class for all images. ">Sprite</a>'s position of the y-axis.  <a href="#a587e5f7d415b1210ffeb091c69818914">More...</a><br/></td></tr>
 <tr class="separator:a587e5f7d415b1210ffeb091c69818914 inherit pub_methods_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,10 +166,14 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ac66af2df2e5990c07252b8aa0d384346 inherit pro_attribs_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ad6d07d083c5bbb2e819caa31d2bc6f inherit pro_attribs_classSprite"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a3ad6d07d083c5bbb2e819caa31d2bc6f">y_</a></td></tr>
 <tr class="separator:a3ad6d07d083c5bbb2e819caa31d2bc6f inherit pro_attribs_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b5cccca24f3c3e0f466624cf034e8a9 inherit pro_attribs_classSprite"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a2b5cccca24f3c3e0f466624cf034e8a9">initial_y_</a></td></tr>
+<tr class="separator:a2b5cccca24f3c3e0f466624cf034e8a9 inherit pro_attribs_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0c8b57b52d82f2753c1726e51ed0490 inherit pro_attribs_classSprite"><td class="memItemLeft" align="right" valign="top">const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#ac0c8b57b52d82f2753c1726e51ed0490">width_</a></td></tr>
 <tr class="separator:ac0c8b57b52d82f2753c1726e51ed0490 inherit pro_attribs_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2ddd489c30852d32b7a88d20af9df1e inherit pro_attribs_classSprite"><td class="memItemLeft" align="right" valign="top">const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#ae2ddd489c30852d32b7a88d20af9df1e">height_</a></td></tr>
 <tr class="separator:ae2ddd489c30852d32b7a88d20af9df1e inherit pro_attribs_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb2c82f6bea52556153897e9270f219d inherit pro_attribs_classSprite"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#acb2c82f6bea52556153897e9270f219d">filename_</a></td></tr>
+<tr class="separator:acb2c82f6bea52556153897e9270f219d inherit pro_attribs_classSprite"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The most basic type of star, cannot move. </p>
@@ -252,6 +263,33 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aadca2b88ce5766a1a6cd95accbb72bfb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BasicStar::takeAction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The common star method for doing things. </p>
+
+<p>Reimplemented in <a class="el" href="classMovingStar.html#a273dfe02f9eab1148da09619e34480e9">MovingStar</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="BasicStar_8hh_source.html">BasicStar.hh</a></li>
 <li>src/<a class="el" href="BasicStar_8cc.html">BasicStar.cc</a></li>
@@ -259,7 +297,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 2 2013 15:43:32 for Jumpman by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Dec 7 2013 12:42:58 for Jumpman by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

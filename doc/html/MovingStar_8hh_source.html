@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>Jumpman: src/BasicStar.hh Source File</title>
+<title>Jumpman: src/MovingStar.hh Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,40 +85,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">BasicStar.hh</div>  </div>
+<div class="title">MovingStar.hh</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="BasicStar_8hh.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __BASIC_STAR_HH__</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __BASIC_STAR_HH__</span></div>
+<a href="MovingStar_8hh.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __MOVING_STAR_HH__</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __MOVING_STAR_HH__</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Sprite_8hh.html">Sprite.hh</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BasicStar_8hh.html">BasicStar.hh</a>&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classBasicStar.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classBasicStar.html">BasicStar</a> : <span class="keyword">public</span> <a class="code" href="classSprite.html">Sprite</a></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="classBasicStar.html#a7cda590583a4a67c057487c7fc61281b">BasicStar</a>(<span class="keywordtype">short</span> <a class="code" href="classSprite.html#afca2c03aad9d2526427470688ae76439">y</a>, <span class="keywordtype">int</span> edge_coord);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="classBasicStar.html#a6ac994000481a4e155a16c4f96f9e17b">~BasicStar</a>();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classBasicStar.html#aadca2b88ce5766a1a6cd95accbb72bfb">takeAction</a>();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classMovingStar.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMovingStar.html">MovingStar</a> : <span class="keyword">public</span> <a class="code" href="classBasicStar.html">BasicStar</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classMovingStar.html#a29183a4bfc5627aae634ac3ae8354edb">MovingStar</a>(<span class="keywordtype">short</span> <a class="code" href="classSprite.html#afca2c03aad9d2526427470688ae76439">y</a>, <span class="keywordtype">int</span> edge_coord);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="classMovingStar.html#a69d4f41d9c8710887ac8f678bb2026aa">~MovingStar</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMovingStar.html#a273dfe02f9eab1148da09619e34480e9">takeAction</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classMovingStar.html#ae48d14cae12d2bbddccfcd8b0bc039bd">   36</a></span>&#160;    <span class="keywordtype">short</span> <a class="code" href="classMovingStar.html#ae48d14cae12d2bbddccfcd8b0bc039bd">dx_</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classMovingStar.html#a59755944ad62de019a269492a0292200">   37</a></span>&#160;    <span class="keywordtype">short</span> <a class="code" href="classMovingStar.html#a59755944ad62de019a269492a0292200">dy_</a>;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classBasicStar.html#ad978bef7512c6f5df863049d90cf0da8">randomizeSpawn</a>(<span class="keywordtype">int</span> edge_coord);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;};</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif //__BASIC_STAR_HH__</span></div>
-<div class="ttc" id="classSprite_html"><div class="ttname"><a href="classSprite.html">Sprite</a></div><div class="ttdoc">Base class for all images. </div><div class="ttdef"><b>Definition:</b> Sprite.hh:18</div></div>
-<div class="ttc" id="classBasicStar_html_a6ac994000481a4e155a16c4f96f9e17b"><div class="ttname"><a href="classBasicStar.html#a6ac994000481a4e155a16c4f96f9e17b">BasicStar::~BasicStar</a></div><div class="ttdeci">~BasicStar()</div><div class="ttdoc">Destructor. </div><div class="ttdef"><b>Definition:</b> BasicStar.cc:14</div></div>
-<div class="ttc" id="classBasicStar_html_ad978bef7512c6f5df863049d90cf0da8"><div class="ttname"><a href="classBasicStar.html#ad978bef7512c6f5df863049d90cf0da8">BasicStar::randomizeSpawn</a></div><div class="ttdeci">void randomizeSpawn(int edge_coord)</div><div class="ttdoc">Set the enemy&amp;#39;s x to a random number. </div><div class="ttdef"><b>Definition:</b> BasicStar.cc:16</div></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#endif //__MOVING_STAR_HH__</span></div>
+<div class="ttc" id="classMovingStar_html_a59755944ad62de019a269492a0292200"><div class="ttname"><a href="classMovingStar.html#a59755944ad62de019a269492a0292200">MovingStar::dy_</a></div><div class="ttdeci">short dy_</div><div class="ttdef"><b>Definition:</b> MovingStar.hh:37</div></div>
 <div class="ttc" id="classBasicStar_html"><div class="ttname"><a href="classBasicStar.html">BasicStar</a></div><div class="ttdoc">The most basic type of star, cannot move. </div><div class="ttdef"><b>Definition:</b> BasicStar.hh:19</div></div>
-<div class="ttc" id="Sprite_8hh_html"><div class="ttname"><a href="Sprite_8hh.html">Sprite.hh</a></div><div class="ttdoc">File containing the Sprite class Header. </div></div>
-<div class="ttc" id="classBasicStar_html_aadca2b88ce5766a1a6cd95accbb72bfb"><div class="ttname"><a href="classBasicStar.html#aadca2b88ce5766a1a6cd95accbb72bfb">BasicStar::takeAction</a></div><div class="ttdeci">virtual void takeAction()</div><div class="ttdoc">The common star method for doing things. </div><div class="ttdef"><b>Definition:</b> BasicStar.cc:28</div></div>
-<div class="ttc" id="classBasicStar_html_a7cda590583a4a67c057487c7fc61281b"><div class="ttname"><a href="classBasicStar.html#a7cda590583a4a67c057487c7fc61281b">BasicStar::BasicStar</a></div><div class="ttdeci">BasicStar(short y, int edge_coord)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> BasicStar.cc:8</div></div>
+<div class="ttc" id="classMovingStar_html_a29183a4bfc5627aae634ac3ae8354edb"><div class="ttname"><a href="classMovingStar.html#a29183a4bfc5627aae634ac3ae8354edb">MovingStar::MovingStar</a></div><div class="ttdeci">MovingStar(short y, int edge_coord)</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> MovingStar.cc:8</div></div>
+<div class="ttc" id="BasicStar_8hh_html"><div class="ttname"><a href="BasicStar_8hh.html">BasicStar.hh</a></div><div class="ttdoc">File containing the BasicStar class Header. </div></div>
+<div class="ttc" id="classMovingStar_html"><div class="ttname"><a href="classMovingStar.html">MovingStar</a></div><div class="ttdoc">A BasicStar which moves around. </div><div class="ttdef"><b>Definition:</b> MovingStar.hh:18</div></div>
+<div class="ttc" id="classMovingStar_html_ae48d14cae12d2bbddccfcd8b0bc039bd"><div class="ttname"><a href="classMovingStar.html#ae48d14cae12d2bbddccfcd8b0bc039bd">MovingStar::dx_</a></div><div class="ttdeci">short dx_</div><div class="ttdef"><b>Definition:</b> MovingStar.hh:36</div></div>
+<div class="ttc" id="classMovingStar_html_a273dfe02f9eab1148da09619e34480e9"><div class="ttname"><a href="classMovingStar.html#a273dfe02f9eab1148da09619e34480e9">MovingStar::takeAction</a></div><div class="ttdeci">void takeAction()</div><div class="ttdoc">Overloaded from BasicStar. </div><div class="ttdef"><b>Definition:</b> MovingStar.cc:25</div></div>
+<div class="ttc" id="classMovingStar_html_a69d4f41d9c8710887ac8f678bb2026aa"><div class="ttname"><a href="classMovingStar.html#a69d4f41d9c8710887ac8f678bb2026aa">MovingStar::~MovingStar</a></div><div class="ttdeci">~MovingStar()</div><div class="ttdoc">Destructor. </div><div class="ttdef"><b>Definition:</b> MovingStar.cc:23</div></div>
 <div class="ttc" id="classSprite_html_afca2c03aad9d2526427470688ae76439"><div class="ttname"><a href="classSprite.html#afca2c03aad9d2526427470688ae76439">Sprite::y</a></div><div class="ttdeci">short y() const </div><div class="ttdef"><b>Definition:</b> Sprite.cc:51</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

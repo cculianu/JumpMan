@@ -85,7 +85,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classSprite-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Sprite Class Reference</div>  </div>
@@ -102,8 +101,9 @@ Inheritance diagram for Sprite:</div>
  <div class="center">
   <img src="classSprite.png" usemap="#Sprite_map" alt=""/>
   <map id="Sprite_map" name="Sprite_map">
-<area href="classBasicStar.html" title="The most basic type of star, cannot move. " alt="BasicStar" shape="rect" coords="0,56,66,80"/>
-<area href="classPlayer.html" title="Player class. " alt="Player" shape="rect" coords="76,56,142,80"/>
+<area href="classBasicStar.html" title="The most basic type of star, cannot move. " alt="BasicStar" shape="rect" coords="0,56,77,80"/>
+<area href="classPlayer.html" title="Player class. " alt="Player" shape="rect" coords="87,56,164,80"/>
+<area href="classMovingStar.html" title="A BasicStar which moves around. " alt="MovingStar" shape="rect" coords="0,112,77,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -131,8 +131,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac56c9242f797a1a2f76687fca636a3c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae96d42c46af7aad1f9031da62f878b21"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#ae96d42c46af7aad1f9031da62f878b21">height</a> () const </td></tr>
 <tr class="separator:ae96d42c46af7aad1f9031da62f878b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2703a7a7b2acc1dec83dd1c4f5054aef"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a2703a7a7b2acc1dec83dd1c4f5054aef">imageX</a> ()</td></tr>
+<tr class="memitem:a2703a7a7b2acc1dec83dd1c4f5054aef"><td class="memItemLeft" align="right" valign="top">virtual short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a2703a7a7b2acc1dec83dd1c4f5054aef">imageX</a> ()</td></tr>
 <tr class="separator:a2703a7a7b2acc1dec83dd1c4f5054aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa12cd0f64262dcc3c72e0ba2fa39c82d"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#aa12cd0f64262dcc3c72e0ba2fa39c82d">initialY</a> () const </td></tr>
+<tr class="memdesc:aa12cd0f64262dcc3c72e0ba2fa39c82d"><td class="mdescLeft">&#160;</td><td class="mdescRight">the position of the y-axis this sprite was initiated at  <a href="#aa12cd0f64262dcc3c72e0ba2fa39c82d">More...</a><br/></td></tr>
+<tr class="separator:aa12cd0f64262dcc3c72e0ba2fa39c82d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a587e5f7d415b1210ffeb091c69818914"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a587e5f7d415b1210ffeb091c69818914">modifyY</a> (int mod)</td></tr>
 <tr class="memdesc:a587e5f7d415b1210ffeb091c69818914"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifies the <a class="el" href="classSprite.html" title="Base class for all images. ">Sprite</a>'s position of the y-axis.  <a href="#a587e5f7d415b1210ffeb091c69818914">More...</a><br/></td></tr>
 <tr class="separator:a587e5f7d415b1210ffeb091c69818914"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,15 +150,14 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:ac66af2df2e5990c07252b8aa0d384346"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ad6d07d083c5bbb2e819caa31d2bc6f"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a3ad6d07d083c5bbb2e819caa31d2bc6f">y_</a></td></tr>
 <tr class="separator:a3ad6d07d083c5bbb2e819caa31d2bc6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b5cccca24f3c3e0f466624cf034e8a9"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#a2b5cccca24f3c3e0f466624cf034e8a9">initial_y_</a></td></tr>
+<tr class="separator:a2b5cccca24f3c3e0f466624cf034e8a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0c8b57b52d82f2753c1726e51ed0490"><td class="memItemLeft" align="right" valign="top">const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#ac0c8b57b52d82f2753c1726e51ed0490">width_</a></td></tr>
 <tr class="separator:ac0c8b57b52d82f2753c1726e51ed0490"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2ddd489c30852d32b7a88d20af9df1e"><td class="memItemLeft" align="right" valign="top">const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#ae2ddd489c30852d32b7a88d20af9df1e">height_</a></td></tr>
 <tr class="separator:ae2ddd489c30852d32b7a88d20af9df1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:aaa19414e23ba5ea1b20bd8a04281a9f0"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#aaa19414e23ba5ea1b20bd8a04281a9f0">filename_</a></td></tr>
-<tr class="separator:aaa19414e23ba5ea1b20bd8a04281a9f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb2c82f6bea52556153897e9270f219d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSprite.html#acb2c82f6bea52556153897e9270f219d">filename_</a></td></tr>
+<tr class="separator:acb2c82f6bea52556153897e9270f219d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for all images. </p>
@@ -308,6 +310,9 @@ Private Attributes</h2></td></tr>
 <a class="anchor" id="a2703a7a7b2acc1dec83dd1c4f5054aef"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">short Sprite::imageX </td>
@@ -316,8 +321,32 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>x of the image the <a class="el" href="classSprite.html" title="Base class for all images. ">Sprite</a> wants to draw </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classPlayer.html#a41b677053f49c43417ce08dc4f39f62f">Player</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa12cd0f64262dcc3c72e0ba2fa39c82d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short Sprite::initialY </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>the position of the y-axis this sprite was initiated at </p>
 
 </div>
 </div>
@@ -439,7 +468,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aaa19414e23ba5ea1b20bd8a04281a9f0"></a>
+<a class="anchor" id="acb2c82f6bea52556153897e9270f219d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -447,12 +476,12 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::string Sprite::filename_</td>
+          <td class="memname">std::string Sprite::filename_</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -478,6 +507,26 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p><a class="el" href="classSprite.html" title="Base class for all images. ">Sprite</a>'s image's height </p>
+
+</div>
+</div>
+<a class="anchor" id="a2b5cccca24f3c3e0f466624cf034e8a9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">short Sprite::initial_y_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -519,7 +568,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classSprite.html" title="Base class for all images. ">Sprite</a>'s image's width </p>
+<p><a class="el" href="classSprite.html" title="Base class for all images. ">Sprite</a>'s original position on the y-axis <a class="el" href="classSprite.html" title="Base class for all images. ">Sprite</a>'s image's width </p>
 
 </div>
 </div>
@@ -572,7 +621,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 2 2013 15:43:32 for Jumpman by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Dec 7 2013 12:42:58 for Jumpman by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

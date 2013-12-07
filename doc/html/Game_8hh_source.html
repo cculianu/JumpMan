@@ -109,35 +109,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGame.html#a758c6e31e784bf869133a2274ebc98c7">addStars</a>(std::list&lt;BasicStar&gt; &amp;star_list);</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classGame.html#ac96e150f595f287b0e32ff2ad15ef663">   46</a></span>&#160;    <a class="code" href="classGraphicsEngine.html">GraphicsEngine</a> *<a class="code" href="classGame.html#ac96e150f595f287b0e32ff2ad15ef663">graphics_</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classGame.html#a6fa0a46a8891c42b6d57a475e130ee32">   49</a></span>&#160;    std::list &lt;BasicStar *&gt; <a class="code" href="classGame.html#a6fa0a46a8891c42b6d57a475e130ee32">star_list_</a>;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGame.html#a98788d98f37433c3a4575c644c0540b9">gameOver</a>();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classGame.html#ac96e150f595f287b0e32ff2ad15ef663">   58</a></span>&#160;    <a class="code" href="classGraphicsEngine.html">GraphicsEngine</a> *<a class="code" href="classGame.html#ac96e150f595f287b0e32ff2ad15ef663">graphics_</a>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classGame.html#ae152cbdfd498d72b27aaa01a2ed5fe9b">   52</a></span>&#160;    <a class="code" href="classPlayer.html">Player</a> <a class="code" href="classGame.html#ae152cbdfd498d72b27aaa01a2ed5fe9b">player_</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGame.html#a882d8ea87fc0ee4bb827f1de818c8aa1">handlePlayerInput</a>();</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="classGame.html#ad59df6562a58a614fda24622d3715b65">Game</a>(<span class="keyword">const</span> <a class="code" href="classGame.html">Game</a>&amp;);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGame.html#a33d46168923cdeca0d97553fc47e050e">operator=</a>(<span class="keyword">const</span> <a class="code" href="classGame.html">Game</a>&amp;);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;};</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGame.html#adcf97122d591ec030faf6125205a8a6e">letObjectsInteract</a>();</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif //__GAME_HH__</span></div>
-<div class="ttc" id="classGame_html_a98788d98f37433c3a4575c644c0540b9"><div class="ttname"><a href="classGame.html#a98788d98f37433c3a4575c644c0540b9">Game::gameOver</a></div><div class="ttdeci">int gameOver()</div><div class="ttdoc">Triggers when the player fails. </div><div class="ttdef"><b>Definition:</b> Game.cc:115</div></div>
-<div class="ttc" id="classGame_html_ac96e150f595f287b0e32ff2ad15ef663"><div class="ttname"><a href="classGame.html#ac96e150f595f287b0e32ff2ad15ef663">Game::graphics_</a></div><div class="ttdeci">GraphicsEngine * graphics_</div><div class="ttdoc">Instance for managing graphics. </div><div class="ttdef"><b>Definition:</b> Game.hh:58</div></div>
-<div class="ttc" id="classGame_html_ae3d112ca6e0e55150d2fdbc704474530"><div class="ttname"><a href="classGame.html#ae3d112ca6e0e55150d2fdbc704474530">Game::~Game</a></div><div class="ttdeci">~Game()</div><div class="ttdoc">Destructor. </div><div class="ttdef"><b>Definition:</b> Game.cc:32</div></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGame.html#a4fc66dc51ec497791258a8ab5263afe8">drawObjectsToScreen</a>();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGame.html#ac64e91bd895186e51ab2e1f23bcc5508">addStars</a>();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGame.html#a98788d98f37433c3a4575c644c0540b9">gameOver</a>();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="classGame.html#ad59df6562a58a614fda24622d3715b65">Game</a>(<span class="keyword">const</span> <a class="code" href="classGame.html">Game</a>&amp;);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGame.html#a33d46168923cdeca0d97553fc47e050e">operator=</a>(<span class="keyword">const</span> <a class="code" href="classGame.html">Game</a>&amp;);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif //__GAME_HH__</span></div>
+<div class="ttc" id="classGame_html_a4fc66dc51ec497791258a8ab5263afe8"><div class="ttname"><a href="classGame.html#a4fc66dc51ec497791258a8ab5263afe8">Game::drawObjectsToScreen</a></div><div class="ttdeci">int drawObjectsToScreen()</div><div class="ttdoc">draw updates to screen </div><div class="ttdef"><b>Definition:</b> Game.cc:128</div></div>
+<div class="ttc" id="classGame_html_a98788d98f37433c3a4575c644c0540b9"><div class="ttname"><a href="classGame.html#a98788d98f37433c3a4575c644c0540b9">Game::gameOver</a></div><div class="ttdeci">int gameOver()</div><div class="ttdoc">Triggers when the player fails. </div><div class="ttdef"><b>Definition:</b> Game.cc:199</div></div>
+<div class="ttc" id="classGame_html_a882d8ea87fc0ee4bb827f1de818c8aa1"><div class="ttname"><a href="classGame.html#a882d8ea87fc0ee4bb827f1de818c8aa1">Game::handlePlayerInput</a></div><div class="ttdeci">int handlePlayerInput()</div><div class="ttdoc">handles player input </div><div class="ttdef"><b>Definition:</b> Game.cc:76</div></div>
+<div class="ttc" id="classGame_html_ac96e150f595f287b0e32ff2ad15ef663"><div class="ttname"><a href="classGame.html#ac96e150f595f287b0e32ff2ad15ef663">Game::graphics_</a></div><div class="ttdeci">GraphicsEngine * graphics_</div><div class="ttdoc">Instance for managing graphics. </div><div class="ttdef"><b>Definition:</b> Game.hh:46</div></div>
+<div class="ttc" id="classGame_html_adcf97122d591ec030faf6125205a8a6e"><div class="ttname"><a href="classGame.html#adcf97122d591ec030faf6125205a8a6e">Game::letObjectsInteract</a></div><div class="ttdeci">int letObjectsInteract()</div><div class="ttdoc">lets objects interact with each other </div><div class="ttdef"><b>Definition:</b> Game.cc:92</div></div>
+<div class="ttc" id="classGame_html_ae3d112ca6e0e55150d2fdbc704474530"><div class="ttname"><a href="classGame.html#ae3d112ca6e0e55150d2fdbc704474530">Game::~Game</a></div><div class="ttdeci">~Game()</div><div class="ttdoc">Destructor. </div><div class="ttdef"><b>Definition:</b> Game.cc:39</div></div>
 <div class="ttc" id="classGame_html_a33d46168923cdeca0d97553fc47e050e"><div class="ttname"><a href="classGame.html#a33d46168923cdeca0d97553fc47e050e">Game::operator=</a></div><div class="ttdeci">void operator=(const Game &amp;)</div><div class="ttdoc">Disabled copy constructor. </div></div>
 <div class="ttc" id="classGame_html"><div class="ttname"><a href="classGame.html">Game</a></div><div class="ttdoc">Main game class. </div><div class="ttdef"><b>Definition:</b> Game.hh:27</div></div>
 <div class="ttc" id="BasicStar_8hh_html"><div class="ttname"><a href="BasicStar_8hh.html">BasicStar.hh</a></div><div class="ttdoc">File containing the BasicStar class Header. </div></div>
-<div class="ttc" id="classGame_html_ad59df6562a58a614fda24622d3715b65"><div class="ttname"><a href="classGame.html#ad59df6562a58a614fda24622d3715b65">Game::Game</a></div><div class="ttdeci">Game()</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> Game.cc:9</div></div>
-<div class="ttc" id="classGame_html_a99fb161fbbe87d25a8b73265a0611e58"><div class="ttname"><a href="classGame.html#a99fb161fbbe87d25a8b73265a0611e58">Game::run</a></div><div class="ttdeci">int run()</div><div class="ttdoc">The game&amp;#39;s main loop. </div><div class="ttdef"><b>Definition:</b> Game.cc:37</div></div>
-<div class="ttc" id="classGame_html_a758c6e31e784bf869133a2274ebc98c7"><div class="ttname"><a href="classGame.html#a758c6e31e784bf869133a2274ebc98c7">Game::addStars</a></div><div class="ttdeci">void addStars(std::list&lt; BasicStar &gt; &amp;star_list)</div><div class="ttdoc">Add stars until they fill up the screen. </div><div class="ttdef"><b>Definition:</b> Game.cc:102</div></div>
+<div class="ttc" id="classGame_html_ad59df6562a58a614fda24622d3715b65"><div class="ttname"><a href="classGame.html#ad59df6562a58a614fda24622d3715b65">Game::Game</a></div><div class="ttdeci">Game()</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> Game.cc:13</div></div>
+<div class="ttc" id="classGame_html_a99fb161fbbe87d25a8b73265a0611e58"><div class="ttname"><a href="classGame.html#a99fb161fbbe87d25a8b73265a0611e58">Game::run</a></div><div class="ttdeci">int run()</div><div class="ttdoc">The game&amp;#39;s main loop. </div><div class="ttdef"><b>Definition:</b> Game.cc:46</div></div>
+<div class="ttc" id="classGame_html_ae152cbdfd498d72b27aaa01a2ed5fe9b"><div class="ttname"><a href="classGame.html#ae152cbdfd498d72b27aaa01a2ed5fe9b">Game::player_</a></div><div class="ttdeci">Player player_</div><div class="ttdoc">Player instance. </div><div class="ttdef"><b>Definition:</b> Game.hh:52</div></div>
+<div class="ttc" id="classGame_html_a6fa0a46a8891c42b6d57a475e130ee32"><div class="ttname"><a href="classGame.html#a6fa0a46a8891c42b6d57a475e130ee32">Game::star_list_</a></div><div class="ttdeci">std::list&lt; BasicStar * &gt; star_list_</div><div class="ttdoc">List of all flying objects that the player can hit. </div><div class="ttdef"><b>Definition:</b> Game.hh:49</div></div>
 <div class="ttc" id="classGraphicsEngine_html"><div class="ttname"><a href="classGraphicsEngine.html">GraphicsEngine</a></div><div class="ttdoc">Class for managing graphics and events. </div><div class="ttdef"><b>Definition:</b> GraphicsEngine.hh:43</div></div>
 <div class="ttc" id="Player_8hh_html"><div class="ttname"><a href="Player_8hh.html">Player.hh</a></div><div class="ttdoc">File containing the Player class Header. </div></div>
+<div class="ttc" id="classPlayer_html"><div class="ttname"><a href="classPlayer.html">Player</a></div><div class="ttdoc">Player class. </div><div class="ttdef"><b>Definition:</b> Player.hh:17</div></div>
+<div class="ttc" id="classGame_html_ac64e91bd895186e51ab2e1f23bcc5508"><div class="ttname"><a href="classGame.html#ac64e91bd895186e51ab2e1f23bcc5508">Game::addStars</a></div><div class="ttdeci">void addStars()</div><div class="ttdoc">Add stars to star_list_ until they fill up the screen. </div><div class="ttdef"><b>Definition:</b> Game.cc:169</div></div>
 <div class="ttc" id="GraphicsEngine_8hh_html"><div class="ttname"><a href="GraphicsEngine_8hh.html">GraphicsEngine.hh</a></div><div class="ttdoc">File containing the GraphicsEngine class Header. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 2 2013 15:43:32 for Jumpman by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Dec 7 2013 12:42:58 for Jumpman by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

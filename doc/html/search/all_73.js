@@ -10,5 +10,6 @@ var searchData=
   ['sprite_2ecc',['Sprite.cc',['../Sprite_8cc.html',1,'']]],
   ['sprite_2ehh',['Sprite.hh',['../Sprite_8hh.html',1,'']]],
   ['standing_5fon_5ffloor_5f',['standing_on_floor_',['../classPlayer.html#af64bce8749b5148e518390dea7387ce7',1,'Player']]],
+  ['star_5flist_5f',['star_list_',['../classGame.html#a6fa0a46a8891c42b6d57a475e130ee32',1,'Game']]],
   ['still',['STILL',['../GraphicsEngine_8hh.html#a2fb9b58e4e5f14f40af8b4a1425841f8af63c0ddcabcef7eafa6b68908ffce431',1,'GraphicsEngine.hh']]]
 ];
