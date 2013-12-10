@@ -31,8 +31,14 @@ class Game
     ///Constructor
     Game();
 
+    ///Disabled copy constructor
+    Game(const Game&) = delete;
+
     ///Destructor
     ~Game();
+
+    ///Disabled copy constructor
+    void operator=(const Game&) = delete;
 
     /*!
      * \brief The game's main loop
@@ -79,12 +85,6 @@ class Game
      * \return always returns 2 
      */
     int gameOver();
-
-    ///Disabled copy constructor
-    Game(const Game&);
-
-    ///Disabled copy constructor
-    void operator=(const Game&);
 
 };
 

@@ -58,9 +58,14 @@ class GraphicsEngine
                    const unsigned screen_bpp,
                    const unsigned frame_rate);
 
+    ///Disabled copy constructor
+    GraphicsEngine(const GraphicsEngine&) = delete;
+
     ///Destructor
     ~GraphicsEngine();
 
+    ///Disabled copy constructor
+    void operator=(const GraphicsEngine&) = delete;
     /*!
      * \brief Loads and image from the disk into the RAM
      * \param filename  Name of the image file inside graphics/ folder 
@@ -148,12 +153,6 @@ class GraphicsEngine
 
     ///Font to use
     TTF_Font *font_;
-
-    ///Copy constructor (DO NOT USE)
-    GraphicsEngine(const GraphicsEngine&);
-
-    ///Copy constructor (DO NOT USE)
-    void operator=(const GraphicsEngine&);
 };
 
 #endif //__GRAPHICS_ENGINE_HH__
