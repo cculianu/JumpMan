@@ -1,0 +1,143 @@
+\contentsline {chapter}{\numberline {1}Hierarchical Index}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Class Hierarchy}{1}{section.1.1}
+\contentsline {chapter}{\numberline {2}Class Index}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Class List}{3}{section.2.1}
+\contentsline {chapter}{\numberline {3}File Index}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}File List}{5}{section.3.1}
+\contentsline {chapter}{\numberline {4}Class Documentation}{7}{chapter.4}
+\contentsline {section}{\numberline {4.1}Basic\discretionary {-}{}{}Star Class Reference}{7}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{7}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Constructor \& Destructor Documentation}{8}{subsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.2.1}Basic\discretionary {-}{}{}Star}{8}{subsubsection.4.1.2.1}
+\contentsline {subsubsection}{\numberline {4.1.2.2}$\sim $\discretionary {-}{}{}Basic\discretionary {-}{}{}Star}{8}{subsubsection.4.1.2.2}
+\contentsline {subsection}{\numberline {4.1.3}Member Function Documentation}{8}{subsection.4.1.3}
+\contentsline {subsubsection}{\numberline {4.1.3.1}randomize\discretionary {-}{}{}Spawn}{8}{subsubsection.4.1.3.1}
+\contentsline {subsubsection}{\numberline {4.1.3.2}take\discretionary {-}{}{}Action}{8}{subsubsection.4.1.3.2}
+\contentsline {section}{\numberline {4.2}Game Class Reference}{8}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Detailed Description}{9}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Constructor \& Destructor Documentation}{9}{subsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.2.1}Game}{9}{subsubsection.4.2.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2.2}$\sim $\discretionary {-}{}{}Game}{9}{subsubsection.4.2.2.2}
+\contentsline {subsubsection}{\numberline {4.2.2.3}Game}{9}{subsubsection.4.2.2.3}
+\contentsline {subsection}{\numberline {4.2.3}Member Function Documentation}{9}{subsection.4.2.3}
+\contentsline {subsubsection}{\numberline {4.2.3.1}add\discretionary {-}{}{}Stars}{9}{subsubsection.4.2.3.1}
+\contentsline {subsubsection}{\numberline {4.2.3.2}draw\discretionary {-}{}{}Objects\discretionary {-}{}{}To\discretionary {-}{}{}Screen}{10}{subsubsection.4.2.3.2}
+\contentsline {subsubsection}{\numberline {4.2.3.3}game\discretionary {-}{}{}Over}{10}{subsubsection.4.2.3.3}
+\contentsline {subsubsection}{\numberline {4.2.3.4}handle\discretionary {-}{}{}Player\discretionary {-}{}{}Input}{10}{subsubsection.4.2.3.4}
+\contentsline {subsubsection}{\numberline {4.2.3.5}let\discretionary {-}{}{}Objects\discretionary {-}{}{}Interact}{10}{subsubsection.4.2.3.5}
+\contentsline {subsubsection}{\numberline {4.2.3.6}operator=}{10}{subsubsection.4.2.3.6}
+\contentsline {subsubsection}{\numberline {4.2.3.7}run}{10}{subsubsection.4.2.3.7}
+\contentsline {subsection}{\numberline {4.2.4}Member Data Documentation}{10}{subsection.4.2.4}
+\contentsline {subsubsection}{\numberline {4.2.4.1}graphics\discretionary {-}{}{}\_\discretionary {-}{}{}}{10}{subsubsection.4.2.4.1}
+\contentsline {subsubsection}{\numberline {4.2.4.2}player\discretionary {-}{}{}\_\discretionary {-}{}{}}{11}{subsubsection.4.2.4.2}
+\contentsline {subsubsection}{\numberline {4.2.4.3}star\discretionary {-}{}{}\_\discretionary {-}{}{}list\discretionary {-}{}{}\_\discretionary {-}{}{}}{11}{subsubsection.4.2.4.3}
+\contentsline {section}{\numberline {4.3}Graphics\discretionary {-}{}{}Engine Class Reference}{11}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{12}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Constructor \& Destructor Documentation}{12}{subsection.4.3.2}
+\contentsline {subsubsection}{\numberline {4.3.2.1}Graphics\discretionary {-}{}{}Engine}{12}{subsubsection.4.3.2.1}
+\contentsline {subsubsection}{\numberline {4.3.2.2}$\sim $\discretionary {-}{}{}Graphics\discretionary {-}{}{}Engine}{12}{subsubsection.4.3.2.2}
+\contentsline {subsubsection}{\numberline {4.3.2.3}Graphics\discretionary {-}{}{}Engine}{12}{subsubsection.4.3.2.3}
+\contentsline {subsection}{\numberline {4.3.3}Member Function Documentation}{13}{subsection.4.3.3}
+\contentsline {subsubsection}{\numberline {4.3.3.1}draw\discretionary {-}{}{}Image}{13}{subsubsection.4.3.3.1}
+\contentsline {subsubsection}{\numberline {4.3.3.2}draw\discretionary {-}{}{}Text}{13}{subsubsection.4.3.3.2}
+\contentsline {subsubsection}{\numberline {4.3.3.3}get\discretionary {-}{}{}Event}{13}{subsubsection.4.3.3.3}
+\contentsline {subsubsection}{\numberline {4.3.3.4}get\discretionary {-}{}{}Last\discretionary {-}{}{}Error}{13}{subsubsection.4.3.3.4}
+\contentsline {subsubsection}{\numberline {4.3.3.5}load\discretionary {-}{}{}Image}{13}{subsubsection.4.3.3.5}
+\contentsline {subsubsection}{\numberline {4.3.3.6}make\discretionary {-}{}{}Screen\discretionary {-}{}{}Black}{14}{subsubsection.4.3.3.6}
+\contentsline {subsubsection}{\numberline {4.3.3.7}operator=}{14}{subsubsection.4.3.3.7}
+\contentsline {subsubsection}{\numberline {4.3.3.8}screen\discretionary {-}{}{}\_\discretionary {-}{}{}height}{14}{subsubsection.4.3.3.8}
+\contentsline {subsubsection}{\numberline {4.3.3.9}screen\discretionary {-}{}{}\_\discretionary {-}{}{}width}{14}{subsubsection.4.3.3.9}
+\contentsline {subsubsection}{\numberline {4.3.3.10}update\discretionary {-}{}{}Screen}{14}{subsubsection.4.3.3.10}
+\contentsline {subsubsection}{\numberline {4.3.3.11}wait\discretionary {-}{}{}For\discretionary {-}{}{}Keypress}{14}{subsubsection.4.3.3.11}
+\contentsline {subsection}{\numberline {4.3.4}Member Data Documentation}{14}{subsection.4.3.4}
+\contentsline {subsubsection}{\numberline {4.3.4.1}font\discretionary {-}{}{}\_\discretionary {-}{}{}}{14}{subsubsection.4.3.4.1}
+\contentsline {subsubsection}{\numberline {4.3.4.2}F\discretionary {-}{}{}R\discretionary {-}{}{}A\discretionary {-}{}{}M\discretionary {-}{}{}E\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}R\discretionary {-}{}{}A\discretionary {-}{}{}T\discretionary {-}{}{}E}{14}{subsubsection.4.3.4.2}
+\contentsline {subsubsection}{\numberline {4.3.4.3}images\discretionary {-}{}{}\_\discretionary {-}{}{}}{14}{subsubsection.4.3.4.3}
+\contentsline {subsubsection}{\numberline {4.3.4.4}screen\discretionary {-}{}{}\_\discretionary {-}{}{}}{14}{subsubsection.4.3.4.4}
+\contentsline {subsubsection}{\numberline {4.3.4.5}S\discretionary {-}{}{}C\discretionary {-}{}{}R\discretionary {-}{}{}E\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}P\discretionary {-}{}{}P}{15}{subsubsection.4.3.4.5}
+\contentsline {subsubsection}{\numberline {4.3.4.6}S\discretionary {-}{}{}C\discretionary {-}{}{}R\discretionary {-}{}{}E\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}H\discretionary {-}{}{}E\discretionary {-}{}{}I\discretionary {-}{}{}G\discretionary {-}{}{}H\discretionary {-}{}{}T}{15}{subsubsection.4.3.4.6}
+\contentsline {subsubsection}{\numberline {4.3.4.7}S\discretionary {-}{}{}C\discretionary {-}{}{}R\discretionary {-}{}{}E\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}W\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}T\discretionary {-}{}{}H}{15}{subsubsection.4.3.4.7}
+\contentsline {subsubsection}{\numberline {4.3.4.8}time\discretionary {-}{}{}\_\discretionary {-}{}{}of\discretionary {-}{}{}\_\discretionary {-}{}{}last\discretionary {-}{}{}\_\discretionary {-}{}{}refresh\discretionary {-}{}{}\_\discretionary {-}{}{}}{15}{subsubsection.4.3.4.8}
+\contentsline {subsubsection}{\numberline {4.3.4.9}T\discretionary {-}{}{}I\discretionary {-}{}{}T\discretionary {-}{}{}L\discretionary {-}{}{}E}{15}{subsubsection.4.3.4.9}
+\contentsline {section}{\numberline {4.4}Moving\discretionary {-}{}{}Star Class Reference}{15}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{16}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Constructor \& Destructor Documentation}{16}{subsection.4.4.2}
+\contentsline {subsubsection}{\numberline {4.4.2.1}Moving\discretionary {-}{}{}Star}{16}{subsubsection.4.4.2.1}
+\contentsline {subsubsection}{\numberline {4.4.2.2}$\sim $\discretionary {-}{}{}Moving\discretionary {-}{}{}Star}{16}{subsubsection.4.4.2.2}
+\contentsline {subsection}{\numberline {4.4.3}Member Function Documentation}{16}{subsection.4.4.3}
+\contentsline {subsubsection}{\numberline {4.4.3.1}take\discretionary {-}{}{}Action}{16}{subsubsection.4.4.3.1}
+\contentsline {subsection}{\numberline {4.4.4}Member Data Documentation}{16}{subsection.4.4.4}
+\contentsline {subsubsection}{\numberline {4.4.4.1}dx\discretionary {-}{}{}\_\discretionary {-}{}{}}{16}{subsubsection.4.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.4.2}dy\discretionary {-}{}{}\_\discretionary {-}{}{}}{16}{subsubsection.4.4.4.2}
+\contentsline {section}{\numberline {4.5}Player Class Reference}{16}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Detailed Description}{17}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Constructor \& Destructor Documentation}{17}{subsection.4.5.2}
+\contentsline {subsubsection}{\numberline {4.5.2.1}Player}{17}{subsubsection.4.5.2.1}
+\contentsline {subsubsection}{\numberline {4.5.2.2}$\sim $\discretionary {-}{}{}Player}{17}{subsubsection.4.5.2.2}
+\contentsline {subsection}{\numberline {4.5.3}Member Function Documentation}{18}{subsection.4.5.3}
+\contentsline {subsubsection}{\numberline {4.5.3.1}handle\discretionary {-}{}{}Gravity}{18}{subsubsection.4.5.3.1}
+\contentsline {subsubsection}{\numberline {4.5.3.2}image\discretionary {-}{}{}X}{18}{subsubsection.4.5.3.2}
+\contentsline {subsubsection}{\numberline {4.5.3.3}image\discretionary {-}{}{}Y}{18}{subsubsection.4.5.3.3}
+\contentsline {subsubsection}{\numberline {4.5.3.4}jump}{18}{subsubsection.4.5.3.4}
+\contentsline {subsubsection}{\numberline {4.5.3.5}move}{18}{subsubsection.4.5.3.5}
+\contentsline {subsubsection}{\numberline {4.5.3.6}reset}{18}{subsubsection.4.5.3.6}
+\contentsline {subsubsection}{\numberline {4.5.3.7}score}{18}{subsubsection.4.5.3.7}
+\contentsline {subsubsection}{\numberline {4.5.3.8}touches}{19}{subsubsection.4.5.3.8}
+\contentsline {subsection}{\numberline {4.5.4}Member Data Documentation}{19}{subsection.4.5.4}
+\contentsline {subsubsection}{\numberline {4.5.4.1}dx\discretionary {-}{}{}\_\discretionary {-}{}{}}{19}{subsubsection.4.5.4.1}
+\contentsline {subsubsection}{\numberline {4.5.4.2}dy\discretionary {-}{}{}\_\discretionary {-}{}{}}{19}{subsubsection.4.5.4.2}
+\contentsline {subsubsection}{\numberline {4.5.4.3}facing\discretionary {-}{}{}\_\discretionary {-}{}{}direction\discretionary {-}{}{}\_\discretionary {-}{}{}}{19}{subsubsection.4.5.4.3}
+\contentsline {subsubsection}{\numberline {4.5.4.4}score\discretionary {-}{}{}\_\discretionary {-}{}{}}{19}{subsubsection.4.5.4.4}
+\contentsline {subsubsection}{\numberline {4.5.4.5}standing\discretionary {-}{}{}\_\discretionary {-}{}{}on\discretionary {-}{}{}\_\discretionary {-}{}{}floor\discretionary {-}{}{}\_\discretionary {-}{}{}}{19}{subsubsection.4.5.4.5}
+\contentsline {section}{\numberline {4.6}Sprite Class Reference}{19}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Detailed Description}{20}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}Constructor \& Destructor Documentation}{20}{subsection.4.6.2}
+\contentsline {subsubsection}{\numberline {4.6.2.1}Sprite}{20}{subsubsection.4.6.2.1}
+\contentsline {subsubsection}{\numberline {4.6.2.2}Sprite}{21}{subsubsection.4.6.2.2}
+\contentsline {subsubsection}{\numberline {4.6.2.3}$\sim $\discretionary {-}{}{}Sprite}{21}{subsubsection.4.6.2.3}
+\contentsline {subsection}{\numberline {4.6.3}Member Function Documentation}{21}{subsection.4.6.3}
+\contentsline {subsubsection}{\numberline {4.6.3.1}filename}{21}{subsubsection.4.6.3.1}
+\contentsline {subsubsection}{\numberline {4.6.3.2}height}{21}{subsubsection.4.6.3.2}
+\contentsline {subsubsection}{\numberline {4.6.3.3}image\discretionary {-}{}{}X}{21}{subsubsection.4.6.3.3}
+\contentsline {subsubsection}{\numberline {4.6.3.4}initial\discretionary {-}{}{}Y}{21}{subsubsection.4.6.3.4}
+\contentsline {subsubsection}{\numberline {4.6.3.5}modify\discretionary {-}{}{}Y}{21}{subsubsection.4.6.3.5}
+\contentsline {subsubsection}{\numberline {4.6.3.6}operator=}{21}{subsubsection.4.6.3.6}
+\contentsline {subsubsection}{\numberline {4.6.3.7}width}{22}{subsubsection.4.6.3.7}
+\contentsline {subsubsection}{\numberline {4.6.3.8}x}{22}{subsubsection.4.6.3.8}
+\contentsline {subsubsection}{\numberline {4.6.3.9}y}{22}{subsubsection.4.6.3.9}
+\contentsline {subsection}{\numberline {4.6.4}Member Data Documentation}{22}{subsection.4.6.4}
+\contentsline {subsubsection}{\numberline {4.6.4.1}current\discretionary {-}{}{}\_\discretionary {-}{}{}image\discretionary {-}{}{}\_\discretionary {-}{}{}}{22}{subsubsection.4.6.4.1}
+\contentsline {subsubsection}{\numberline {4.6.4.2}filename\discretionary {-}{}{}\_\discretionary {-}{}{}}{22}{subsubsection.4.6.4.2}
+\contentsline {subsubsection}{\numberline {4.6.4.3}height\discretionary {-}{}{}\_\discretionary {-}{}{}}{22}{subsubsection.4.6.4.3}
+\contentsline {subsubsection}{\numberline {4.6.4.4}initial\discretionary {-}{}{}\_\discretionary {-}{}{}y\discretionary {-}{}{}\_\discretionary {-}{}{}}{22}{subsubsection.4.6.4.4}
+\contentsline {subsubsection}{\numberline {4.6.4.5}num\discretionary {-}{}{}\_\discretionary {-}{}{}images\discretionary {-}{}{}\_\discretionary {-}{}{}}{22}{subsubsection.4.6.4.5}
+\contentsline {subsubsection}{\numberline {4.6.4.6}width\discretionary {-}{}{}\_\discretionary {-}{}{}}{22}{subsubsection.4.6.4.6}
+\contentsline {subsubsection}{\numberline {4.6.4.7}x\discretionary {-}{}{}\_\discretionary {-}{}{}}{22}{subsubsection.4.6.4.7}
+\contentsline {subsubsection}{\numberline {4.6.4.8}y\discretionary {-}{}{}\_\discretionary {-}{}{}}{23}{subsubsection.4.6.4.8}
+\contentsline {chapter}{\numberline {5}File Documentation}{25}{chapter.5}
+\contentsline {section}{\numberline {5.1}src/\discretionary {-}{}{}Basic\discretionary {-}{}{}Star.cc File Reference}{25}{section.5.1}
+\contentsline {section}{\numberline {5.2}src/\discretionary {-}{}{}Basic\discretionary {-}{}{}Star.hh File Reference}{25}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Detailed Description}{25}{subsection.5.2.1}
+\contentsline {section}{\numberline {5.3}src/\discretionary {-}{}{}Game.cc File Reference}{26}{section.5.3}
+\contentsline {section}{\numberline {5.4}src/\discretionary {-}{}{}Game.hh File Reference}{26}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Detailed Description}{26}{subsection.5.4.1}
+\contentsline {section}{\numberline {5.5}src/\discretionary {-}{}{}Graphics\discretionary {-}{}{}Engine.cc File Reference}{26}{section.5.5}
+\contentsline {section}{\numberline {5.6}src/\discretionary {-}{}{}Graphics\discretionary {-}{}{}Engine.hh File Reference}{27}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Detailed Description}{27}{subsection.5.6.1}
+\contentsline {subsection}{\numberline {5.6.2}Typedef Documentation}{27}{subsection.5.6.2}
+\contentsline {subsubsection}{\numberline {5.6.2.1}rect\discretionary {-}{}{}\_\discretionary {-}{}{}t}{27}{subsubsection.5.6.2.1}
+\contentsline {subsection}{\numberline {5.6.3}Enumeration Type Documentation}{27}{subsection.5.6.3}
+\contentsline {subsubsection}{\numberline {5.6.3.1}event\discretionary {-}{}{}\_\discretionary {-}{}{}t}{27}{subsubsection.5.6.3.1}
+\contentsline {section}{\numberline {5.7}src/main.cc File Reference}{28}{section.5.7}
+\contentsline {subsection}{\numberline {5.7.1}Function Documentation}{28}{subsection.5.7.1}
+\contentsline {subsubsection}{\numberline {5.7.1.1}main}{28}{subsubsection.5.7.1.1}
+\contentsline {section}{\numberline {5.8}src/\discretionary {-}{}{}Moving\discretionary {-}{}{}Star.cc File Reference}{28}{section.5.8}
+\contentsline {section}{\numberline {5.9}src/\discretionary {-}{}{}Moving\discretionary {-}{}{}Star.hh File Reference}{28}{section.5.9}
+\contentsline {subsection}{\numberline {5.9.1}Detailed Description}{28}{subsection.5.9.1}
+\contentsline {section}{\numberline {5.10}src/\discretionary {-}{}{}Player.cc File Reference}{29}{section.5.10}
+\contentsline {section}{\numberline {5.11}src/\discretionary {-}{}{}Player.hh File Reference}{29}{section.5.11}
+\contentsline {subsection}{\numberline {5.11.1}Detailed Description}{29}{subsection.5.11.1}
+\contentsline {section}{\numberline {5.12}src/\discretionary {-}{}{}Sprite.cc File Reference}{29}{section.5.12}
+\contentsline {section}{\numberline {5.13}src/\discretionary {-}{}{}Sprite.hh File Reference}{29}{section.5.13}
+\contentsline {subsection}{\numberline {5.13.1}Detailed Description}{29}{subsection.5.13.1}
+\contentsline {part}{Index}{30}{subsection.5.13.1}

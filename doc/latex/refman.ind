@@ -1,0 +1,392 @@
+\begin{theindex}
+
+  \item {$\sim $\discretionary {-}{}{}Basic\discretionary {-}{}{}Star}
+    \subitem {Basic\discretionary {-}{}{}Star}, \hyperpage{8}
+  \item {$\sim $\discretionary {-}{}{}Game}
+    \subitem {Game}, \hyperpage{9}
+  \item {$\sim $\discretionary {-}{}{}Graphics\discretionary {-}{}{}Engine}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{12}
+  \item {$\sim $\discretionary {-}{}{}Moving\discretionary {-}{}{}Star}
+    \subitem {Moving\discretionary {-}{}{}Star}, \hyperpage{16}
+  \item {$\sim $\discretionary {-}{}{}Player}
+    \subitem {Player}, \hyperpage{17}
+  \item {$\sim $\discretionary {-}{}{}Sprite}
+    \subitem {Sprite}, \hyperpage{21}
+
+  \indexspace
+
+  \item {add\discretionary {-}{}{}Stars}
+    \subitem {Game}, \hyperpage{9}
+
+  \indexspace
+
+  \item {Basic\discretionary {-}{}{}Star}, \hyperpage{7}
+    \subitem {$\sim $\discretionary {-}{}{}Basic\discretionary {-}{}{}Star}, 
+		\hyperpage{8}
+    \subitem {Basic\discretionary {-}{}{}Star}, \hyperpage{8}
+    \subitem {Basic\discretionary {-}{}{}Star}, \hyperpage{8}
+    \subitem {randomize\discretionary {-}{}{}Spawn}, \hyperpage{8}
+    \subitem {take\discretionary {-}{}{}Action}, \hyperpage{8}
+
+  \indexspace
+
+  \item {current\discretionary {-}{}{}\_\discretionary {-}{}{}image\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Sprite}, \hyperpage{22}
+
+  \indexspace
+
+  \item {draw\discretionary {-}{}{}Image}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{13}
+  \item {draw\discretionary {-}{}{}Objects\discretionary {-}{}{}To\discretionary {-}{}{}Screen}
+    \subitem {Game}, \hyperpage{9}
+  \item {draw\discretionary {-}{}{}Text}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{13}
+  \item {dx\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Moving\discretionary {-}{}{}Star}, \hyperpage{16}
+    \subitem {Player}, \hyperpage{19}
+  \item {dy\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Moving\discretionary {-}{}{}Star}, \hyperpage{16}
+    \subitem {Player}, \hyperpage{19}
+
+  \indexspace
+
+  \item {event\discretionary {-}{}{}\_\discretionary {-}{}{}t}
+    \subitem {Graphics\discretionary {-}{}{}Engine.\discretionary {-}{}{}hh}, 
+		\hyperpage{27}
+
+  \indexspace
+
+  \item {F\discretionary {-}{}{}R\discretionary {-}{}{}A\discretionary {-}{}{}M\discretionary {-}{}{}E\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}R\discretionary {-}{}{}A\discretionary {-}{}{}T\discretionary {-}{}{}E}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{14}
+  \item {facing\discretionary {-}{}{}\_\discretionary {-}{}{}direction\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Player}, \hyperpage{19}
+  \item {filename}
+    \subitem {Sprite}, \hyperpage{21}
+  \item {filename\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Sprite}, \hyperpage{22}
+  \item {font\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{14}
+
+  \indexspace
+
+  \item {Game}, \hyperpage{8}
+    \subitem {$\sim $\discretionary {-}{}{}Game}, \hyperpage{9}
+    \subitem {add\discretionary {-}{}{}Stars}, \hyperpage{9}
+    \subitem {draw\discretionary {-}{}{}Objects\discretionary {-}{}{}To\discretionary {-}{}{}Screen}, 
+		\hyperpage{9}
+    \subitem {Game}, \hyperpage{9}
+    \subitem {game\discretionary {-}{}{}Over}, \hyperpage{10}
+    \subitem {graphics\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{10}
+    \subitem {handle\discretionary {-}{}{}Player\discretionary {-}{}{}Input}, 
+		\hyperpage{10}
+    \subitem {let\discretionary {-}{}{}Objects\discretionary {-}{}{}Interact}, 
+		\hyperpage{10}
+    \subitem {operator=}, \hyperpage{10}
+    \subitem {player\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{10}
+    \subitem {run}, \hyperpage{10}
+    \subitem {star\discretionary {-}{}{}\_\discretionary {-}{}{}list\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{11}
+  \item {game\discretionary {-}{}{}Over}
+    \subitem {Game}, \hyperpage{10}
+  \item {get\discretionary {-}{}{}Event}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{13}
+  \item {get\discretionary {-}{}{}Last\discretionary {-}{}{}Error}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{13}
+  \item {Graphics\-Engine.\-hh}
+    \subitem {L\-E\-F\-T}, \hyperpage{27}
+    \subitem {N\-O\-T\-H\-I\-N\-G}, \hyperpage{28}
+    \subitem {Q\-U\-I\-T}, \hyperpage{28}
+    \subitem {R\-I\-G\-H\-T}, \hyperpage{27}
+    \subitem {S\-T\-I\-L\-L}, \hyperpage{28}
+    \subitem {U\-P}, \hyperpage{27}
+  \item {graphics\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Game}, \hyperpage{10}
+  \item {Graphics\discretionary {-}{}{}Engine}, \hyperpage{11}
+    \subitem {$\sim $\discretionary {-}{}{}Graphics\discretionary {-}{}{}Engine}, 
+		\hyperpage{12}
+    \subitem {draw\discretionary {-}{}{}Image}, \hyperpage{13}
+    \subitem {draw\discretionary {-}{}{}Text}, \hyperpage{13}
+    \subitem {F\discretionary {-}{}{}R\discretionary {-}{}{}A\discretionary {-}{}{}M\discretionary {-}{}{}E\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}R\discretionary {-}{}{}A\discretionary {-}{}{}T\discretionary {-}{}{}E}, 
+		\hyperpage{14}
+    \subitem {font\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{14}
+    \subitem {get\discretionary {-}{}{}Event}, \hyperpage{13}
+    \subitem {get\discretionary {-}{}{}Last\discretionary {-}{}{}Error}, 
+		\hyperpage{13}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{12}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{12}
+    \subitem {images\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{14}
+    \subitem {load\discretionary {-}{}{}Image}, \hyperpage{13}
+    \subitem {make\discretionary {-}{}{}Screen\discretionary {-}{}{}Black}, 
+		\hyperpage{14}
+    \subitem {operator=}, \hyperpage{14}
+    \subitem {S\discretionary {-}{}{}C\discretionary {-}{}{}R\discretionary {-}{}{}E\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}P\discretionary {-}{}{}P}, 
+		\hyperpage{14}
+    \subitem {S\discretionary {-}{}{}C\discretionary {-}{}{}R\discretionary {-}{}{}E\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}H\discretionary {-}{}{}E\discretionary {-}{}{}I\discretionary {-}{}{}G\discretionary {-}{}{}H\discretionary {-}{}{}T}, 
+		\hyperpage{15}
+    \subitem {S\discretionary {-}{}{}C\discretionary {-}{}{}R\discretionary {-}{}{}E\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}W\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}T\discretionary {-}{}{}H}, 
+		\hyperpage{15}
+    \subitem {screen\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{14}
+    \subitem {screen\discretionary {-}{}{}\_\discretionary {-}{}{}height}, 
+		\hyperpage{14}
+    \subitem {screen\discretionary {-}{}{}\_\discretionary {-}{}{}width}, 
+		\hyperpage{14}
+    \subitem {T\discretionary {-}{}{}I\discretionary {-}{}{}T\discretionary {-}{}{}L\discretionary {-}{}{}E}, 
+		\hyperpage{15}
+    \subitem {time\discretionary {-}{}{}\_\discretionary {-}{}{}of\discretionary {-}{}{}\_\discretionary {-}{}{}last\discretionary {-}{}{}\_\discretionary {-}{}{}refresh\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{15}
+    \subitem {update\discretionary {-}{}{}Screen}, \hyperpage{14}
+    \subitem {wait\discretionary {-}{}{}For\discretionary {-}{}{}Keypress}, 
+		\hyperpage{14}
+  \item {Graphics\discretionary {-}{}{}Engine.\discretionary {-}{}{}hh}
+    \subitem {event\discretionary {-}{}{}\_\discretionary {-}{}{}t}, 
+		\hyperpage{27}
+    \subitem {rect\discretionary {-}{}{}\_\discretionary {-}{}{}t}, 
+		\hyperpage{27}
+
+  \indexspace
+
+  \item {handle\discretionary {-}{}{}Gravity}
+    \subitem {Player}, \hyperpage{18}
+  \item {handle\discretionary {-}{}{}Player\discretionary {-}{}{}Input}
+    \subitem {Game}, \hyperpage{10}
+  \item {height}
+    \subitem {Sprite}, \hyperpage{21}
+  \item {height\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Sprite}, \hyperpage{22}
+
+  \indexspace
+
+  \item {image\discretionary {-}{}{}X}
+    \subitem {Player}, \hyperpage{18}
+    \subitem {Sprite}, \hyperpage{21}
+  \item {image\discretionary {-}{}{}Y}
+    \subitem {Player}, \hyperpage{18}
+  \item {images\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{14}
+  \item {initial\discretionary {-}{}{}\_\discretionary {-}{}{}y\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Sprite}, \hyperpage{22}
+  \item {initial\discretionary {-}{}{}Y}
+    \subitem {Sprite}, \hyperpage{21}
+
+  \indexspace
+
+  \item {jump}
+    \subitem {Player}, \hyperpage{18}
+
+  \indexspace
+
+  \item {L\-E\-F\-T}
+    \subitem {Graphics\-Engine.\-hh}, \hyperpage{27}
+  \item {let\discretionary {-}{}{}Objects\discretionary {-}{}{}Interact}
+    \subitem {Game}, \hyperpage{10}
+  \item {load\discretionary {-}{}{}Image}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{13}
+
+  \indexspace
+
+  \item {main}
+    \subitem {main.\discretionary {-}{}{}cc}, \hyperpage{28}
+  \item {main.\discretionary {-}{}{}cc}
+    \subitem {main}, \hyperpage{28}
+  \item {make\discretionary {-}{}{}Screen\discretionary {-}{}{}Black}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{14}
+  \item {modify\discretionary {-}{}{}Y}
+    \subitem {Sprite}, \hyperpage{21}
+  \item {move}
+    \subitem {Player}, \hyperpage{18}
+  \item {Moving\discretionary {-}{}{}Star}, \hyperpage{15}
+    \subitem {$\sim $\discretionary {-}{}{}Moving\discretionary {-}{}{}Star}, 
+		\hyperpage{16}
+    \subitem {dx\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{16}
+    \subitem {dy\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{16}
+    \subitem {Moving\discretionary {-}{}{}Star}, \hyperpage{16}
+    \subitem {Moving\discretionary {-}{}{}Star}, \hyperpage{16}
+    \subitem {take\discretionary {-}{}{}Action}, \hyperpage{16}
+
+  \indexspace
+
+  \item {N\-O\-T\-H\-I\-N\-G}
+    \subitem {Graphics\-Engine.\-hh}, \hyperpage{28}
+  \item {num\discretionary {-}{}{}\_\discretionary {-}{}{}images\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Sprite}, \hyperpage{22}
+
+  \indexspace
+
+  \item {operator=}
+    \subitem {Game}, \hyperpage{10}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{14}
+    \subitem {Sprite}, \hyperpage{21}
+
+  \indexspace
+
+  \item {Player}, \hyperpage{16}
+    \subitem {$\sim $\discretionary {-}{}{}Player}, \hyperpage{17}
+    \subitem {dx\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{19}
+    \subitem {dy\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{19}
+    \subitem {facing\discretionary {-}{}{}\_\discretionary {-}{}{}direction\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{19}
+    \subitem {handle\discretionary {-}{}{}Gravity}, \hyperpage{18}
+    \subitem {image\discretionary {-}{}{}X}, \hyperpage{18}
+    \subitem {image\discretionary {-}{}{}Y}, \hyperpage{18}
+    \subitem {jump}, \hyperpage{18}
+    \subitem {move}, \hyperpage{18}
+    \subitem {Player}, \hyperpage{17}
+    \subitem {reset}, \hyperpage{18}
+    \subitem {score}, \hyperpage{18}
+    \subitem {score\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{19}
+    \subitem {standing\discretionary {-}{}{}\_\discretionary {-}{}{}on\discretionary {-}{}{}\_\discretionary {-}{}{}floor\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{19}
+    \subitem {touches}, \hyperpage{18}
+  \item {player\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Game}, \hyperpage{10}
+
+  \indexspace
+
+  \item {Q\-U\-I\-T}
+    \subitem {Graphics\-Engine.\-hh}, \hyperpage{28}
+
+  \indexspace
+
+  \item {R\-I\-G\-H\-T}
+    \subitem {Graphics\-Engine.\-hh}, \hyperpage{27}
+  \item {randomize\discretionary {-}{}{}Spawn}
+    \subitem {Basic\discretionary {-}{}{}Star}, \hyperpage{8}
+  \item {rect\discretionary {-}{}{}\_\discretionary {-}{}{}t}
+    \subitem {Graphics\discretionary {-}{}{}Engine.\discretionary {-}{}{}hh}, 
+		\hyperpage{27}
+  \item {reset}
+    \subitem {Player}, \hyperpage{18}
+  \item {run}
+    \subitem {Game}, \hyperpage{10}
+
+  \indexspace
+
+  \item {S\-T\-I\-L\-L}
+    \subitem {Graphics\-Engine.\-hh}, \hyperpage{28}
+  \item {S\discretionary {-}{}{}C\discretionary {-}{}{}R\discretionary {-}{}{}E\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}B\discretionary {-}{}{}P\discretionary {-}{}{}P}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{14}
+  \item {S\discretionary {-}{}{}C\discretionary {-}{}{}R\discretionary {-}{}{}E\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}H\discretionary {-}{}{}E\discretionary {-}{}{}I\discretionary {-}{}{}G\discretionary {-}{}{}H\discretionary {-}{}{}T}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{15}
+  \item {S\discretionary {-}{}{}C\discretionary {-}{}{}R\discretionary {-}{}{}E\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}W\discretionary {-}{}{}I\discretionary {-}{}{}D\discretionary {-}{}{}T\discretionary {-}{}{}H}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{15}
+  \item {score}
+    \subitem {Player}, \hyperpage{18}
+  \item {score\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Player}, \hyperpage{19}
+  \item {screen\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{14}
+  \item {screen\discretionary {-}{}{}\_\discretionary {-}{}{}height}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{14}
+  \item {screen\discretionary {-}{}{}\_\discretionary {-}{}{}width}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{14}
+  \item {Sprite}, \hyperpage{19}
+    \subitem {$\sim $\discretionary {-}{}{}Sprite}, \hyperpage{21}
+    \subitem {current\discretionary {-}{}{}\_\discretionary {-}{}{}image\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{22}
+    \subitem {filename}, \hyperpage{21}
+    \subitem {filename\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{22}
+    \subitem {height}, \hyperpage{21}
+    \subitem {height\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{22}
+    \subitem {image\discretionary {-}{}{}X}, \hyperpage{21}
+    \subitem {initial\discretionary {-}{}{}\_\discretionary {-}{}{}y\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{22}
+    \subitem {initial\discretionary {-}{}{}Y}, \hyperpage{21}
+    \subitem {modify\discretionary {-}{}{}Y}, \hyperpage{21}
+    \subitem {num\discretionary {-}{}{}\_\discretionary {-}{}{}images\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{22}
+    \subitem {operator=}, \hyperpage{21}
+    \subitem {Sprite}, \hyperpage{20}
+    \subitem {width}, \hyperpage{22}
+    \subitem {width\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{22}
+    \subitem {x}, \hyperpage{22}
+    \subitem {x\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{22}
+    \subitem {y}, \hyperpage{22}
+    \subitem {y\discretionary {-}{}{}\_\discretionary {-}{}{}}, 
+		\hyperpage{22}
+  \item {src/\discretionary {-}{}{}Basic\discretionary {-}{}{}Star.\discretionary {-}{}{}cc}, 
+		\hyperpage{25}
+  \item {src/\discretionary {-}{}{}Basic\discretionary {-}{}{}Star.\discretionary {-}{}{}hh}, 
+		\hyperpage{25}
+  \item {src/\discretionary {-}{}{}Game.\discretionary {-}{}{}cc}, 
+		\hyperpage{26}
+  \item {src/\discretionary {-}{}{}Game.\discretionary {-}{}{}hh}, 
+		\hyperpage{26}
+  \item {src/\discretionary {-}{}{}Graphics\discretionary {-}{}{}Engine.\discretionary {-}{}{}cc}, 
+		\hyperpage{26}
+  \item {src/\discretionary {-}{}{}Graphics\discretionary {-}{}{}Engine.\discretionary {-}{}{}hh}, 
+		\hyperpage{27}
+  \item {src/\discretionary {-}{}{}Moving\discretionary {-}{}{}Star.\discretionary {-}{}{}cc}, 
+		\hyperpage{28}
+  \item {src/\discretionary {-}{}{}Moving\discretionary {-}{}{}Star.\discretionary {-}{}{}hh}, 
+		\hyperpage{28}
+  \item {src/\discretionary {-}{}{}Player.\discretionary {-}{}{}cc}, 
+		\hyperpage{29}
+  \item {src/\discretionary {-}{}{}Player.\discretionary {-}{}{}hh}, 
+		\hyperpage{29}
+  \item {src/\discretionary {-}{}{}Sprite.\discretionary {-}{}{}cc}, 
+		\hyperpage{29}
+  \item {src/\discretionary {-}{}{}Sprite.\discretionary {-}{}{}hh}, 
+		\hyperpage{29}
+  \item {src/main.\discretionary {-}{}{}cc}, \hyperpage{28}
+  \item {standing\discretionary {-}{}{}\_\discretionary {-}{}{}on\discretionary {-}{}{}\_\discretionary {-}{}{}floor\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Player}, \hyperpage{19}
+  \item {star\discretionary {-}{}{}\_\discretionary {-}{}{}list\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Game}, \hyperpage{11}
+
+  \indexspace
+
+  \item {T\discretionary {-}{}{}I\discretionary {-}{}{}T\discretionary {-}{}{}L\discretionary {-}{}{}E}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{15}
+  \item {take\discretionary {-}{}{}Action}
+    \subitem {Basic\discretionary {-}{}{}Star}, \hyperpage{8}
+    \subitem {Moving\discretionary {-}{}{}Star}, \hyperpage{16}
+  \item {time\discretionary {-}{}{}\_\discretionary {-}{}{}of\discretionary {-}{}{}\_\discretionary {-}{}{}last\discretionary {-}{}{}\_\discretionary {-}{}{}refresh\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{15}
+  \item {touches}
+    \subitem {Player}, \hyperpage{18}
+
+  \indexspace
+
+  \item {U\-P}
+    \subitem {Graphics\-Engine.\-hh}, \hyperpage{27}
+  \item {update\discretionary {-}{}{}Screen}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{14}
+
+  \indexspace
+
+  \item {wait\discretionary {-}{}{}For\discretionary {-}{}{}Keypress}
+    \subitem {Graphics\discretionary {-}{}{}Engine}, \hyperpage{14}
+  \item {width}
+    \subitem {Sprite}, \hyperpage{22}
+  \item {width\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Sprite}, \hyperpage{22}
+
+  \indexspace
+
+  \item {x}
+    \subitem {Sprite}, \hyperpage{22}
+  \item {x\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Sprite}, \hyperpage{22}
+
+  \indexspace
+
+  \item {y}
+    \subitem {Sprite}, \hyperpage{22}
+  \item {y\discretionary {-}{}{}\_\discretionary {-}{}{}}
+    \subitem {Sprite}, \hyperpage{22}
+
+\end{theindex}

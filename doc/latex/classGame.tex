@@ -1,0 +1,215 @@
+\hypertarget{classGame}{\section{Game Class Reference}
+\label{classGame}\index{Game@{Game}}
+}
+
+
+Main game class.  
+
+
+
+
+{\ttfamily \#include $<$Game.\-hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGame_ad59df6562a58a614fda24622d3715b65}{Game} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classGame_ae3d112ca6e0e55150d2fdbc704474530}{$\sim$\-Game} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+int \hyperlink{classGame_a99fb161fbbe87d25a8b73265a0611e58}{run} ()
+\begin{DoxyCompactList}\small\item\em The game's main loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classGame_a882d8ea87fc0ee4bb827f1de818c8aa1}{handle\-Player\-Input} ()
+\begin{DoxyCompactList}\small\item\em handles player input \end{DoxyCompactList}\item 
+int \hyperlink{classGame_adcf97122d591ec030faf6125205a8a6e}{let\-Objects\-Interact} ()
+\begin{DoxyCompactList}\small\item\em lets objects interact with each other \end{DoxyCompactList}\item 
+int \hyperlink{classGame_a4fc66dc51ec497791258a8ab5263afe8}{draw\-Objects\-To\-Screen} ()
+\begin{DoxyCompactList}\small\item\em draw updates to screen \end{DoxyCompactList}\item 
+void \hyperlink{classGame_ac64e91bd895186e51ab2e1f23bcc5508}{add\-Stars} ()
+\begin{DoxyCompactList}\small\item\em Add stars to star\-\_\-list\-\_\- until they fill up the screen. \end{DoxyCompactList}\item 
+int \hyperlink{classGame_a98788d98f37433c3a4575c644c0540b9}{game\-Over} ()
+\begin{DoxyCompactList}\small\item\em Triggers when the player fails. \end{DoxyCompactList}\item 
+\hyperlink{classGame_aa79443880de5f26387c2a1c70c8c1aae}{Game} (const \hyperlink{classGame}{Game} \&)
+\begin{DoxyCompactList}\small\item\em Disabled copy constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classGame_a33d46168923cdeca0d97553fc47e050e}{operator=} (const \hyperlink{classGame}{Game} \&)
+\begin{DoxyCompactList}\small\item\em Disabled copy constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classGraphicsEngine}{Graphics\-Engine} $\ast$ \hyperlink{classGame_ac96e150f595f287b0e32ff2ad15ef663}{graphics\-\_\-}
+\begin{DoxyCompactList}\small\item\em Instance for managing graphics. \end{DoxyCompactList}\item 
+std\-::list$<$ \hyperlink{classBasicStar}{Basic\-Star} $\ast$ $>$ \hyperlink{classGame_a6fa0a46a8891c42b6d57a475e130ee32}{star\-\_\-list\-\_\-}
+\begin{DoxyCompactList}\small\item\em List of all flying objects that the player can hit. \end{DoxyCompactList}\item 
+\hyperlink{classPlayer}{Player} \hyperlink{classGame_ae152cbdfd498d72b27aaa01a2ed5fe9b}{player\-\_\-}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classPlayer}{Player} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Main game class. 
+
+\hyperlink{classGame}{Game} is the main class, which acts as the core of the application It's role is glue the other projects together in a structured way without doing any work by itself 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGame_ad59df6562a58a614fda24622d3715b65}{\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\subsubsection[{Game}]{\setlength{\rightskip}{0pt plus 5cm}Game\-::\-Game (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGame_ad59df6562a58a614fda24622d3715b65}
+
+
+Constructor. 
+
+\hypertarget{classGame_ae3d112ca6e0e55150d2fdbc704474530}{\index{Game@{Game}!$\sim$\-Game@{$\sim$\-Game}}
+\index{$\sim$\-Game@{$\sim$\-Game}!Game@{Game}}
+\subsubsection[{$\sim$\-Game}]{\setlength{\rightskip}{0pt plus 5cm}Game\-::$\sim$\-Game (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGame_ae3d112ca6e0e55150d2fdbc704474530}
+
+
+Destructor. 
+
+\hypertarget{classGame_aa79443880de5f26387c2a1c70c8c1aae}{\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\subsubsection[{Game}]{\setlength{\rightskip}{0pt plus 5cm}Game\-::\-Game (
+\begin{DoxyParamCaption}
+\item[{const {\bf Game} \&}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classGame_aa79443880de5f26387c2a1c70c8c1aae}
+
+
+Disabled copy constructor. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGame_ac64e91bd895186e51ab2e1f23bcc5508}{\index{Game@{Game}!add\-Stars@{add\-Stars}}
+\index{add\-Stars@{add\-Stars}!Game@{Game}}
+\subsubsection[{add\-Stars}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-::add\-Stars (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classGame_ac64e91bd895186e51ab2e1f23bcc5508}
+
+
+Add stars to star\-\_\-list\-\_\- until they fill up the screen. 
+
+\hypertarget{classGame_a4fc66dc51ec497791258a8ab5263afe8}{\index{Game@{Game}!draw\-Objects\-To\-Screen@{draw\-Objects\-To\-Screen}}
+\index{draw\-Objects\-To\-Screen@{draw\-Objects\-To\-Screen}!Game@{Game}}
+\subsubsection[{draw\-Objects\-To\-Screen}]{\setlength{\rightskip}{0pt plus 5cm}int Game\-::draw\-Objects\-To\-Screen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classGame_a4fc66dc51ec497791258a8ab5263afe8}
+
+
+draw updates to screen 
+
+\begin{DoxyReturn}{Returns}
+1 on graphics failure 
+\end{DoxyReturn}
+\hypertarget{classGame_a98788d98f37433c3a4575c644c0540b9}{\index{Game@{Game}!game\-Over@{game\-Over}}
+\index{game\-Over@{game\-Over}!Game@{Game}}
+\subsubsection[{game\-Over}]{\setlength{\rightskip}{0pt plus 5cm}int Game\-::game\-Over (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classGame_a98788d98f37433c3a4575c644c0540b9}
+
+
+Triggers when the player fails. 
+
+\begin{DoxyReturn}{Returns}
+always returns 2 
+\end{DoxyReturn}
+\hypertarget{classGame_a882d8ea87fc0ee4bb827f1de818c8aa1}{\index{Game@{Game}!handle\-Player\-Input@{handle\-Player\-Input}}
+\index{handle\-Player\-Input@{handle\-Player\-Input}!Game@{Game}}
+\subsubsection[{handle\-Player\-Input}]{\setlength{\rightskip}{0pt plus 5cm}int Game\-::handle\-Player\-Input (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classGame_a882d8ea87fc0ee4bb827f1de818c8aa1}
+
+
+handles player input 
+
+\begin{DoxyReturn}{Returns}
+1 if user want to quit the game 
+\end{DoxyReturn}
+\hypertarget{classGame_adcf97122d591ec030faf6125205a8a6e}{\index{Game@{Game}!let\-Objects\-Interact@{let\-Objects\-Interact}}
+\index{let\-Objects\-Interact@{let\-Objects\-Interact}!Game@{Game}}
+\subsubsection[{let\-Objects\-Interact}]{\setlength{\rightskip}{0pt plus 5cm}int Game\-::let\-Objects\-Interact (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classGame_adcf97122d591ec030faf6125205a8a6e}
+
+
+lets objects interact with each other 
+
+All action happens here
+
+\begin{DoxyReturn}{Returns}
+1 if player has died 
+\end{DoxyReturn}
+\hypertarget{classGame_a33d46168923cdeca0d97553fc47e050e}{\index{Game@{Game}!operator=@{operator=}}
+\index{operator=@{operator=}!Game@{Game}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}void Game\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Game} \&}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classGame_a33d46168923cdeca0d97553fc47e050e}
+
+
+Disabled copy constructor. 
+
+\hypertarget{classGame_a99fb161fbbe87d25a8b73265a0611e58}{\index{Game@{Game}!run@{run}}
+\index{run@{run}!Game@{Game}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}int Game\-::run (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGame_a99fb161fbbe87d25a8b73265a0611e58}
+
+
+The game's main loop. 
+
+\begin{DoxyReturn}{Returns}
+0 on success, 1 on failure and 2 on restart 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classGame_ac96e150f595f287b0e32ff2ad15ef663}{\index{Game@{Game}!graphics\-\_\-@{graphics\-\_\-}}
+\index{graphics\-\_\-@{graphics\-\_\-}!Game@{Game}}
+\subsubsection[{graphics\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Graphics\-Engine}$\ast$ Game\-::graphics\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classGame_ac96e150f595f287b0e32ff2ad15ef663}
+
+
+Instance for managing graphics. 
+
+\hypertarget{classGame_ae152cbdfd498d72b27aaa01a2ed5fe9b}{\index{Game@{Game}!player\-\_\-@{player\-\_\-}}
+\index{player\-\_\-@{player\-\_\-}!Game@{Game}}
+\subsubsection[{player\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player} Game\-::player\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classGame_ae152cbdfd498d72b27aaa01a2ed5fe9b}
+
+
+\hyperlink{classPlayer}{Player} instance. 
+
+\hypertarget{classGame_a6fa0a46a8891c42b6d57a475e130ee32}{\index{Game@{Game}!star\-\_\-list\-\_\-@{star\-\_\-list\-\_\-}}
+\index{star\-\_\-list\-\_\-@{star\-\_\-list\-\_\-}!Game@{Game}}
+\subsubsection[{star\-\_\-list\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}std\-::list$<${\bf Basic\-Star} $\ast$$>$ Game\-::star\-\_\-list\-\_\-\hspace{0.3cm}{\ttfamily [private]}}}\label{classGame_a6fa0a46a8891c42b6d57a475e130ee32}
+
+
+List of all flying objects that the player can hit. 
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{Game_8hh}{Game.\-hh}\item 
+src/\hyperlink{Game_8cc}{Game.\-cc}\end{DoxyCompactItemize}
