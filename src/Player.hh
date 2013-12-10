@@ -68,7 +68,7 @@ class Player: public Sprite
     /*!
      * \returns y of the image the Sprite wants to draw
      */
-    short imageY();
+    short imageY() const;
 
 
   private:

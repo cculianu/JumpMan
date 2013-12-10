@@ -111,7 +111,7 @@ short Player::imageX()
   else return 0;
 }
 
-short Player::imageY()
+short Player::imageY() const
 {
   return this->facing_direction_ * this->height_;
 }
