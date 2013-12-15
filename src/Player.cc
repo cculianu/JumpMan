@@ -41,11 +41,13 @@ bool Player::touches(Sprite *other)
 
 void Player::handleGravity(const signed screen_width)
 {
-  /* X-axis - Make sure that the player does not escape the screen */
-  if (this->dx_ != 0 &&
-      this->x_ + this->dx_ >= -(screen_width - this->width_)/2 &&
-      this->x_ + this->dx_ <=  (screen_width - this->width_)/2)
-        this->x_ += this->dx_;
+  /* X-axis - Make sure that the player does not escape the screen 
+   * NB that x:0 is in the middle of the screen */
+  const signed NEW_X = this->x_ + this->dx_;
+  const signed BORDER_X = (screen_width - this->width_)/2;
+
+  if (this->dx_ != 0 && NEW_X >= -BORDER_X && NEW_X <=  BORDER_X)
+        this->x_ = NEW_X;
 
   /* Y-axis */
   if (this->dy_ != 0 || this->y_ > 0)
