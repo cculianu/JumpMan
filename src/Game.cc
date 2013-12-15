@@ -75,7 +75,7 @@ int Game::run()
 
 int Game::handlePlayerInput()
 {
-  event_t event;
+  event_t event = NOTHING;
   while (this->graphics_->getEvent(event))
     switch (event)
     {
