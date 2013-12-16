@@ -12,6 +12,7 @@
 #include <list>
 
 #include "GraphicsEngine.hh"
+#include "AudioEngine.hh"
 #include "Player.hh"
 #include "BasicStar.hh"
 
@@ -50,6 +51,9 @@ class Game
 
     ///Instance for managing graphics
     GraphicsEngine *graphics_;
+
+    ///Instance for managing audio
+    AudioEngine *audio_;
 
     ///List of all flying objects that the player can hit
     std::list <BasicStar *> star_list_;

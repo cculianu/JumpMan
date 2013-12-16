@@ -13,6 +13,7 @@ using namespace std;
 
 Game::Game() :
   graphics_(NULL),
+  audio_(NULL),
   star_list_(),
   player_()
 {
@@ -26,20 +27,26 @@ Game::Game() :
     );
 
   /* Load images from disk */
-   if(this->graphics_->loadImage("player")      == false ||
-      this->graphics_->loadImage("basic_star")  == false ||
-      this->graphics_->loadImage("moving_star") == false )
+  if(this->graphics_->loadImage("player")      == false ||
+     this->graphics_->loadImage("basic_star")  == false ||
+     this->graphics_->loadImage("moving_star") == false )
   {
     std::cerr 
       << "Failed to load image: " 
       << this->graphics_->getLastError() << '\n';
     exit(1);
   }
+
+  /* Initialize audio */
+  this->audio_ = new AudioEngine();
+  this->audio_->loadBackgroundMusic("audio/cdk_silence_await.mp3");
+  this->audio_->startPlaying();
 }
 
 Game::~Game()
 {
   delete this->graphics_;
+  delete this->audio_;
   for (auto star : this->star_list_)
     delete star;
 }

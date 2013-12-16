@@ -1,7 +1,9 @@
-#include "GraphicsEngine.hh"
-
 #include <iostream>
 #include <algorithm>
+
+#include <SDL/SDL_image.h>
+
+#include "GraphicsEngine.hh"
 
 using namespace std;
 
@@ -21,10 +23,21 @@ GraphicsEngine::GraphicsEngine(const std::string &title,
   font_(NULL)
 {
   /* Init SDL*/
-  if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
+  if (SDL_InitSubSystem(SDL_INIT_VIDEO) == -1)
   {
-    std::cerr 
+    cerr 
       << "Failed to initialize SDL: " 
+      << SDL_GetError() << '\n';
+    exit(1);
+  }
+
+  /* Create a main screen */
+  this->screen_ = 
+    SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
+  if (this->screen_ == NULL)
+  {
+    cerr 
+      << "Failed to create SDL Surface: " 
       << SDL_GetError() << '\n';
     exit(1);
   }
@@ -32,7 +45,7 @@ GraphicsEngine::GraphicsEngine(const std::string &title,
   /* Init TTF */
   if (TTF_Init() == -1)
   {
-    std::cerr 
+    cerr 
       << "Failed to initialize TTF: " 
       << TTF_GetError() << '\n';
     exit(1);
@@ -42,25 +55,23 @@ GraphicsEngine::GraphicsEngine(const std::string &title,
   font_ = TTF_OpenFont("graphics/font.ttf", 20);
   if (font_ == NULL)
   {
-    std::cerr 
+    cerr 
       << "Failed to load font: " 
       << TTF_GetError() << '\n';
     exit(1);
   }
 
-  /* Create a main screen */
-  this->screen_ = 
-    SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
-  if (this->screen_ == NULL)
+  /* Set caption (the name displayed of the application) */
+  SDL_WM_SetCaption(TITLE.c_str(), TITLE.c_str());
+
+  /* Initialize timer */
+  if (SDL_InitSubSystem(SDL_INIT_TIMER) == -1)
   {
-    std::cerr 
-      << "Failed to create SDL Surface: " 
+    cerr
+      << "Failed to initialize SDL-Timer: "
       << SDL_GetError() << '\n';
     exit(1);
   }
-
-  /* Set caption (the name displayed of the application) */
-  SDL_WM_SetCaption(TITLE.c_str(), TITLE.c_str());
 }
 
 GraphicsEngine::~GraphicsEngine()
@@ -74,11 +85,13 @@ GraphicsEngine::~GraphicsEngine()
              image.second = NULL; 
            });
 
+
   /* Unload font */
   TTF_CloseFont(font_);
 
   TTF_Quit();
-  SDL_Quit();
+  SDL_QuitSubSystem(SDL_INIT_TIMER);
+  SDL_QuitSubSystem(SDL_INIT_VIDEO);
 }
 
 bool GraphicsEngine::loadImage(const string &filename) 
