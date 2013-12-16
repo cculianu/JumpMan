@@ -201,22 +201,34 @@ int Game::gameOver()
 {
 
   Highscore highscore(".highscore");
-  bool new_highscore = highscore.add(player_.score());
-  (void)new_highscore;
+  bool new_highscore = highscore.add(this->player_.score());
 
   const signed screen_width = this->graphics_->screen_width();
   const signed screen_height = this->graphics_->screen_height();
 
+  /* Header */
   this->graphics_->drawText("Highscore", screen_width, 250);
 
+  /* Draw every score from highscore
+   * If the player has scored a new highscore, paint it orange */
   for (int i = 0; i < 10; ++i)
+  {
+    text_color_t text_color = YELLOW;
+    if (new_highscore && this->player_.score() == highscore.get(i))
+    {
+      text_color = ORANGE;
+      new_highscore = false;
+    }
     this->graphics_->drawText(to_string(highscore.get(i)),
-                              screen_width, 300 + (i*40));
+                              screen_width, 300 + (i*40), text_color);
+  }
 
+  /* Draw message that tells player that the game is over */
   this->graphics_->drawText("OH NO! You fell!", 
                             screen_width, screen_height + 400);
   this->graphics_->drawText("Press any key to continue", 
                             screen_width, screen_height + 440);
+
   this->graphics_->updateScreen();
   this->graphics_->waitForKeypress();
   return 2;
