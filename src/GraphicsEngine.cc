@@ -159,8 +159,9 @@ void GraphicsEngine::drawText(const string &text,
 
   switch (text_color_name)
   {
-    case YELLOW: text_color = {255, 255, 0, 0}; break;
     case CYAN: text_color = {0, 127, 127, 0}; break;
+    case YELLOW: text_color = {255, 255, 0, 0}; break;
+    case ORANGE: text_color = {255, 127, 0, 0}; break;
   }
 
   /* Craete text */

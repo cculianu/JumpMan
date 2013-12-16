@@ -38,8 +38,9 @@ enum event_t
  */
 enum text_color_t
 {
-  CYAN,   /*!< Cyan */
-  YELLOW  /*!< Yellow */
+  CYAN,    /*!< Cyan */
+  YELLOW,  /*!< Yellow */
+  ORANGE   /*!< Orange */
 };
 
 /*!
