@@ -8,7 +8,8 @@ using namespace std;
 
 Highscore::Highscore(const string &filename) : 
   filename_(filename),
-  highscore_{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+  highscore_{{0, ""}, {0, ""}, {0, ""}, {0, ""}, {0, ""}, 
+             {0, ""}, {0, ""}, {0, ""}, {0, ""}, {0, ""}}
 {
   string highscore_str;
 
@@ -23,32 +24,34 @@ Highscore::~Highscore()
 
   if (highscore_of)
   {
-    for (size_t score : this->highscore_)
-      highscore_of << score << '\n';
+    for (pair<size_t, string> score : this->highscore_)
+      highscore_of << score.first << score.second << '\n';
     highscore_of.close();
   }
 }
 
-size_t Highscore::get(unsigned n) const
+string Highscore::get(unsigned n) const
 {
   if (n < this->size())
-    return this->highscore_[n];
-  return 0;
+    return 
+      to_string(this->highscore_[n].first) + 
+      " (" + this->highscore_[n].second + ")";
+  return "0";
 }
 
-bool Highscore::add(size_t new_score)
+bool Highscore::add(size_t new_score, const string &nickname)
 {
   bool new_highscore = false;
 
-  size_t temp;
+  pair<size_t, string> temp;
   for (size_t i = 0; i < this->size(); ++i)
   {
     if (new_highscore)
       swap(temp, this->highscore_[i]);
-    else if (new_score >= this->highscore_[i])
+    else if (new_score >= this->highscore_[i].first)
     {
       temp = this->highscore_[i];
-      this->highscore_[i] = new_score;
+      this->highscore_[i] = {new_score, nickname};
       new_highscore = true;
     }
   }
@@ -58,7 +61,7 @@ bool Highscore::add(size_t new_score)
 
 size_t Highscore::size() const
 {
-  return sizeof(this->highscore_) / sizeof(size_t);
+  return sizeof(this->highscore_) / sizeof(pair<size_t, string>);
 }
 
 int Highscore::readFileToString(string &highscore_string) const
@@ -84,22 +87,29 @@ int Highscore::readFileToString(string &highscore_string) const
 void Highscore::readStringToArray(const string &highscore_string)
 {
   /* Read string to highscore array */
-  size_t highscore_it = 0;
+  size_t it = 0;
   size_t strpos = 0;
-  while (highscore_it < this->size() && strpos < highscore_string.size())
+  while (it < this->size() && strpos < highscore_string.size())
   {
     if (isdigit(highscore_string[strpos]))
     {
-      this->highscore_[highscore_it++] = stoul(highscore_string.substr(strpos));
+      this->highscore_[it].first = stoul(highscore_string.substr(strpos));
       while (isdigit(highscore_string[strpos]))
         ++strpos;
     }
     else
-      while (!isdigit(highscore_string[strpos]))
+    {
+      size_t string_start = strpos;
+      while (!isdigit(highscore_string[strpos]) && 
+             strpos < highscore_string.size())
         ++strpos;
+      this->highscore_[it++].second = 
+        highscore_string.substr(string_start, (strpos - string_start -1));
+    }
   }
 
   /* Sort the highscore array descending */
   sort(this->highscore_, this->highscore_ + this->size(),
-       [](size_t a, size_t b){return a > b;});
+       [](pair<size_t, string> a, pair<size_t, string> b)
+       { return a.first > b.first; });
 }

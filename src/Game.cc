@@ -201,7 +201,7 @@ int Game::gameOver()
 {
 
   Highscore highscore(".highscore");
-  bool new_highscore = highscore.add(this->player_.score());
+  bool new_highscore = highscore.add(this->player_.score(), "Player");
 
   const signed screen_width = this->graphics_->screen_width();
   const signed screen_height = this->graphics_->screen_height();
@@ -213,18 +213,18 @@ int Game::gameOver()
   for (size_t i = 0; i < highscore.size(); ++i)
   {
     text_color_t text_color = YELLOW;
-    size_t new_score = highscore.get(i);
+    string new_score = highscore.get(i);
 
     /* If we manager to get into the highscore, write it and
      * the score in orange */
-    if (new_highscore && this->player_.score() == new_score)
+    if (new_highscore && this->player_.score() == stoul(new_score))
     {
       text_color = ORANGE;
       new_highscore = false;
       this->graphics_->drawText("New highscore!",
           screen_width, screen_height + 150, text_color);
     }
-    this->graphics_->drawText(to_string(new_score),
+    this->graphics_->drawText(new_score,
         screen_width, 300 + (i*40), text_color);
   }
 

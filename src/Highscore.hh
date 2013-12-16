@@ -34,16 +34,16 @@ class Highscore
     /*!
      * Returns the score at the nth position
      * \param n the score's position, top scorer would be n:0
-     * \return value of the score, or 0 if out of bounds
+     * \return value of the score as string
      */
-    size_t get(unsigned n) const;
+    std::string get(unsigned n) const;
 
     /*!
      * \brief Adds score to highscore if applicable
      * \param new_score The score to add to highscore
      * \return true if value was added
      */
-    bool add(size_t new_score);
+    bool add(size_t new_score, const std::string &nickname);
 
     /*!
      * \return the numbers of elements in highscore
@@ -66,7 +66,7 @@ class Highscore
     void readStringToArray(const std::string &highscore_string);
 
     const std::string filename_;
-    size_t highscore_[10];
+    std::pair<size_t, std::string> highscore_[10];
 
 };
 
