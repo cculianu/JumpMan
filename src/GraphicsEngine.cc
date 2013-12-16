@@ -1,3 +1,11 @@
+/*!
+ * \file GraphicsEngine.cc
+ * \brief File containing the GraphicsEngine source code
+ *
+ * \author Olle Kvarnström
+ * \date
+ */
+
 #include <iostream>
 #include <algorithm>
 
@@ -77,14 +85,11 @@ GraphicsEngine::GraphicsEngine(const std::string &title,
 GraphicsEngine::~GraphicsEngine()
 {
   /* Unload all images */
-  for_each(this->images_.begin(), 
-           this->images_.end(),
-           [] (pair<string, SDL_Surface *> image) 
-           { 
-             SDL_FreeSurface(image.second); 
-             image.second = NULL; 
-           });
-
+  for (auto image : this->images_)
+  {
+    SDL_FreeSurface(image.second);
+    image.second = NULL;
+  }
 
   /* Unload font */
   TTF_CloseFont(font_);

@@ -76,6 +76,7 @@ class GraphicsEngine
 
     ///Disabled copy constructor
     void operator=(const GraphicsEngine&) = delete;
+
     /*!
      * \brief Loads and image from the disk into the RAM
      * \param filename  Name of the image file inside graphics/ folder 
@@ -101,8 +102,7 @@ class GraphicsEngine
      * \param dstrect part to screen to draw to
      * \return true on success
      */
-    bool drawImage(const std::string &image, rect_t *srcrect, 
-                   rect_t *dstrect);
+    bool drawImage(const std::string &image, rect_t *srcrect, rect_t *dstrect);
 
     /*!
      * \brief Draw some text at the given location
