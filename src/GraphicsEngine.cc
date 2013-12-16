@@ -152,7 +152,7 @@ bool GraphicsEngine::drawImage(const string &filename, rect_t *srcrect,
 }
 
 void GraphicsEngine::drawText(const string &text, 
-                              unsigned x, unsigned y, text_color_t text_color_name)
+                              unsigned y, text_color_t text_color_name)
 {
   SDL_Color text_color;
   const SDL_Color background_color = {0, 0, 0, 0};
@@ -175,7 +175,7 @@ void GraphicsEngine::drawText(const string &text,
 
   /* Set target rect */
   SDL_Rect dstrect = 
-    {static_cast<short>(x/2 - text_surface->w/2), 
+    {static_cast<short>(SCREEN_WIDTH/2 - text_surface->w/2), 
      static_cast<short>(y/2 - text_surface->h/2), 0, 0};
 
   /* Blit and release */
@@ -250,10 +250,50 @@ bool GraphicsEngine::getEvent(event_t &event) const
   return status;
 }
 
+void GraphicsEngine::getStringFromPlayer(unsigned max_letters, 
+                                         std::string &target,
+                                         unsigned y)
+{
+  /* Make a backup of the part of the screen where we will write */
+  SDL_Surface *scratch_surface = 
+    SDL_CreateRGBSurface(SDL_SWSURFACE, 100, 20, 32, 0, 0, 0, 0);
+  SDL_Rect scrrect = {static_cast<short>(SCREEN_WIDTH/2 - scratch_surface->w/2),
+                      static_cast<short>(y/2 - scratch_surface->h/2) , 100, 20};
+  SDL_BlitSurface(screen_, &scrrect, scratch_surface, NULL);
+  
+  target.clear();
+  SDL_Event event;
+  for (;;)
+  {
+    /* Clear the screen and draw the string */
+    SDL_BlitSurface(scratch_surface, NULL, screen_, &scrrect);
+    this->drawText(target.size() ? target : " ", y, ORANGE);
+    SDL_Flip(screen_);
+
+    SDL_WaitEvent(&event);
+    if (event.type == SDL_KEYDOWN)
+    {
+      /* If player types A-Z, add it to string */
+      if (SDLK_a <= event.key.keysym.sym &&
+          event.key.keysym.sym <= SDLK_q && 
+          target.size() < max_letters)
+        target += static_cast<char>('A' + event.key.keysym.sym - SDLK_a);
+      /* If player presses enter - return */
+      else if (event.key.keysym.sym == SDLK_RETURN && target.size() > 0)
+        break;
+      /* If player pressed backspace - remove letter */
+      else if (event.key.keysym.sym == SDLK_BACKSPACE && target.size() > 0)
+        target = target.substr(0, target.size()-1);
+    }
+  }
+
+  SDL_FreeSurface(scratch_surface);
+}
+
 void GraphicsEngine::waitForKeypress() const
 {
   SDL_Event event;
-  while (1)
+  for (;;)
   {
     SDL_WaitEvent(&event);
     if (event.type == SDL_KEYDOWN)

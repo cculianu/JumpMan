@@ -157,7 +157,7 @@ int Game::drawObjectsToScreen()
 
   /* Draw score */
   const string score_string = "Score: " + to_string(this->player_.score());
-  this->graphics_->drawText(score_string, this->graphics_->screen_width(), 20);
+  this->graphics_->drawText(score_string, 20);
 
   /* Flush */
   if (this->graphics_->updateScreen() == false)
@@ -202,11 +202,10 @@ int Game::gameOver()
   Highscore highscore(".highscore");
   bool new_highscore = highscore.add(this->player_.score());
 
-  const signed screen_width = this->graphics_->screen_width();
   const signed screen_height = this->graphics_->screen_height();
 
   /* Header */
-  this->graphics_->drawText("Highscore", screen_width, 250);
+  this->graphics_->drawText("Highscore", 250);
 
   /* Draw every score from highscore */
   bool highlight_next = new_highscore;
@@ -215,26 +214,27 @@ int Game::gameOver()
     text_color_t text_color = YELLOW;
     string new_score = highscore.get(i);
 
-    /* If we manager to get into the highscore, write it and
-     * the score in orange */
+    /* If we managed to get into the highscore, write the score in orange */
     if (highlight_next && this->player_.score() == stoul(new_score))
     {
       text_color = ORANGE;
       highlight_next = false;
-      this->graphics_->drawText("New highscore!",
-          screen_width, screen_height + 150, text_color);
+      this->graphics_->drawText("New highscore!", screen_height + 150);
     }
-    this->graphics_->drawText(new_score,
-        screen_width, 300 + (i*40), text_color);
+    this->graphics_->drawText(new_score, 300 + (i*40), text_color);
   }
 
+  /* If we managed to get into the highscore: Ask for nickname */
   if (new_highscore)
-    highscore.setNickname("Player");
+  {
+    string nick;
+    this->graphics_->drawText("Please type in your nick!", screen_height + 200);
+    this->graphics_->getStringFromPlayer(5, nick, screen_height + 250);
+    highscore.setNickname(nick);
+  }
 
   /* Draw message that tells player that the game is over */
-  this->graphics_->drawText("Press any key to continue", 
-      screen_width, screen_height + 440);
-
+  this->graphics_->drawText("Press any key to continue", screen_height + 440);
   this->graphics_->updateScreen();
   this->graphics_->waitForKeypress();
   return 2;

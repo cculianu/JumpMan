@@ -108,17 +108,24 @@ class GraphicsEngine
     /*!
      * \brief Draw some text at the given location
      * \param text text to draw
-     * \param x the center on the x-axis where we will draw
      * \param y the center on the y-axis where we will draw
      */
-    void drawText(const std::string &text, 
-                  unsigned x, unsigned y, text_color_t = CYAN);
+    void drawText(const std::string &text, unsigned y, text_color_t = CYAN);
 
     /*!
      * \brief Flushes the screen so it's visible to the user 
      * \return true on success
      */
     bool updateScreen();
+
+    /*!
+     * \brief Get a string from player
+     * \param max_letters how many letters are the max
+     * \param target string to store the received string
+     * \param y the center on the y-axis where we will draw
+     */
+    void getStringFromPlayer(unsigned max_letters, std::string &target,
+                             unsigned y);
 
     /*!
      * \brief Non-blocking function to check event depending on user input.
