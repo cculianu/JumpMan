@@ -39,7 +39,7 @@ string Highscore::get(unsigned n) const
   return "0";
 }
 
-bool Highscore::add(size_t new_score, const string &nickname)
+bool Highscore::add(size_t new_score)
 {
   bool new_highscore = false;
 
@@ -51,12 +51,19 @@ bool Highscore::add(size_t new_score, const string &nickname)
     else if (new_score >= this->highscore_[i].first)
     {
       temp = this->highscore_[i];
-      this->highscore_[i] = {new_score, nickname};
+      this->highscore_[i] = {new_score, "YOU!"};
       new_highscore = true;
     }
   }
 
   return new_highscore;
+}
+
+void Highscore::setNickname(const std::string &nickname)
+{
+  for (size_t i = 0; i < this->size(); ++i)
+    if (this->highscore_[i].second == "YOU!")
+      this->highscore_[i].second = nickname;
 }
 
 size_t Highscore::size() const

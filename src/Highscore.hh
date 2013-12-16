@@ -43,7 +43,13 @@ class Highscore
      * \param new_score The score to add to highscore
      * \return true if value was added
      */
-    bool add(size_t new_score, const std::string &nickname);
+    bool add(size_t new_score);
+
+    /*!
+     * \brief Set nickname of new highscore
+     * \param nickname new nickname
+     */
+    void setNickname(const std::string &nickname);
 
     /*!
      * \return the numbers of elements in highscore

@@ -199,9 +199,8 @@ void Game::addStars()
 
 int Game::gameOver()
 {
-
   Highscore highscore(".highscore");
-  bool new_highscore = highscore.add(this->player_.score(), "Player");
+  bool new_highscore = highscore.add(this->player_.score());
 
   const signed screen_width = this->graphics_->screen_width();
   const signed screen_height = this->graphics_->screen_height();
@@ -210,6 +209,7 @@ int Game::gameOver()
   this->graphics_->drawText("Highscore", screen_width, 250);
 
   /* Draw every score from highscore */
+  bool highlight_next = new_highscore;
   for (size_t i = 0; i < highscore.size(); ++i)
   {
     text_color_t text_color = YELLOW;
@@ -217,16 +217,19 @@ int Game::gameOver()
 
     /* If we manager to get into the highscore, write it and
      * the score in orange */
-    if (new_highscore && this->player_.score() == stoul(new_score))
+    if (highlight_next && this->player_.score() == stoul(new_score))
     {
       text_color = ORANGE;
-      new_highscore = false;
+      highlight_next = false;
       this->graphics_->drawText("New highscore!",
           screen_width, screen_height + 150, text_color);
     }
     this->graphics_->drawText(new_score,
         screen_width, 300 + (i*40), text_color);
   }
+
+  if (new_highscore)
+    highscore.setNickname("Player");
 
   /* Draw message that tells player that the game is over */
   this->graphics_->drawText("Press any key to continue", 
