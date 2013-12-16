@@ -1,3 +1,11 @@
+/*!
+ * \file Player.cc
+ * \brief File containing the Player class source
+ *
+ * \author Olle Kvarnström
+ * \date
+ */
+
 #include "Player.hh"
 
 using namespace std;

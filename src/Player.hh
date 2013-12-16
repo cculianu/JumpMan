@@ -1,5 +1,5 @@
-#ifndef __ROBORALLY_PLAYER_HH__
-#define __ROBORALLY_PLAYER_HH__
+#ifndef __PLAYER_HH__
+#define __PLAYER_HH__
 
 /*! 
  * \file Player.hh
@@ -80,4 +80,4 @@ class Player: public Sprite
 };
 
 
-#endif // __ROBORALLY_PLAYER_HH__
+#endif // __PLAYER_HH__
