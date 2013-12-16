@@ -242,7 +242,8 @@ int Game::gameOver()
   if (new_highscore)
   {
     string nick;
-    this->graphics_->drawText("Please type in your nick!", screen_height + 200);
+    this->graphics_->drawText("Enter your name (1-5 letters) and press enter", 
+                              screen_height + 200);
     this->graphics_->getStringFromPlayer(5, nick, screen_height + 250);
     highscore.setNickname(nick);
   }
