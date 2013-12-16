@@ -1,6 +1,13 @@
+/*!
+ * \file Highscore.cc
+ * \brief File containing the Highscore class source code
+ *
+ * \author Olle Kvarnström
+ * \date
+ */
+
 #include <fstream>
 #include <algorithm>
-#include <iostream>
 
 #include "Highscore.hh"
 
@@ -13,7 +20,6 @@ Highscore::Highscore(const string &filename) :
 {
   string highscore_str;
 
-  /* Set highscore_ to values from highscore-file */
   if (this->readFileToString(highscore_str) != 0)
     this->readStringToArray(highscore_str);
 }
@@ -33,21 +39,21 @@ Highscore::~Highscore()
 string Highscore::get(unsigned n) const
 {
   if (n < this->size())
-    return 
-      to_string(this->highscore_[n].first) + 
-      " (" + this->highscore_[n].second + ")";
+    return to_string(this->highscore_[n].first) + " (" + 
+                     this->highscore_[n].second + ")";
   return "0";
 }
 
 bool Highscore::add(size_t new_score)
 {
   bool new_highscore = false;
-
   pair<size_t, string> temp;
+
   for (size_t i = 0; i < this->size(); ++i)
   {
     if (new_highscore)
       swap(temp, this->highscore_[i]);
+
     else if (new_score >= this->highscore_[i].first)
     {
       temp = this->highscore_[i];
