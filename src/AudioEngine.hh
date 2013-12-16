@@ -39,6 +39,19 @@ class AudioEngine
     bool loadBackgroundMusic(const std::string &filename);
 
     /*!
+     * \brief Loads the player-touching-star sound effect
+     * \param path to file
+     * \return true on success
+     */
+    bool loadStarSoundEffect(const std::string &filename);
+
+    /*!
+     * \brief Attempts to play the star sound effect
+     * \return true on success
+     */
+    bool playStarSound();
+
+    /*!
      * \brief Start playing background music
      * \return true on success
      */
@@ -53,6 +66,9 @@ class AudioEngine
 
     ///Background music
     Mix_Music *background_music_;
+
+    ///Start sound effect
+    Mix_Chunk *star_effect_;
 
     ///Keeps track if music is paused or playing
     bool is_playing_;
