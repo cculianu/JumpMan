@@ -36,7 +36,7 @@ class Highscore
      * \param n the score's position, top scorer would be n:0
      * \return value of the score, or 0 if out of bounds
      */
-    size_t get(unsigned n);
+    size_t get(unsigned n) const;
 
     /*!
      * \brief Adds score to highscore if applicable
@@ -44,6 +44,11 @@ class Highscore
      * \return true if value was added
      */
     bool add(size_t new_score);
+
+    /*!
+     * \return the numbers of elements in highscore
+     */
+    size_t size() const;
 
   private:
 

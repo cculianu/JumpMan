@@ -211,7 +211,7 @@ int Game::gameOver()
 
   /* Draw every score from highscore
    * If the player has scored a new highscore, paint it orange */
-  for (int i = 0; i < 10; ++i)
+  for (size_t i = 0; i < highscore.size(); ++i)
   {
     text_color_t text_color = YELLOW;
     if (new_highscore && this->player_.score() == highscore.get(i))

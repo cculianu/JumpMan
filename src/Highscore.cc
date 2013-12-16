@@ -29,10 +29,9 @@ Highscore::~Highscore()
   }
 }
 
-size_t Highscore::get(unsigned n)
+size_t Highscore::get(unsigned n) const
 {
-  const size_t highscore_size = sizeof(this->highscore_) / sizeof(size_t);
-  if (n < highscore_size)
+  if (n < this->size())
     return this->highscore_[n];
   return 0;
 }
@@ -42,7 +41,7 @@ bool Highscore::add(size_t new_score)
   bool new_highscore = false;
 
   size_t temp;
-  for (int i = 0; i < 10; ++i)
+  for (size_t i = 0; i < this->size(); ++i)
   {
     if (new_highscore)
       swap(temp, this->highscore_[i]);
@@ -55,6 +54,11 @@ bool Highscore::add(size_t new_score)
   }
 
   return new_highscore;
+}
+
+size_t Highscore::size() const
+{
+  return sizeof(this->highscore_) / sizeof(size_t);
 }
 
 int Highscore::readFileToString(string &highscore_string) const
@@ -80,10 +84,9 @@ int Highscore::readFileToString(string &highscore_string) const
 void Highscore::readStringToArray(const string &highscore_string)
 {
   /* Read string to highscore array */
-  const size_t highscore_size = sizeof(this->highscore_) / sizeof(size_t);
   size_t highscore_it = 0;
   size_t strpos = 0;
-  while (highscore_it < highscore_size && strpos < highscore_string.size())
+  while (highscore_it < this->size() && strpos < highscore_string.size())
   {
     if (isdigit(highscore_string[strpos]))
     {
@@ -97,6 +100,6 @@ void Highscore::readStringToArray(const string &highscore_string)
   }
 
   /* Sort the highscore array descending */
-  sort(this->highscore_, this->highscore_+highscore_size,
+  sort(this->highscore_, this->highscore_ + this->size(),
        [](size_t a, size_t b){return a > b;});
 }
