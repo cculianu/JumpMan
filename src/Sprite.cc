@@ -1,3 +1,11 @@
+/*!
+ * \file Sprite.cc
+ * \brief File containing the Sprite class source
+ *
+ * \author Olle Kvarnström
+ * \date
+ */
+
 #include "Sprite.hh"
 
 using namespace std;
