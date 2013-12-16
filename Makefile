@@ -12,7 +12,7 @@ endif
 
 TARGET = jumpman
 OBJS = src/Sprite.o src/Player.o src/BasicStar.o src/MovingStar.o\
-         src/GraphicsEngine.o src/Game.o src/main.o
+       src/Highscore.o src/GraphicsEngine.o src/Game.o src/main.o
 
 $(TARGET): $(OBJS)
 	        $(CXX) $^ $(LDFLAGS) -o $(TARGET)

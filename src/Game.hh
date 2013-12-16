@@ -83,6 +83,10 @@ class Game
     /*!
      * \brief Triggers when the player fails
      * \return always returns 2 
+     *
+     * This basically adds a "You have lost"-text to the screen and
+     * restarts the players game upon keypress. It will also
+     * handle player's highscore
      */
     int gameOver();
 
