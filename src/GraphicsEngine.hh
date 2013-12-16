@@ -33,6 +33,16 @@ enum event_t
 };
 
 /*!
+ * \enum text_color_t
+ * \brief text colors available 
+ */
+enum text_color_t
+{
+  CYAN,   /*!< Cyan */
+  YELLOW  /*!< Yellow */
+};
+
+/*!
  * \class GraphicsEngine
  * \brief Class for managing graphics and events
  *
@@ -100,7 +110,8 @@ class GraphicsEngine
      * \param x the center on the x-axis where we will draw
      * \param y the center on the y-axis where we will draw
      */
-    void drawText(const std::string &text, unsigned x, unsigned y);
+    void drawText(const std::string &text, 
+                  unsigned x, unsigned y, text_color_t = CYAN);
 
     /*!
      * \brief Flushes the screen so it's visible to the user 

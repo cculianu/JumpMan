@@ -151,10 +151,17 @@ bool GraphicsEngine::drawImage(const string &filename, rect_t *srcrect,
   return true;
 }
 
-void GraphicsEngine::drawText(const string &text, unsigned x, unsigned y)
+void GraphicsEngine::drawText(const string &text, 
+                              unsigned x, unsigned y, text_color_t text_color_name)
 {
-  const SDL_Color text_color = {0, 127, 127, 0};
+  SDL_Color text_color;
   const SDL_Color background_color = {0, 0, 0, 0};
+
+  switch (text_color_name)
+  {
+    case YELLOW: text_color = {255, 255, 0, 0}; break;
+    case CYAN: text_color = {0, 127, 127, 0}; break;
+  }
 
   /* Craete text */
   SDL_Surface *text_surface = 
