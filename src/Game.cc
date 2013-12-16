@@ -1,6 +1,12 @@
+/*!
+ * \file Game.cc
+ * \brief File containing the Game class source code
+ *
+ * \author Olle Kvarnström
+ * \date
+ */
+
 #include <iostream>
-#include <string>
-#include <algorithm>
 #include <chrono>
 #include <random>
 
