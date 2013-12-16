@@ -1,3 +1,11 @@
+/*!
+ * \file AudioEngine.cc
+ * \brief File containing the AudioEngine source code
+ *
+ * \author Olle Kvarnström
+ * \date
+ */
+
 #include <iostream>
 
 #include <SDL/SDL.h>
@@ -10,7 +18,8 @@ AudioEngine::AudioEngine() :
   background_music_(NULL),
   is_playing_(false)
 {
-  /* Init SDL_mixer */
+  /* Init SDL_audio - not sure what this does but is needed
+   * for SDL_mixer to work */
   if (SDL_InitSubSystem(SDL_INIT_AUDIO) == -1)
   {
     cerr
@@ -19,7 +28,7 @@ AudioEngine::AudioEngine() :
     exit(1);
   }
 
-  /* Load Audio */
+  /* Init SDL_mixer */
   if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
   {
     cerr
@@ -38,7 +47,6 @@ AudioEngine::~AudioEngine()
 
 bool AudioEngine::loadBackgroundMusic(const string &filename)
 {
-  /* Load background music from disk */
   this->background_music_ = Mix_LoadMUS(filename.c_str());
   if (this->background_music_ == NULL)
   {
