@@ -1,6 +1,6 @@
 #include <fstream>
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 
 #include "Highscore.hh"
 
@@ -33,7 +33,7 @@ size_t Highscore::get(unsigned n)
 {
   const size_t highscore_size = sizeof(this->highscore_) / sizeof(size_t);
   if (n < highscore_size)
-    return highscore_[n];
+    return this->highscore_[n];
   return 0;
 }
 
@@ -42,14 +42,14 @@ bool Highscore::add(size_t new_score)
   bool new_highscore = false;
 
   size_t temp;
-  for (size_t score : highscore_)
+  for (int i = 0; i < 10; ++i)
   {
     if (new_highscore)
-      swap(temp, score);
-    else if (new_score >= score)
+      swap(temp, this->highscore_[i]);
+    else if (new_score >= this->highscore_[i])
     {
-      temp = score;
-      score = new_score;
+      temp = this->highscore_[i];
+      this->highscore_[i] = new_score;
       new_highscore = true;
     }
   }
