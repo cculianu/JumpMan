@@ -1,3 +1,11 @@
+/*!
+ * \file MovingStar.cc
+ * \brief File containing the MovingStar class source code
+ *
+ * \author Olle Kvarnström
+ * \date
+ */
+
 #include <chrono>
 #include <random>
 
