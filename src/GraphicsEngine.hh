@@ -22,12 +22,13 @@ typedef SDL_Rect rect_t;
  */
 enum event_t 
 { 
-  LEFT,    /*!< Player wants to move left */
-  RIGHT,   /*!< Player wants to move right */
-  UP,      /*!< Player wants to jump */
-  STILL,   /*!< Player wants to stop moving */
-  NOTHING, /*!< Unknown input received */
-  QUIT     /*!< User wants to exit the game */
+  LEFT,      /*!< Player wants to move left */
+  RIGHT,     /*!< Player wants to move right */
+  UP,        /*!< Player wants to jump */
+  STILL,     /*!< Player wants to stop moving */
+  PAUSEPLAY, /*!< Player wants to pause/play music */
+  NOTHING,   /*!< Unknown input received */
+  QUIT       /*!< User wants to exit the game */
 };
 
 /*!

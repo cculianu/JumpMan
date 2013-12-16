@@ -91,6 +91,7 @@ int Game::handlePlayerInput()
       case RIGHT: this->player_.move(1); break;
       case STILL: this->player_.move(0); break;
       case UP: this->player_.jump(); break;
+      case PAUSEPLAY: this->audio_->togglePausePlay(); break;
       case QUIT: return 1; break;
       default: break;
     }

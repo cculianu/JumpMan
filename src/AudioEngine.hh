@@ -44,10 +44,18 @@ class AudioEngine
      */
     bool startPlaying();
 
+    /*!
+     * \brief Toggles pause/play music
+     */
+    void togglePausePlay();
+
   private:
 
     ///Background music
     Mix_Music *background_music_;
+
+    ///Keeps track if music is paused or playing
+    bool is_playing_;
 };
 
 #endif //__AUDIO_ENGINE_HH__

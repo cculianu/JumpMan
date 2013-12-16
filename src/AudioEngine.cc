@@ -7,7 +7,8 @@
 using namespace std;
 
 AudioEngine::AudioEngine() :
-  background_music_(NULL)
+  background_music_(NULL),
+  is_playing_(false)
 {
   /* Init SDL_mixer */
   if (SDL_InitSubSystem(SDL_INIT_AUDIO) == -1)
@@ -51,5 +52,17 @@ bool AudioEngine::loadBackgroundMusic(const string &filename)
 
 bool AudioEngine::startPlaying()
 {
+  is_playing_ = true;
   return Mix_PlayMusic(background_music_, -1) == 0;
 }
+
+void AudioEngine::togglePausePlay()
+{
+  if (this->is_playing_)
+    Mix_PauseMusic();
+  else
+    Mix_ResumeMusic();
+
+  this->is_playing_ = !this->is_playing_;
+}
+

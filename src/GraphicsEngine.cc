@@ -225,6 +225,7 @@ bool GraphicsEngine::getEvent(event_t &event) const
     switch (sdl_event.key.keysym.sym)
     {
       case SDLK_q: event = QUIT; break;
+      case SDLK_p: event = PAUSEPLAY; break;
       case SDLK_LEFT: event = LEFT; break;
       case SDLK_RIGHT: event = RIGHT; break;
       case SDLK_UP: event = UP; break;
