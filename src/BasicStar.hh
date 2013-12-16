@@ -14,7 +14,6 @@
 /*!
  * \class BasicStar
  * \brief The most basic type of star, cannot move
- *
  */
 class BasicStar : public Sprite
 {

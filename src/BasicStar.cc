@@ -1,3 +1,11 @@
+/*!
+ * \file BasicStar.cc
+ * \brief File containing the BasicStar source code
+ *
+ * \author Olle Kvarnström
+ * \date
+ */
+
 #include <random>
 #include <chrono>
 
