@@ -6,7 +6,8 @@
  * \brief File containing the BasicStar class Header
  *
  * \author Olle Kvarnström
- * \date
+ * \date 2013
+ * \copyright GNU Public License
  */
 
 #include "Sprite.hh"

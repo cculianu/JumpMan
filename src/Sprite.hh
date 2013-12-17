@@ -1,13 +1,14 @@
+#ifndef __SPRITE_HH__
+#define __SPRITE_HH__
+
 /*! 
  * \file Sprite.hh
  * \brief File containing the Sprite class Header
  *
  * \author Olle Kvarnström
- * \date
+ * \date 2013
+ * \copyright GNU Public License
  */
-
-#ifndef __SPRITE_HH__
-#define __SPRITE_HH__
 
 #include <string>
 

@@ -6,7 +6,8 @@
  * \brief File containing the AudioEngine class Header
  *
  * \author Olle Kvarnström
- * \date
+ * \date 2013
+ * \copyright GNU Public License
  */
 
 #include <SDL/SDL_mixer.h>

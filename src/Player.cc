@@ -3,7 +3,8 @@
  * \brief File containing the Player class source
  *
  * \author Olle Kvarnström
- * \date
+ * \date 2013
+ * \copyright GNU Public License
  */
 
 #include "Player.hh"

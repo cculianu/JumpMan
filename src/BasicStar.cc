@@ -3,7 +3,8 @@
  * \brief File containing the BasicStar source code
  *
  * \author Olle Kvarnström
- * \date
+ * \date 2013
+ * \copyright GNU Public License
  */
 
 #include <random>
