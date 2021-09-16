@@ -7,7 +7,7 @@
  * \copyright GNU Public License
  */
 
-#include "Player.hh"
+#include "Player.h"
 
 using namespace std;
 

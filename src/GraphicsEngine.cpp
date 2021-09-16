@@ -6,13 +6,12 @@
  * \date 2013
  * \copyright GNU Public License
  */
-
-#include <iostream>
-#include <algorithm>
+#include "GraphicsEngine.h"
 
 #include <SDL/SDL_image.h>
 
-#include "GraphicsEngine.hh"
+#include <iostream>
+#include <algorithm>
 
 using namespace std;
 

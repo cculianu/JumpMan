@@ -6,15 +6,14 @@
  * \date 2013
  * \copyright GNU Public License
  */
+#include "Game.h"
+
+#include "MovingStar.h"
+#include "Highscore.h"
 
 #include <iostream>
 #include <chrono>
 #include <random>
-
-#include "Game.hh"
-
-#include "MovingStar.hh"
-#include "Highscore.hh"
 
 using namespace std;
 

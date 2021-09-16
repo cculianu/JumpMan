@@ -6,11 +6,11 @@
  * \date 2013
  * \copyright GNU Public License
  */
+#include "BasicStar.h"
 
 #include <random>
 #include <chrono>
 
-#include "BasicStar.hh"
 
 using namespace std;
 

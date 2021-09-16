@@ -1,5 +1,7 @@
-#ifndef __HIGHSCORE_HH__
-#define __HIGHSCORE_HH__
+#pragma once
+
+#include <string>
+#include <utility>
 
 /*!
  * \file Highscore.hh
@@ -76,5 +78,3 @@ class Highscore
     std::pair<size_t, std::string> highscore_[10];
 
 };
-
-#endif //__HIGHSCORE_HH__

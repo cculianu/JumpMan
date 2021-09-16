@@ -6,11 +6,11 @@
  * \date 2013
  * \copyright GNU Public License
  */
+#include "MovingStar.h"
 
 #include <chrono>
 #include <random>
 
-#include "MovingStar.hh"
 
 using namespace std;
 

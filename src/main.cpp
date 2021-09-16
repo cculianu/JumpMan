@@ -1,14 +1,13 @@
+#include "Game.h"
 
-#include "Game.hh"
-
-int main()
+extern "C" int main(int, char **)
 {
   Game game;
   int return_value;
 
-  do 
+  do {
     return_value = game.run();
-  while (return_value == 2);
+  } while (return_value == 2);
 
   return return_value;
 }

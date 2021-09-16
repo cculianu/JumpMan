@@ -1,9 +1,9 @@
-CXX = g++
-CXXFLAGS = -std=c++11 -Wall -Wextra -Werror -pedantic -Weffc++ -g -O2
-LDFLAGS = -lSDL -lSDL_image -lSDL_ttf -l SDL_mixer
+CXX = c++
+CXXFLAGS = -std=c++17 -Wall -Wextra -Werror -pedantic -Weffc++ -g -O2 -I/opt/local/include
+LDFLAGS = -L/opt/local/lib -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer -lSDLmain -framework CoreFoundation -framework Cocoa
 
 TARGET = jumpman
-OBJS = $(addsuffix .o, $(basename $(wildcard src/*.cc)))
+OBJS = $(addsuffix .o, $(basename $(wildcard src/*.cpp)))
 
 ifeq ($(compiler),clang)
   CXX = clang++

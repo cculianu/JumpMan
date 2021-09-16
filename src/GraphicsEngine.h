@@ -1,5 +1,4 @@
-#ifndef __GRAPHICS_ENGINE_HH__
-#define __GRAPHICS_ENGINE_HH__
+#pragma once
 
 /*! 
  * \file GraphicsEngine.hh
@@ -9,11 +8,12 @@
  * \date 2013
  * \copyright GNU Public License
  */
-
-#include <map>
-
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
+
+#include <string>
+#include <map>
+
 
 typedef SDL_Rect rect_t;
 
@@ -173,5 +173,3 @@ class GraphicsEngine
     ///Font to use
     TTF_Font *font_;
 };
-
-#endif //__GRAPHICS_ENGINE_HH__

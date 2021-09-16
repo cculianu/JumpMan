@@ -1,5 +1,4 @@
-#ifndef __AUDIO_ENGINE_HH__
-#define __AUDIO_ENGINE_HH__
+#pragma once
 
 /*!
  * \file AudioEngine.hh
@@ -11,6 +10,7 @@
  */
 
 #include <SDL/SDL_mixer.h>
+#include <string>
 
 /*!
  * \class AudioEngine
@@ -74,5 +74,3 @@ class AudioEngine
     ///Keeps track if music is paused or playing
     bool is_playing_;
 };
-
-#endif //__AUDIO_ENGINE_HH__

@@ -1,5 +1,4 @@
-#ifndef __PLAYER_HH__
-#define __PLAYER_HH__
+#pragma once
 
 /*! 
  * \file Player.hh
@@ -9,8 +8,8 @@
  * \date 2013
  * \copyright GNU Public License
  */
-
-#include "Sprite.hh"
+#include "Sprite.h"
+#include <cstdint>
 
 /*!
  * \brief Player class
@@ -79,6 +78,3 @@ class Player: public Sprite
     size_t score_;           /*!< Current player score */
     bool facing_direction_;  /*!< Direction the player is facing, false = right */
 };
-
-
-#endif // __PLAYER_HH__

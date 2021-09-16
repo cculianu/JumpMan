@@ -1,5 +1,4 @@
-#ifndef __MOVING_STAR_HH__
-#define __MOVING_STAR_HH__
+#pragma once
 
 /*! 
  * \file MovingStar.hh
@@ -10,7 +9,7 @@
  * \copyright GNU Public License
  */
 
-#include "BasicStar.hh"
+#include "BasicStar.h"
 
 /*!
  * \class MovingStar
@@ -39,5 +38,3 @@ class MovingStar : public BasicStar
 
 
 };
-
-#endif //__MOVING_STAR_HH__

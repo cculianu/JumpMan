@@ -1,5 +1,4 @@
-#ifndef __BASIC_STAR_HH__
-#define __BASIC_STAR_HH__
+#pragma once
 
 /*! 
  * \file BasicStar.hh
@@ -10,7 +9,7 @@
  * \copyright GNU Public License
  */
 
-#include "Sprite.hh"
+#include "Sprite.h"
 
 /*!
  * \class BasicStar
@@ -46,5 +45,3 @@ class BasicStar : public Sprite
 
 
 };
-
-#endif //__BASIC_STAR_HH__

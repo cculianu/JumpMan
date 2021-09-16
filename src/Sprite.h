@@ -1,5 +1,4 @@
-#ifndef __SPRITE_HH__
-#define __SPRITE_HH__
+#pragma once
 
 /*! 
  * \file Sprite.hh
@@ -99,5 +98,3 @@ protected:
 
 private:
 };
-
-#endif //__SPRITE_HH__

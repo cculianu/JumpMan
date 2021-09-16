@@ -1,5 +1,4 @@
-#ifndef __GAME_HH__
-#define __GAME_HH__
+#pragma once
 
 /*! 
  * \file Game.hh
@@ -9,13 +8,12 @@
  * \date 2013
  * \copyright GNU Public License
  */
+#include "AudioEngine.h"
+#include "BasicStar.h"
+#include "GraphicsEngine.h"
+#include "Player.h"
 
 #include <list>
-
-#include "GraphicsEngine.hh"
-#include "AudioEngine.hh"
-#include "Player.hh"
-#include "BasicStar.hh"
 
 /*! 
  * \class Game
@@ -96,5 +94,3 @@ class Game
     int gameOver();
 
 };
-
-#endif //__GAME_HH__

@@ -11,7 +11,7 @@
 
 #include <SDL/SDL.h>
 
-#include "AudioEngine.hh"
+#include "AudioEngine.h"
 
 using namespace std;
 

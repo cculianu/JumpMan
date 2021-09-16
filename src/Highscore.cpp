@@ -7,10 +7,10 @@
  * \copyright GNU Public License
  */
 
+#include "Highscore.h"
+
 #include <fstream>
 #include <algorithm>
-
-#include "Highscore.hh"
 
 using namespace std;
 

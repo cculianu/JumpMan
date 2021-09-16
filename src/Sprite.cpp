@@ -7,7 +7,7 @@
  * \copyright GNU Public License
  */
 
-#include "Sprite.hh"
+#include "Sprite.h"
 
 using namespace std;
 
