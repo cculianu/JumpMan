@@ -15,14 +15,7 @@
 #include <chrono>
 #include <random>
 
-using namespace std;
-
-Game::Game() :
-  graphics_(NULL),
-  audio_(NULL),
-  star_list_(),
-  player_()
-{
+Game::Game() {
   /* Initialize graphics */
   this->graphics_= new GraphicsEngine
     ( "Jumpman" /* Title */
@@ -56,6 +49,13 @@ Game::~Game()
   for (auto star : this->star_list_)
     delete star;
 }
+
+[[noreturn]] /* static */
+void Game::FatalError(const std::string &errMsg, const std::string &title) {
+    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, title.c_str(), errMsg.c_str(), nullptr);
+    std::_Exit(1);
+}
+
 
 int Game::run()
 {
@@ -170,7 +170,7 @@ int Game::drawObjectsToScreen()
   this->graphics_->drawImage(this->player_.filename(), &draw_from, &draw_to);
 
   /* Draw score */
-  const string score_string = "Score: " + to_string(this->player_.score());
+  const std::string score_string = "Score: " + std::to_string(this->player_.score());
   this->graphics_->drawText(score_string, 20);
 
   /* Flush */
@@ -183,9 +183,9 @@ int Game::drawObjectsToScreen()
 
 void Game::addStars()
 {
-  default_random_engine
-    gen(chrono::system_clock::now().time_since_epoch().count());
-  uniform_int_distribution<int> rand(0, 100);
+  std::default_random_engine
+    gen(std::chrono::system_clock::now().time_since_epoch().count());
+  std::uniform_int_distribution<int> rand(0, 100);
 
   const signed screen_height = 
     static_cast<signed>(this->graphics_->screen_height());
@@ -226,7 +226,7 @@ int Game::gameOver()
   for (size_t i = 0; i < highscore.size(); ++i)
   {
     text_color_t text_color = YELLOW;
-    string new_score = highscore.get(i);
+    std::string new_score = highscore.get(i);
 
     /* If we managed to get into the highscore, write the score in orange */
     if (highlight_next && this->player_.score() == stoul(new_score))
@@ -241,7 +241,7 @@ int Game::gameOver()
   /* If we managed to get into the highscore: Ask for nickname */
   if (new_highscore)
   {
-    string nick;
+    std::string nick;
     this->graphics_->drawText("Enter your name (1-5 letters) and press enter", 
                               screen_height + 200);
     this->graphics_->getStringFromPlayer(5, nick, screen_height + 250);

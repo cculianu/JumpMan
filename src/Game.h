@@ -14,6 +14,7 @@
 #include "Player.h"
 
 #include <list>
+#include <string>
 
 /*! 
  * \class Game
@@ -46,13 +47,16 @@ class Game
      */
     int run();
 
+    /// Shows a simple SDL message box with errMsg and then quits the application
+    [[noreturn]] static void FatalError(const std::string &errMsg, const std::string &title = "Fatal Error");
+
   private:
 
     ///Instance for managing graphics
-    GraphicsEngine *graphics_;
+    GraphicsEngine *graphics_{};
 
     ///Instance for managing audio
-    AudioEngine *audio_;
+    AudioEngine *audio_{};
 
     ///List of all flying objects that the player can hit
     std::list <BasicStar *> star_list_;

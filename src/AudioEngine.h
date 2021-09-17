@@ -9,7 +9,7 @@
  * \copyright GNU Public License
  */
 
-#include <SDL/SDL_mixer.h>
+#include <SDL_mixer.h>
 #include <string>
 
 /*!

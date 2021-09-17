@@ -1,13 +1,16 @@
 #include "Game.h"
 
-extern "C" int main(int, char **)
+#include <SDL.h>
+
+int main()
 {
-  Game game;
-  int return_value;
+    SDL_SetMainReady();  // tell libsdl we have our own main, so that it sets things up for us
+    Game game;
+    int return_value;
 
-  do {
-    return_value = game.run();
-  } while (return_value == 2);
+    do {
+        return_value = game.run();
+    } while (return_value == 2);
 
-  return return_value;
+    return return_value;
 }

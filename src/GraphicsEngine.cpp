@@ -6,14 +6,14 @@
  * \date 2013
  * \copyright GNU Public License
  */
+#include "Game.h"
 #include "GraphicsEngine.h"
 
-#include <SDL/SDL_image.h>
+#include <SDL.h>
+#include <SDL_image.h>
 
-#include <iostream>
 #include <algorithm>
 
-using namespace std;
 
 GraphicsEngine::GraphicsEngine(const std::string &title,
                    const unsigned screen_width,
@@ -26,60 +26,34 @@ GraphicsEngine::GraphicsEngine(const std::string &title,
   SCREEN_BPP(screen_bpp),
   FRAME_RATE(frame_rate),
   images_(),
-  time_of_last_refresh_(SDL_GetTicks()),
-  screen_(NULL),
-  font_(NULL)
+  time_of_last_refresh_(SDL_GetTicks())
 {
   /* Init SDL*/
-  if (SDL_InitSubSystem(SDL_INIT_VIDEO) == -1)
-  {
-    cerr 
-      << "Failed to initialize SDL: " 
-      << SDL_GetError() << '\n';
-    exit(1);
-  }
+  if (SDL_Init(SDL_INIT_VIDEO) == -1)
+      Game::FatalError(SDL_GetError(), "Failed to Initialize SDL");
 
   /* Create a main screen */
-  this->screen_ = 
-    SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
-  if (this->screen_ == NULL)
-  {
-    cerr 
-      << "Failed to create SDL Surface: " 
-      << SDL_GetError() << '\n';
-    exit(1);
-  }
+  win = SDL_CreateWindow(TITLE.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                         SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_INPUT_FOCUS);
+  if (!win)
+      Game::FatalError(SDL_GetError(), "Failed to Create Window");
+
+  screen_ = SDL_GetWindowSurface(win);
+  if (!screen_)
+      Game::FatalError(SDL_GetError(), "Failed to Get SDL Surface");
 
   /* Init TTF */
   if (TTF_Init() == -1)
-  {
-    cerr 
-      << "Failed to initialize TTF: " 
-      << TTF_GetError() << '\n';
-    exit(1);
-  }
+      Game::FatalError(TTF_GetError(), "Failed to Initialize TTF");
 
   /* Load font from disk */
   font_ = TTF_OpenFont("graphics/font.ttf", 20);
-  if (font_ == NULL)
-  {
-    cerr 
-      << "Failed to load font: " 
-      << TTF_GetError() << '\n';
-    exit(1);
-  }
-
-  /* Set caption (the name displayed of the application) */
-  SDL_WM_SetCaption(TITLE.c_str(), TITLE.c_str());
+  if (font_ == nullptr)
+      Game::FatalError(TTF_GetError(), "Failed to Load Font");
 
   /* Initialize timer */
   if (SDL_InitSubSystem(SDL_INIT_TIMER) == -1)
-  {
-    cerr
-      << "Failed to initialize SDL-Timer: "
-      << SDL_GetError() << '\n';
-    exit(1);
-  }
+      Game::FatalError(SDL_GetError(), "Failed to Initialize SDL Timer");
 }
 
 GraphicsEngine::~GraphicsEngine()
@@ -88,37 +62,39 @@ GraphicsEngine::~GraphicsEngine()
   for (auto image : this->images_)
   {
     SDL_FreeSurface(image.second);
-    image.second = NULL;
+    image.second = nullptr;
   }
 
   /* Unload font */
   TTF_CloseFont(font_);
 
   TTF_Quit();
+  SDL_DestroyWindow(win);
+  // no need to free window surface
   SDL_QuitSubSystem(SDL_INIT_TIMER);
   SDL_QuitSubSystem(SDL_INIT_VIDEO);
 }
 
-bool GraphicsEngine::loadImage(const string &filename) 
+bool GraphicsEngine::loadImage(const std::string &filename)
 {
   /* Check if image is already loaded */
   if (this->images_.count(filename))
       return true;
 
   /* Load image from disk: */
-  const string real_filename = "graphics/" + filename + ".png";
+  const std::string real_filename = "graphics/" + filename + ".png";
   SDL_Surface *scratch_surface = IMG_Load(real_filename.c_str());
-  if (scratch_surface == NULL)
+  if (scratch_surface == nullptr)
     return false;
 
   /* Set transparency (White is transparent); */
-  SDL_SetColorKey(scratch_surface, SDL_SRCCOLORKEY,
+  SDL_SetColorKey(scratch_surface, SDL_TRUE,
                   SDL_MapRGB(scratch_surface->format, 255, 255, 255));
 
   /* Format image to optimize it */
-  SDL_Surface *optimized_image = SDL_DisplayFormat(scratch_surface);
+  SDL_Surface *optimized_image = SDL_ConvertSurface(scratch_surface, screen_->format, 0);
   SDL_FreeSurface(scratch_surface);
-  if (optimized_image == NULL)
+  if (optimized_image == nullptr)
     return false;
 
   /* Add it to list of images */
@@ -126,27 +102,23 @@ bool GraphicsEngine::loadImage(const string &filename)
   return true;
 }
 
-string GraphicsEngine::getLastError() const
-{
-  const string errormsg(SDL_GetError());
-  return errormsg;
-}
+std::string GraphicsEngine::getLastError() const { return SDL_GetError(); }
 
 void GraphicsEngine::makeScreenBlack()
 {
-  SDL_FillRect(this->screen_, NULL, 0);
+  SDL_FillRect(this->screen_, nullptr, 0);
 }
 
-bool GraphicsEngine::drawImage(const string &filename, rect_t *srcrect,
+bool GraphicsEngine::drawImage(const std::string &filename, rect_t *srcrect,
                                rect_t *dstrect)
 {
   /* First, check if the image is loaded */
-  SDL_Surface *image_to_blit = NULL;
+  SDL_Surface *image_to_blit = nullptr;
   if (this->images_.count(filename))
     image_to_blit = this->images_[filename];
 
   /* If image was not found, try to load it */
-  if (image_to_blit == NULL)
+  if (image_to_blit == nullptr)
   {
     if (this->loadImage(filename) == false)
       return false;
@@ -157,7 +129,7 @@ bool GraphicsEngine::drawImage(const string &filename, rect_t *srcrect,
   /* Doing some switcheroo here, 
    * X:0 is now at the center of the screen
    * Y:0 is not at the bottom of the screen */
-  if (dstrect != NULL)
+  if (dstrect != nullptr)
   {
     dstrect->x = SCREEN_WIDTH/2 - dstrect->w/2 + dstrect->x;
     dstrect->y = SCREEN_HEIGHT - dstrect->h - dstrect->y;
@@ -169,7 +141,7 @@ bool GraphicsEngine::drawImage(const string &filename, rect_t *srcrect,
   return true;
 }
 
-void GraphicsEngine::drawText(const string &text, 
+void GraphicsEngine::drawText(const std::string &text,
                               unsigned y, text_color_t text_color_name)
 {
   SDL_Color text_color;
@@ -188,7 +160,7 @@ void GraphicsEngine::drawText(const string &text,
                           text_color, background_color);
 
   /* Set transparency */
-  SDL_SetColorKey(text_surface, SDL_SRCCOLORKEY,
+  SDL_SetColorKey(text_surface, SDL_TRUE,
                   SDL_MapRGB(text_surface->format, 0, 0, 0));
 
   /* Set target rect */
@@ -197,7 +169,7 @@ void GraphicsEngine::drawText(const string &text,
      static_cast<short>(y/2 - text_surface->h/2), 0, 0};
 
   /* Blit and release */
-  SDL_BlitSurface(text_surface, NULL, this->screen_, &dstrect);
+  SDL_BlitSurface(text_surface, nullptr, this->screen_, &dstrect);
   SDL_FreeSurface(text_surface);
 }
 
@@ -213,7 +185,7 @@ bool GraphicsEngine::updateScreen()
 
   /* Reset update-time and flush screen */
   this->time_of_last_refresh_ = SDL_GetTicks();
-  return SDL_Flip(this->screen_) == 0;
+  return SDL_UpdateWindowSurface(win) == 0;
 }
 
 bool GraphicsEngine::getEvent(event_t &event) const
@@ -242,25 +214,27 @@ bool GraphicsEngine::getEvent(event_t &event) const
    * 2. Left arrow key but still hold the right: event = RIGHT
    * 3. Any arrow key and does not hold any arrow key: event = STILL
    */
-  else if (sdl_event.type == SDL_KEYUP)
+  else if (sdl_event.type == SDL_KEYUP) {
+    const auto *state = SDL_GetKeyboardState(nullptr);
     switch (sdl_event.key.keysym.sym)
     {
-      case SDLK_LEFT: 
-        if (SDL_GetKeyState(NULL)[SDLK_RIGHT]) 
+      case SDLK_LEFT:
+        if (state[SDL_SCANCODE_RIGHT])
           event = RIGHT;
         else
-          event = STILL; 
+          event = STILL;
         break;
 
       case SDLK_RIGHT:
-        if (SDL_GetKeyState(NULL)[SDLK_LEFT]) 
+        if (state[SDL_SCANCODE_LEFT])
           event = LEFT;
         else
-          event = STILL; 
+          event = STILL;
         break;
 
       default: event = NOTHING; break;
     }
+  }
 
   /* All other SDL_Events are set to NOTHING */
   else
@@ -278,16 +252,16 @@ void GraphicsEngine::getStringFromPlayer(unsigned max_letters,
     SDL_CreateRGBSurface(SDL_SWSURFACE, 100, 20, 32, 0, 0, 0, 0);
   SDL_Rect scrrect = {static_cast<short>(SCREEN_WIDTH/2 - scratch_surface->w/2),
                       static_cast<short>(y/2 - scratch_surface->h/2) , 100, 20};
-  SDL_BlitSurface(screen_, &scrrect, scratch_surface, NULL);
+  SDL_BlitSurface(screen_, &scrrect, scratch_surface, nullptr);
   
   target.clear();
   SDL_Event event;
   for (;;)
   {
     /* Clear the screen and draw the string */
-    SDL_BlitSurface(scratch_surface, NULL, screen_, &scrrect);
+    SDL_BlitSurface(scratch_surface, nullptr, screen_, &scrrect);
     this->drawText(target.size() ? target : " ", y, ORANGE);
-    SDL_Flip(screen_);
+    SDL_UpdateWindowSurface(win);
 
     SDL_WaitEvent(&event);
     if (event.type == SDL_KEYDOWN)

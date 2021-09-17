@@ -8,8 +8,8 @@
  * \date 2013
  * \copyright GNU Public License
  */
-#include <SDL/SDL.h>
-#include <SDL/SDL_ttf.h>
+#include <SDL.h>
+#include <SDL_ttf.h>
 
 #include <string>
 #include <map>
@@ -167,9 +167,10 @@ class GraphicsEngine
     ///The time updateScreen() last was called
     size_t time_of_last_refresh_;
 
-    ///The game screen
-    SDL_Surface *screen_;
-
     ///Font to use
-    TTF_Font *font_;
+    TTF_Font *font_{};
+
+    ///The game screen
+    SDL_Window *win{};
+    SDL_Surface *screen_{}; // the window's surface
 };
