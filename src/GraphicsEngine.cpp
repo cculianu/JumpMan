@@ -256,7 +256,7 @@ void GraphicsEngine::getStringFromPlayer(unsigned max_letters, std::string &targ
         SDL_WaitEvent(&event);
         if (event.type == SDL_KEYDOWN) {
             /* If player types A-Z, add it to string */
-            if (SDLK_a <= event.key.keysym.sym && event.key.keysym.sym <= SDLK_q && target.size() < max_letters)
+            if (SDLK_a <= event.key.keysym.sym && event.key.keysym.sym <= SDLK_z && target.size() < max_letters)
                 target += static_cast<char>('A' + event.key.keysym.sym - SDLK_a);
             /* If player presses enter - return */
             else if (event.key.keysym.sym == SDLK_RETURN && target.size() > 0)
