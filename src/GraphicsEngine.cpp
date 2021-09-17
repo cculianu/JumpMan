@@ -15,9 +15,8 @@
 #include <algorithm>
 
 GraphicsEngine::GraphicsEngine(const std::string &title, const unsigned screen_width, const unsigned screen_height,
-                               const unsigned screen_bpp, const unsigned frame_rate)
-    : TITLE(title), SCREEN_WIDTH(screen_width), SCREEN_HEIGHT(screen_height), SCREEN_BPP(screen_bpp),
-      FRAME_RATE(frame_rate), images_(), time_of_last_refresh_(SDL_GetTicks())
+                               const unsigned screen_bpp)
+    : TITLE(title), SCREEN_WIDTH(screen_width), SCREEN_HEIGHT(screen_height), SCREEN_BPP(screen_bpp)
 {
     /* Init SDL*/
     if (SDL_Init(SDL_INIT_VIDEO) == -1)
@@ -158,15 +157,6 @@ void GraphicsEngine::drawText(const std::string &text, unsigned y, text_color_t 
 
 bool GraphicsEngine::updateScreen()
 {
-    const size_t TIME_SINCE_LAST_REFRESH = SDL_GetTicks() - this->time_of_last_refresh_;
-    const size_t REFRESH_RATE = 1000 / FRAME_RATE;
-
-    /* If the last refresh was too recent, we'll wait a while */
-    if (TIME_SINCE_LAST_REFRESH < REFRESH_RATE)
-        SDL_Delay(REFRESH_RATE - TIME_SINCE_LAST_REFRESH);
-
-    /* Reset update-time and flush screen */
-    this->time_of_last_refresh_ = SDL_GetTicks();
     return SDL_UpdateWindowSurface(win) == 0;
 }
 

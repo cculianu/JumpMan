@@ -19,12 +19,14 @@
 #include <cstdlib>
 #include <iostream>
 
+inline constexpr unsigned FRAME_RATE = 24; /* desired game framerate */
+
 Game::Game()
 {
     /* Initialize graphics */
     graphics_ = std::make_unique<GraphicsEngine>("Jumpman" /* Title */,
-                                                       1000 /* Screen width */, 600 /* Screen height */,
-                                                       32 /* Bits per pixel */,  24 /* Frame rate */);
+                                                 1000 /* Screen width */, 600 /* Screen height */,
+                                                 32 /* Bits per pixel */);
 
     /* Load images from disk */
     if (graphics_->loadImage("player") == false || graphics_->loadImage("basic_star") == false ||
@@ -67,7 +69,6 @@ Game::RandGen Game::GetRandGen(int from, int to)
     return RandGen(gen, from, to);
 }
 
-
 int Game::run()
 {
     int retval;
@@ -82,7 +83,7 @@ int Game::run()
             }
 
             /* Main loop */
-            for (;;) {
+            for (Uint32 ticksLast = SDL_GetTicks(); /**/; ticksLast = SDL_GetTicks()) {
                 if (handlePlayerInput() == 1)
                     return 0;
 
@@ -91,6 +92,12 @@ int Game::run()
 
                 if (drawObjectsToScreen() == 1)
                     return 1;
+
+                // throttle game frame-rate
+                const auto tdiff = SDL_GetTicks() - ticksLast;
+                const auto refresh_rate = 1000 / FRAME_RATE;
+                if (tdiff < refresh_rate)
+                    SDL_Delay(refresh_rate - tdiff);
             }
         }();
     } while(retval == 2);

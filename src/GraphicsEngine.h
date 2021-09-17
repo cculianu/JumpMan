@@ -60,7 +60,7 @@ public:
      * \param frame_rate The frames per second we want to display
      */
     GraphicsEngine(const std::string &title, const unsigned screen_width, const unsigned screen_height,
-                   const unsigned screen_bpp, const unsigned frame_rate);
+                   const unsigned screen_bpp);
 
     /// Disabled copy constructor
     GraphicsEngine(const GraphicsEngine &) = delete;
@@ -148,14 +148,8 @@ private:
     /// Screen bits per pixel (color)
     const unsigned SCREEN_BPP;
 
-    /// Screen frames per second
-    const unsigned short FRAME_RATE;
-
     /// Map of filename and image we have loaded from disk
     std::map<std::string, SDL_Surface *> images_;
-
-    /// The time updateScreen() last was called
-    size_t time_of_last_refresh_;
 
     /// Font to use
     TTF_Font *font_{};
