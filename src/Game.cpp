@@ -14,10 +14,10 @@
 #include "Highscore.h"
 #include "MovingStar.h"
 
+#include <cassert>
 #include <chrono>
 #include <cstdlib>
 #include <iostream>
-#include <random>
 
 Game::Game()
 {
@@ -54,6 +54,16 @@ void Game::FatalError(const std::string &errMsg, const std::string &title)
 void Game::Warning(const std::string &msg)
 {
     std::cerr << "Warning: " << msg << "\n";
+}
+
+/// Get a random number generator for the range [a, b]
+/* static */
+Game::RandGen Game::GetRandGen(int from, int to)
+{
+    static std::random_device rd;  // Will be used to obtain a seed for the random number engine
+    static std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
+    assert(to >= from);
+    return RandGen(gen, from, to);
 }
 
 
@@ -177,9 +187,6 @@ int Game::drawObjectsToScreen()
 
 void Game::addStars()
 {
-    std::default_random_engine gen(std::chrono::system_clock::now().time_since_epoch().count());
-    std::uniform_int_distribution<int> rand(0, 100);
-
     const signed screen_height = static_cast<signed>(this->graphics_->screen_height());
     const signed half_screen_width = this->graphics_->screen_width() / 2;
 
@@ -190,12 +197,13 @@ void Game::addStars()
 
     /* Make sure there's a BasicStar every 50 y-pixels,
      * Also add other types of stars if the RNG is with you */
+    auto rgen = GetRandGen(0, 6);
     while (this->star_list_.back()->initialY() < screen_height) {
         const short last_y = this->star_list_.back()->initialY();
 
         this->star_list_.emplace_back(new BasicStar(last_y, half_screen_width));
 
-        if (rand(gen) % 10 == 1)
+        if (rgen() == 1)
             this->star_list_.emplace_back(new MovingStar(last_y, half_screen_width));
     }
 }

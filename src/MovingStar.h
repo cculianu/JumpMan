@@ -32,6 +32,6 @@ public:
     void takeAction() override;
 
 private:
-    short dx_;
-    short dy_;
+    short dx;
+    short dy;
 };

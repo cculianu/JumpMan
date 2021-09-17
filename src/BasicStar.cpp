@@ -8,8 +8,10 @@
  */
 #include "BasicStar.h"
 
+#include "Game.h"
+
 #include <chrono>
-#include <random>
+
 
 BasicStar::BasicStar(short y, int edge_coord) : Sprite("basic_star", 0, y + 50, 20, 20, 4)
 {
@@ -20,11 +22,7 @@ BasicStar::~BasicStar() {}
 
 void BasicStar::randomizeSpawn(int edge_coord)
 {
-    std::default_random_engine gen(std::chrono::system_clock::now().time_since_epoch().count());
-
-    std::uniform_int_distribution<int> rand_x(-edge_coord + this->width_ / 2, edge_coord - this->width_ / 2);
-
-    this->x_ = rand_x(gen);
+    this->x_ = Game::GetRand32(-edge_coord + this->width_ / 2, edge_coord - this->width_ / 2);
 }
 
 void BasicStar::takeAction() {}

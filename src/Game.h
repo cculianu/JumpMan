@@ -12,6 +12,7 @@
 
 #include <list>
 #include <memory>
+#include <random>
 #include <string>
 
 class AudioEngine;
@@ -52,6 +53,13 @@ public:
     [[noreturn]] static void FatalError(const std::string &errMsg, const std::string &title = "Fatal Error");
     /// Log a warning message to console
     static void Warning(const std::string &msg);
+
+    /// Get a random number in the range [from, to]
+    static int GetRand32(int from, int to) { return GetRandGen(from, to)(); }
+
+    class RandGen; ///< fwd decl; has operator()()
+    /// Get a random number generator for the range [from, to]
+    static RandGen GetRandGen(int from, int to);
 
 private:
     /// Instance for managing graphics
@@ -98,4 +106,14 @@ private:
      * handle player's highscore
      */
     int gameOver();
+
+public:
+    class RandGen {
+        friend class Game;
+        std::mt19937 &gen;
+        std::uniform_int_distribution<int> dist;
+        RandGen(std::mt19937 &g, int from, int to) : gen(g), dist(from, to) {}
+    public:
+        int operator()() { return dist(gen); }
+    };
 };
