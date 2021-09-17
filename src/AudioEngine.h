@@ -44,13 +44,21 @@ public:
      * \param path to file
      * \return true on success
      */
-    bool loadStarSoundEffect(const std::string &filename);
+    bool loadStarSoundEffect(const std::string &filename1, const std::string &filename2);
+    /*!
+     * \brief Loads the jetpack sound effect
+     * \param path to file
+     * \return true on success
+     */
+    bool loadJetPackSoundEffect(const std::string &filename);
 
     /*!
      * \brief Attempts to play the star sound effect
      * \return true on success
      */
-    bool playStarSound();
+    bool playStarSound(bool movingStar = false) const;
+
+    bool playJetPackSound() const;
 
     /*!
      * \brief Start playing background music
@@ -67,8 +75,11 @@ private:
     /// Background music
     Mix_Music *background_music_{};
 
-    /// Start sound effect
-    Mix_Chunk *star_effect_{};
+    /// Star sound effect
+    Mix_Chunk *star_effects_[2] = {};
+
+    /// Jetpack sound effect
+    Mix_Chunk *jetpack_effect_{};
 
     /// Keeps track if music is paused or playing
     bool is_playing_{};

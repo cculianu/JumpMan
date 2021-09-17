@@ -7,12 +7,15 @@
  * \copyright GNU Public License
  */
 
-#include <iostream>
+#include "AudioEngine.h"
+#include "Game.h"
 
 #include <SDL.h>
 
-#include "AudioEngine.h"
-#include "Game.h"
+#include <array>
+#include <cassert>
+#include <iostream>
+
 
 AudioEngine::AudioEngine()
 {
@@ -28,8 +31,10 @@ AudioEngine::AudioEngine()
 
 AudioEngine::~AudioEngine()
 {
-    Mix_FreeChunk(this->star_effect_);
-    Mix_FreeMusic(this->background_music_);
+    for (auto *eff : star_effects_)
+        Mix_FreeChunk(eff);
+    Mix_FreeChunk(jetpack_effect_);
+    Mix_FreeMusic(background_music_);
     Mix_CloseAudio();
     SDL_QuitSubSystem(SDL_INIT_AUDIO);
 }
@@ -50,23 +55,48 @@ bool AudioEngine::loadBackgroundMusic(const std::string &filename)
     return true;
 }
 
-bool AudioEngine::loadStarSoundEffect(const std::string &filename)
+bool AudioEngine::loadStarSoundEffect(const std::string &filename1, const std::string &filename2)
 {
-    if (this->star_effect_ != nullptr) {
-        Game::Warning("Star sound effect already loaded!");
+    assert(std::size(star_effects_) == 2);
+    bool ret = true;
+
+    const std::string * filenames[2] = {&filename1, &filename2};
+    for (int i = 0; i < 2; ++i) {
+        auto * & eff = star_effects_[i];
+        const auto &fn = *filenames[i];
+        if (eff != nullptr) {
+            Game::Warning("Star sound effect already loaded!");
+            ret = false;
+            continue;
+        }
+        eff = Mix_LoadWAV(fn.c_str());
+        if (eff == nullptr) {
+            Game::Warning(std::string("Failed to load star sound effect: ") + Mix_GetError());
+            return false;
+        }
+    }
+
+    return ret;
+}
+
+bool AudioEngine::loadJetPackSoundEffect(const std::string &filename)
+{
+    if (jetpack_effect_ != nullptr) {
+        Game::Warning("JetPack sound effect already loaded!");
         return false;
     }
 
-    this->star_effect_ = Mix_LoadWAV(filename.c_str());
-    if (this->star_effect_ == nullptr) {
-        Game::Warning(std::string("Failed to load star sound effect: ") + Mix_GetError());
+    jetpack_effect_ = Mix_LoadWAV(filename.c_str());
+    if (jetpack_effect_ == nullptr) {
+        Game::Warning(std::string("Failed to load jetpack sound effect: ") + Mix_GetError());
         return false;
     }
 
     return true;
 }
 
-bool AudioEngine::playStarSound() { return Mix_PlayChannel(-1, this->star_effect_, 0) == 0; }
+bool AudioEngine::playStarSound(bool which) const { return Mix_PlayChannel(-1, star_effects_[which], 0) == 0; }
+bool AudioEngine::playJetPackSound() const { return Mix_PlayChannel(-1, jetpack_effect_, 0) == 0; }
 
 bool AudioEngine::startPlayingBackgroundMusic(short volume)
 {

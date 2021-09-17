@@ -40,6 +40,8 @@ Game::Game()
     /* Initialize audio */
     audio_ = std::make_unique<AudioEngine>();
     audio_->loadBackgroundMusic("audio/ambient1.mp3");
+    audio_->loadJetPackSoundEffect("audio/jetpack1.wav");
+    audio_->loadStarSoundEffect("audio/starsound1.wav", "audio/starsound2.wav");
     audio_->startPlayingBackgroundMusic(50);
 }
 
@@ -128,7 +130,8 @@ bool Game::handlePlayerInput()
             player_->move(0);
             break;
         case UP:
-            player_->jump();
+            if (player_->jump())
+                audio_->playJetPackSound(); // only play sound if jumping did occur
             break;
         case PAUSEPLAY:
             audio_->togglePausePlayBackgroundMusic();
@@ -152,10 +155,20 @@ int Game::letObjectsInteract(double dt)
     for (auto & star : star_list_)
         star->takeAction(dt);
 
+    bool playedJetSound = false;
     /* Remove stars if the player touches them or they disappear off screen */
     for (auto it = star_list_.begin(); it != star_list_.end();)
         if (bool touches = player_->touches(it->get()); touches || (*it)->y() < 0) {
-            if (touches) player_->jump(1 + bool(dynamic_cast<MovingStar *>(it->get())));
+            if (touches) {
+                bool const moving_star = bool(dynamic_cast<MovingStar *>(it->get()));
+                bool const ok = player_->jump(1 + moving_star);
+                if (ok && !playedJetSound) {
+                    //audio_->playJetPackSound();
+                    playedJetSound = true;
+                }
+                audio_->playStarSound();
+                if (moving_star) audio_->playStarSound(true);
+            }
             it = star_list_.erase(it);
         } else
             ++it;

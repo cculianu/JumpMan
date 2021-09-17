@@ -70,7 +70,7 @@ void Player::takeAction(double dt)
         incrCumImageIndex(dt / 10.0);
 }
 
-void Player::jump(int force_push_level)
+bool Player::jump(int force_push_level)
 {
     if (force_push_level > 0) {
         /* Set speed to at least 20, after that, add 10 */
@@ -79,13 +79,14 @@ void Player::jump(int force_push_level)
         this->dy_ += 10.0 * force_push_level /* moving star bonus */;
         dy_ = std::min(dy_, SPEED_LIMIT); // limit speed to something sane (if too high, game becomes too easy)
         this->standing_on_floor_ = false; // never allow them to use the jetpack again!
-    }
-
-    else if (this->standing_on_floor_) {
+        return true;
+    } else if (this->standing_on_floor_) {
         /* If we manually jump, remove standing_on_floor_ and recurse */
         this->standing_on_floor_ = false;
         return this->jump(1);
     }
+
+    return false;
 }
 
 void Player::move(short dx)
