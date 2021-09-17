@@ -44,8 +44,8 @@ public:
     void operator=(const Game &) = delete;
 
     /*!
-     * \brief The game's main loop
-     * \return 0 on success, 1 on failure and 2 on restart
+     * \brief The game's main loop. Runs forever until either game exit of if there is an error.
+     * \return 0 on successful exit, 1 on failure
      */
     int run();
 

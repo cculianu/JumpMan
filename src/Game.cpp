@@ -70,28 +70,31 @@ Game::RandGen Game::GetRandGen(int from, int to)
 
 int Game::run()
 {
-    /* Reset Player */
-    player_->reset();
+    int retval;
+    do {
+        retval = [&] {
+            /* Reset Player */
+            player_->reset();
 
-    /* Reset Starlist */
-    if (star_list_.size() > 0) {
-        star_list_.clear();
-    }
+            /* Reset Starlist */
+            if (star_list_.size() > 0) {
+                star_list_.clear();
+            }
 
-    /* Main loop */
-    for (;;) {
-        if (handlePlayerInput() == 1)
-            return 0;
+            /* Main loop */
+            for (;;) {
+                if (handlePlayerInput() == 1)
+                    return 0;
 
-        if (letObjectsInteract() == 1)
-            return gameOver();
+                if (letObjectsInteract() == 1)
+                    return gameOver();
 
-        if (drawObjectsToScreen() == 1)
-            return 1;
-    }
-
-    /* END NOT REACHED */
-    return 1;
+                if (drawObjectsToScreen() == 1)
+                    return 1;
+            }
+        }();
+    } while(retval == 2);
+    return retval;
 }
 
 int Game::handlePlayerInput()
