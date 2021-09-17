@@ -27,7 +27,8 @@ enum event_t {
     STILL,     /*!< Player wants to stop moving */
     PAUSEPLAY, /*!< Player wants to pause/play music */
     NOTHING,   /*!< Unknown input received */
-    QUIT       /*!< User wants to exit the game */
+    QUIT,      /*!< User wants to exit the game */
+    FPS_TOGGLE /*!< User hit F to toggle fps display */
 };
 
 /*!
@@ -35,10 +36,18 @@ enum event_t {
  * \brief text colors available
  */
 enum text_color_t {
-    CYAN,   /*!< Cyan */
-    YELLOW, /*!< Yellow */
-    ORANGE  /*!< Orange */
+    RED,     /*!< Red */
+    GREEN,   /*!< Green */
+    BLUE,    /*!< Blue */
+    CYAN,    /*!< Cyan */
+    MAGENTA, /*!< Magenta */
+    YELLOW,  /*!< Yellow */
+    ORANGE,  /*!< Orange */
+    WHITE,   /*!< White */
+    GRAY,    /*!< GRAY */
 };
+
+enum alignment_t { AlignLeft, AlignRight, AlignCenter };
 
 /*!
  * \class GraphicsEngine
@@ -103,7 +112,8 @@ public:
      * \param text text to draw
      * \param y the center on the y-axis where we will draw
      */
-    void drawText(const std::string &text, unsigned y, text_color_t = CYAN);
+    void drawText(const std::string &text, unsigned y, text_color_t = CYAN, alignment_t = AlignCenter,
+                  bool small = false, bool bright = false);
 
     /*!
      * \brief Flushes the screen so it's visible to the user
@@ -152,7 +162,7 @@ private:
     std::map<std::string, SDL_Surface *> images_;
 
     /// Font to use
-    TTF_Font *font_{};
+    TTF_Font *font_{}, *font_small_{};
 
     /// The game screen
     SDL_Window *win{};

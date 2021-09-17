@@ -74,6 +74,15 @@ private:
     /// Player instance
     std::unique_ptr<Player> player_;
 
+    /// The last time the game was started
+    unsigned start_ticks_{};
+
+    /// The current FPS
+    double fps_ = 0.;
+
+    /// If 'f' is pressed, this becomes true
+    bool show_fps_ = false;
+
     /*!
      * \brief handles player input
      * \return true if user wants to quit the game, false otherwise

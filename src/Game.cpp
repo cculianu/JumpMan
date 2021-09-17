@@ -83,6 +83,8 @@ int Game::run()
                 star_list_.clear();
             }
 
+            start_ticks_ = SDL_GetTicks();
+
             /* Main loop */
             const auto refresh_rate = 1000 / FRAME_RATE;
             for (Uint32 ticksLast = SDL_GetTicks(); /**/; ticksLast = SDL_GetTicks()) {
@@ -101,6 +103,10 @@ int Game::run()
                 const auto tdiff = SDL_GetTicks() - ticksLast;
                 if (tdiff < refresh_rate)
                     SDL_Delay(refresh_rate - tdiff);
+
+                // take rolling average of last 10 values
+                fps_ = fps_ * 10.0 + 1000.0 / (SDL_GetTicks() - ticksLast);
+                fps_ /= 11.0;
             }
         }();
     } while (retval == 2);
@@ -129,6 +135,9 @@ bool Game::handlePlayerInput()
             break;
         case QUIT:
             return true;
+            break;
+        case FPS_TOGGLE:
+            show_fps_ = !show_fps_;
             break;
         default:
             break;
@@ -192,6 +201,20 @@ bool Game::drawObjectsToScreen()
     /* Draw score */
     const std::string score_string = "Score: " + std::to_string(player_->score());
     graphics_->drawText(score_string, 20);
+
+    const std::string velocity_string = "Velocity: " + std::to_string(int(std::round(player_->velocity()))) + " m/s ";
+    graphics_->drawText(velocity_string, 20, WHITE, AlignRight, true);
+
+    /* Draw instructions after 5 seconds of no jumps */
+    if (player_->isStandingOnFloor() && SDL_GetTicks() - start_ticks_ > 5000) {
+        graphics_->drawText("UP to jump",
+                            graphics_->screen_height() + 440, CYAN, AlignCenter);
+    }
+
+    /* Draw FPS */
+    if (show_fps_) {
+        graphics_->drawText(" FPS: " + std::to_string(int(std::round(fps_))), 20, GREEN, AlignLeft, true, true);
+    }
 
     /* Flush */
     return graphics_->updateScreen();

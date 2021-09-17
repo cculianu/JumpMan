@@ -117,3 +117,5 @@ short Player::imageX()
 }
 
 short Player::imageY() const { return this->facing_direction_ * this->height_; }
+
+double Player::velocity() const { return std::sqrt(dx_ * dx_ + dy_ * dy_); }

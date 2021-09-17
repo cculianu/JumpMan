@@ -58,6 +58,11 @@ public:
     size_t score() const;
 
     /*!
+     * \return the current player velocity; (dx, dy) vector magnitude
+     */
+    double velocity() const;
+
+    /*!
      * Player image is a bit special so it has its own imageX()
      * \return x of the image the Sprite wants to draw
      */
@@ -67,6 +72,11 @@ public:
      * \returns y of the image the Sprite wants to draw
      */
     short imageY() const;
+
+    /*!
+     * \return true if the player has yet to jump and is standing on the floor
+     */
+    bool isStandingOnFloor() const { return standing_on_floor_; }
 
 private:
     const unsigned screen_width;  /*!< X-axis width of play area */

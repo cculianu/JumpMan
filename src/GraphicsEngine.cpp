@@ -40,6 +40,9 @@ GraphicsEngine::GraphicsEngine(const std::string &title, const unsigned screen_w
     font_ = TTF_OpenFont("graphics/font.ttf", 20);
     if (font_ == nullptr)
         Game::FatalError(TTF_GetError(), "Failed to Load Font");
+    font_small_ = TTF_OpenFont("graphics/font.ttf", 14);
+    if (font_small_ == nullptr)
+        Game::FatalError(TTF_GetError(), "Failed to Load Font");
 
     /* Initialize timer */
     if (SDL_InitSubSystem(SDL_INIT_TIMER) == -1)
@@ -56,6 +59,7 @@ GraphicsEngine::~GraphicsEngine()
 
     /* Unload font */
     TTF_CloseFont(font_);
+    TTF_CloseFont(font_small_);
 
     TTF_Quit();
     SDL_DestroyWindow(win);
@@ -123,32 +127,46 @@ bool GraphicsEngine::drawImage(const std::string &filename, rect_t *srcrect, rec
     return true;
 }
 
-void GraphicsEngine::drawText(const std::string &text, unsigned y, text_color_t text_color_name)
+void GraphicsEngine::drawText(const std::string &text, unsigned y, text_color_t text_color_name, alignment_t align,
+                              bool small, bool bright)
 {
     SDL_Color text_color;
     const SDL_Color background_color = {0, 0, 0, 0};
 
     switch (text_color_name) {
-    case CYAN:
-        text_color = {0, 127, 127, 0};
-        break;
-    case YELLOW:
-        text_color = {255, 255, 0, 0};
-        break;
-    case ORANGE:
-        text_color = {255, 127, 0, 0};
-        break;
+    case RED: text_color = {127, 0, 0, 0}; break;
+    case GREEN: text_color = {0, 127, 0, 0}; break;
+    case BLUE: text_color = {0, 0, 127, 0}; break;
+    case CYAN: text_color = {0, 127, 127, 0}; break;
+    case MAGENTA: text_color = {127, 0, 127, 0}; break;
+    case YELLOW: text_color = {255, 255, 0, 0}; break;
+    case ORANGE: text_color = {255, 127, 0, 0}; break;
+    case WHITE: text_color = {255, 255, 255, 0}; break;
+    case GRAY: text_color = {127, 127, 127, 0}; break;
+    }
+
+    if (bright) {
+        text_color.r = std::max(text_color.r * 2, 16);
+        text_color.g = std::max(text_color.g * 2, 16);
+        text_color.b = std::max(text_color.b * 2, 16);
     }
 
     /* Craete text */
-    SDL_Surface *text_surface = TTF_RenderText_Shaded(this->font_, text.c_str(), text_color, background_color);
+    SDL_Surface *text_surface = TTF_RenderText_Shaded(small ? font_small_ :font_,
+                                                      text.c_str(), text_color, background_color);
 
     /* Set transparency */
     SDL_SetColorKey(text_surface, SDL_TRUE, SDL_MapRGB(text_surface->format, 0, 0, 0));
 
+    int pos_x{};
+    switch (align) {
+    case AlignLeft: pos_x = 0; break;
+    case AlignCenter: pos_x = SCREEN_WIDTH / 2 - text_surface->w / 2; break;
+    case AlignRight: pos_x = SCREEN_WIDTH - text_surface->w;
+    }
+
     /* Set target rect */
-    SDL_Rect dstrect = {static_cast<short>(SCREEN_WIDTH / 2 - text_surface->w / 2),
-                        static_cast<short>(y / 2 - text_surface->h / 2), 0, 0};
+    SDL_Rect dstrect{pos_x, static_cast<int>(y) / 2 - text_surface->h / 2, 0, 0};
 
     /* Blit and release */
     SDL_BlitSurface(text_surface, nullptr, this->screen_, &dstrect);
@@ -186,6 +204,9 @@ bool GraphicsEngine::getEvent(event_t &event) const
             break;
         case SDLK_UP:
             event = UP;
+            break;
+        case SDLK_f:
+            event = FPS_TOGGLE;
             break;
         default:
             event = NOTHING;
