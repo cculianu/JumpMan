@@ -60,14 +60,20 @@ bool Highscore::add(size_t new_score)
         }
     }
 
+    if (new_highscore) save();
+
     return new_highscore;
 }
 
 void Highscore::setNickname(const std::string &nickname)
 {
+    bool found = false;
     for (size_t i = 0; i < this->size(); ++i)
-        if (this->highscore_[i].second == "YOU!")
+        if (this->highscore_[i].second == "YOU!") {
             this->highscore_[i].second = nickname;
+            found = true;
+        }
+    if (found) save();
 }
 
 size_t Highscore::size() const { return highscore_.size(); }
