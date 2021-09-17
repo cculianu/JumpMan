@@ -143,7 +143,8 @@ int Game::letObjectsInteract(double dt)
 
     /* Remove stars if the player touches them or they disappear off screen */
     for (auto it = star_list_.begin(); it != star_list_.end();)
-        if (player_->touches(it->get()) || (*it)->y() < 0) {
+        if (bool touches = player_->touches(it->get()); touches || (*it)->y() < 0) {
+            if (touches) player_->jump(1 + bool(dynamic_cast<MovingStar *>(it->get())));
             it = star_list_.erase(it);
         } else
             ++it;

@@ -42,9 +42,9 @@ public:
 
     /*!
      * \brief Jump a short distance into the air
-     * \param force_push if true, this is not due to the player jumping
+     * \param force_push_level==0, this is due to the player jumping, 1 = normal star, >1 = moving star
      */
-    void jump(bool force_push = false);
+    void jump(int force_push_level = 0);
 
     /*!
      * \brief Set player to in movement on the x-axis
