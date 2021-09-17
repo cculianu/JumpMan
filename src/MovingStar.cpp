@@ -26,8 +26,9 @@ MovingStar::MovingStar(short y, int edge_coord) : BasicStar(y, edge_coord)
 
 MovingStar::~MovingStar() {}
 
-void MovingStar::takeAction()
+void MovingStar::takeAction(double dt)
 {
-    x_ += dx;
-    y_ += dy;
+    BasicStar::takeAction(dt);
+    x_ += dx * dt;
+    y_ += dy * dt;
 }

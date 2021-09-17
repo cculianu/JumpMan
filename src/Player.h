@@ -38,7 +38,7 @@ public:
     /*!
      * \brief Manages player's movement depending on dx and dy
      */
-    void takeAction() override;
+    void takeAction(double dt) override;
 
     /*!
      * \brief Jump a short distance into the air
@@ -70,8 +70,8 @@ public:
 
 private:
     const unsigned screen_width;  /*!< X-axis width of play area */
-    short dx_;                    /*!< Current x-axis movement */
-    short dy_;                    /*!< Current y-axis movement */
+    double dx_ = 0.;              /*!< Current x-axis movement */
+    double dy_ = 0.;              /*!< Current y-axis movement */
     bool standing_on_floor_;      /*!< True if player has not yet jumped */
     size_t score_;                /*!< Current player score */
     bool facing_direction_;       /*!< Direction the player is facing, false = right */

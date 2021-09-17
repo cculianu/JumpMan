@@ -24,5 +24,3 @@ void BasicStar::randomizeSpawn(int edge_coord)
 {
     this->x_ = Game::GetRand32(-edge_coord + this->width_ / 2, edge_coord - this->width_ / 2);
 }
-
-void BasicStar::takeAction() {}

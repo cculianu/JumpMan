@@ -29,7 +29,7 @@ public:
     ~MovingStar() override;
 
     /// Overloaded from BasicStar
-    void takeAction() override;
+    void takeAction(double dt) override;
 
 private:
     short dx;

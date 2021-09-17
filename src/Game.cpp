@@ -19,7 +19,8 @@
 #include <cstdlib>
 #include <iostream>
 
-inline constexpr unsigned FRAME_RATE = 24; /* desired game framerate */
+inline constexpr unsigned FRAME_RATE = 60; /* desired game framerate */
+inline constexpr double PHYSICS_RATE = 1000.0 / 24.0; /* internal physics originally assumed this framerate */
 
 Game::Game()
 {
@@ -83,11 +84,12 @@ int Game::run()
             }
 
             /* Main loop */
+            const auto refresh_rate = 1000 / FRAME_RATE;
             for (Uint32 ticksLast = SDL_GetTicks(); /**/; ticksLast = SDL_GetTicks()) {
                 if (handlePlayerInput() == 1)
                     return 0;
 
-                if (letObjectsInteract() == 1)
+                if (letObjectsInteract(refresh_rate / PHYSICS_RATE) == 1)
                     return gameOver();
 
                 if (drawObjectsToScreen() == 1)
@@ -95,7 +97,6 @@ int Game::run()
 
                 // throttle game frame-rate
                 const auto tdiff = SDL_GetTicks() - ticksLast;
-                const auto refresh_rate = 1000 / FRAME_RATE;
                 if (tdiff < refresh_rate)
                     SDL_Delay(refresh_rate - tdiff);
             }
@@ -133,12 +134,12 @@ int Game::handlePlayerInput()
     return 0;
 }
 
-int Game::letObjectsInteract()
+int Game::letObjectsInteract(double dt)
 {
     // takeAction handles gravity
-    player_->takeAction();
+    player_->takeAction(dt);
     for (auto & star : star_list_)
-        star->takeAction();
+        star->takeAction(dt);
 
     /* Remove stars if the player touches them or they disappear off screen */
     for (auto it = star_list_.begin(); it != star_list_.end();)

@@ -84,9 +84,10 @@ private:
      * All action happens here
      *
      * \brief lets objects interact with each other
+     * \param dt - Time elapsed. This is on a timescale where 1.0 corresponds to 41.6667 msec (24 FPS)
      * \return 1 if player has died
      */
-    int letObjectsInteract();
+    int letObjectsInteract(double dt);
 
     /*!
      * \brief draw updates to screen

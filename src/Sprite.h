@@ -33,7 +33,8 @@ public:
     virtual ~Sprite();
 
     /// May be called every frame to animate or otherwise have the sprite do something (Player and BasicStar reimplement)
-    virtual void takeAction() {}
+    /// Default implementation just increments current_image_ whenever cumulative dt exceeds 1.0.
+    virtual void takeAction(double dt);
 
     /*!
      * \return filename of image file
@@ -77,10 +78,13 @@ public:
     void modifyY(int mod);
 
 protected:
-    short current_image_;         /*!< If the sprite has many images, this handles them */
+    short getRoundedCumImageIndex() const;
+    void incrCumImageIndex(double dt);
+
+    double cum_image_dt{0.0};     /*!< If the sprite has many images, this handles them */
     short num_images_;            /*!< How many images a Sprite has */
-    short x_;                     /*!< Sprite's position on the x-axis */
-    short y_;                     /*!< Sprite's position on the y-acis */
+    double x_;                    /*!< Sprite's position on the x-axis */
+    double y_;                    /*!< Sprite's position on the y-acis */
     short initial_y_;             /*! Sprite's original position on the y-axis */
     const unsigned short width_;  /*!< Sprite's image's width */
     const unsigned short height_; /*!< Sprite's image's height */

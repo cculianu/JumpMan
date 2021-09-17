@@ -28,11 +28,6 @@ public:
     /// Destructor
     ~BasicStar() override;
 
-    /*!
-     * \brief The common star method for doing things
-     */
-    void takeAction() override;
-
 private:
     /*!
      * \brief Set the enemy's x to a random number
