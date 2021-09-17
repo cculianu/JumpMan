@@ -10,8 +10,9 @@
 #include "Player.h"
 
 
-Player::Player()
-    : Sprite("player", 0, 0, 20, 40, 1), dx_(0), dy_(0), standing_on_floor_(true), score_(0), facing_direction_(true)
+Player::Player(unsigned sw)
+    : Sprite("player", 0, 0, 20, 40, 1),
+      screen_width(sw), dx_(0), dy_(0), standing_on_floor_(true), score_(0), facing_direction_(true)
 {
 }
 
@@ -41,12 +42,12 @@ bool Player::touches(Sprite *other)
     return false;
 }
 
-void Player::handleGravity(const signed screen_width)
+void Player::takeAction()
 {
     /* X-axis - Make sure that the player does not escape the screen
      * NB that x:0 is in the middle of the screen */
     const signed NEW_X = this->x_ + this->dx_;
-    const signed BORDER_X = (screen_width - this->width_) / 2;
+    const signed BORDER_X = (int(screen_width) - this->width_) / 2;
 
     if (this->dx_ != 0 && NEW_X >= -BORDER_X && NEW_X <= BORDER_X)
         this->x_ = NEW_X;

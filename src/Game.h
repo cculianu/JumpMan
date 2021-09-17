@@ -72,7 +72,7 @@ private:
     std::list<std::unique_ptr<BasicStar>> star_list_;
 
     /// Player instance
-    Player player_;
+    std::unique_ptr<Player> player_;
 
     /*!
      * \brief handles player input

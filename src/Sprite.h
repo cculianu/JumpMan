@@ -32,6 +32,9 @@ public:
     /// Destructor
     virtual ~Sprite();
 
+    /// May be called every frame to animate or otherwise have the sprite do something (Player and BasicStar reimplement)
+    virtual void takeAction() {}
+
     /*!
      * \return filename of image file
      */

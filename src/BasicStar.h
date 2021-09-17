@@ -31,7 +31,7 @@ public:
     /*!
      * \brief The common star method for doing things
      */
-    virtual void takeAction();
+    void takeAction() override;
 
 private:
     /*!

@@ -18,7 +18,7 @@ class Player : public Sprite
 {
 public:
     /// Constructor
-    Player();
+    Player(unsigned screen_width);
 
     /// Destructor
     ~Player() override;
@@ -37,9 +37,8 @@ public:
 
     /*!
      * \brief Manages player's movement depending on dx and dy
-     * \param screen_width width of game screen
      */
-    void handleGravity(const signed screen_width);
+    void takeAction() override;
 
     /*!
      * \brief Jump a short distance into the air
@@ -70,9 +69,10 @@ public:
     short imageY() const;
 
 private:
-    short dx_;               /*!< Current x-axis movement */
-    short dy_;               /*!< Current y-axis movement */
-    bool standing_on_floor_; /*!< True if player has not yet jumped */
-    size_t score_;           /*!< Current player score */
-    bool facing_direction_;  /*!< Direction the player is facing, false = right */
+    const unsigned screen_width;  /*!< X-axis width of play area */
+    short dx_;                    /*!< Current x-axis movement */
+    short dy_;                    /*!< Current y-axis movement */
+    bool standing_on_floor_;      /*!< True if player has not yet jumped */
+    size_t score_;                /*!< Current player score */
+    bool facing_direction_;       /*!< Direction the player is facing, false = right */
 };
