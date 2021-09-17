@@ -1,6 +1,6 @@
 #pragma once
 
-/*! 
+/*!
  * \file BasicStar.hh
  * \brief File containing the BasicStar class Header
  *
@@ -17,8 +17,7 @@
  */
 class BasicStar : public Sprite
 {
-  public:
-
+public:
     /*!
      * \brief Constructor
      * \param y position of last BasicStar
@@ -26,22 +25,18 @@ class BasicStar : public Sprite
      */
     BasicStar(short y, int edge_coord);
 
-    ///Destructor
-    ~BasicStar();
+    /// Destructor
+    ~BasicStar() override;
 
     /*!
-     * \brief The common star method for doing things 
+     * \brief The common star method for doing things
      */
     virtual void takeAction();
 
-
-  private:
-
+private:
     /*!
      * \brief Set the enemy's x to a random number
      * \param edge_coord how many pixels we need to move to escape the screen
      */
     void randomizeSpawn(int edge_coord);
-
-
 };

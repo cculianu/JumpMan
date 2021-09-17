@@ -1,6 +1,6 @@
 #pragma once
 
-/*! 
+/*!
  * \file GraphicsEngine.hh
  * \brief File containing the GraphicsEngine class Header
  *
@@ -11,50 +11,46 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 
-#include <string>
 #include <map>
+#include <string>
 
-
-typedef SDL_Rect rect_t;
+using rect_t = SDL_Rect;
 
 /*!
  * \enum event_t
  * \brief events describing user input
  */
-enum event_t 
-{ 
-  LEFT,      /*!< Player wants to move left */
-  RIGHT,     /*!< Player wants to move right */
-  UP,        /*!< Player wants to jump */
-  STILL,     /*!< Player wants to stop moving */
-  PAUSEPLAY, /*!< Player wants to pause/play music */
-  NOTHING,   /*!< Unknown input received */
-  QUIT       /*!< User wants to exit the game */
+enum event_t {
+    LEFT,      /*!< Player wants to move left */
+    RIGHT,     /*!< Player wants to move right */
+    UP,        /*!< Player wants to jump */
+    STILL,     /*!< Player wants to stop moving */
+    PAUSEPLAY, /*!< Player wants to pause/play music */
+    NOTHING,   /*!< Unknown input received */
+    QUIT       /*!< User wants to exit the game */
 };
 
 /*!
  * \enum text_color_t
- * \brief text colors available 
+ * \brief text colors available
  */
-enum text_color_t
-{
-  CYAN,    /*!< Cyan */
-  YELLOW,  /*!< Yellow */
-  ORANGE   /*!< Orange */
+enum text_color_t {
+    CYAN,   /*!< Cyan */
+    YELLOW, /*!< Yellow */
+    ORANGE  /*!< Orange */
 };
 
 /*!
  * \class GraphicsEngine
  * \brief Class for managing graphics and events
  *
- * GraphicsEngine handles all input from the user and 
+ * GraphicsEngine handles all input from the user and
  * handles all drawing of images on the screen.
  * Only one GraphicsEngine can be active at one time
  */
 class GraphicsEngine
 {
-  public:
-
+public:
     /*!
      * \brief Contructor
      * \param title The title that will be seen on the titlebar
@@ -63,31 +59,28 @@ class GraphicsEngine
      * \param screen_bpp The amount of bits per pixel (color)
      * \param frame_rate The frames per second we want to display
      */
-    GraphicsEngine(const std::string &title,
-                   const unsigned screen_width,
-                   const unsigned screen_height,
-                   const unsigned screen_bpp,
-                   const unsigned frame_rate);
+    GraphicsEngine(const std::string &title, const unsigned screen_width, const unsigned screen_height,
+                   const unsigned screen_bpp, const unsigned frame_rate);
 
-    ///Disabled copy constructor
-    GraphicsEngine(const GraphicsEngine&) = delete;
+    /// Disabled copy constructor
+    GraphicsEngine(const GraphicsEngine &) = delete;
 
-    ///Destructor
+    /// Destructor
     ~GraphicsEngine();
 
-    ///Disabled copy constructor
-    void operator=(const GraphicsEngine&) = delete;
+    /// Disabled copy constructor
+    void operator=(const GraphicsEngine &) = delete;
 
     /*!
      * \brief Loads and image from the disk into the RAM
-     * \param filename  Name of the image file inside graphics/ folder 
+     * \param filename  Name of the image file inside graphics/ folder
      (example: to load graphics/player.png, filename should be "player")
-     * \return true on success 
+     * \return true on success
      */
     bool loadImage(const std::string &filename);
 
     /*!
-     * \brief returns a string describing last error that occurred 
+     * \brief returns a string describing last error that occurred
      */
     std::string getLastError() const;
 
@@ -113,7 +106,7 @@ class GraphicsEngine
     void drawText(const std::string &text, unsigned y, text_color_t = CYAN);
 
     /*!
-     * \brief Flushes the screen so it's visible to the user 
+     * \brief Flushes the screen so it's visible to the user
      * \return true on success
      */
     bool updateScreen();
@@ -124,53 +117,50 @@ class GraphicsEngine
      * \param target string to store the received string
      * \param y the center on the y-axis where we will draw
      */
-    void getStringFromPlayer(unsigned max_letters, std::string &target,
-                             unsigned y);
+    void getStringFromPlayer(unsigned max_letters, std::string &target, unsigned y);
 
     /*!
      * \brief Non-blocking function to check event depending on user input.
      * \param event The event received from user
-     * \return true if there are more pending events 
+     * \return true if there are more pending events
      */
     bool getEvent(event_t &event) const;
 
     /// Waits until a key is pressed
     void waitForKeypress() const;
 
-    ///Returns width of game screen
+    /// Returns width of game screen
     unsigned screen_width() const;
 
-    ///Returns height of game screen
+    /// Returns height of game screen
     unsigned screen_height() const;
 
-
-  private:
-
-    ///Title to display on the game's status bar
+private:
+    /// Title to display on the game's status bar
     const std::string TITLE;
 
-    ///Width of the game screen
+    /// Width of the game screen
     const unsigned SCREEN_WIDTH;
 
-    ///Height of the game screen
+    /// Height of the game screen
     const unsigned SCREEN_HEIGHT;
 
-    ///Screen bits per pixel (color)
+    /// Screen bits per pixel (color)
     const unsigned SCREEN_BPP;
 
-    ///Screen frames per second
+    /// Screen frames per second
     const unsigned short FRAME_RATE;
 
-    ///Map of filename and image we have loaded from disk
+    /// Map of filename and image we have loaded from disk
     std::map<std::string, SDL_Surface *> images_;
 
-    ///The time updateScreen() last was called
+    /// The time updateScreen() last was called
     size_t time_of_last_refresh_;
 
-    ///Font to use
+    /// Font to use
     TTF_Font *font_{};
 
-    ///The game screen
+    /// The game screen
     SDL_Window *win{};
     SDL_Surface *screen_{}; // the window's surface
 };

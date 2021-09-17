@@ -10,6 +10,7 @@
  */
 
 #include <SDL_mixer.h>
+
 #include <string>
 
 /*!
@@ -18,19 +19,18 @@
  */
 class AudioEngine
 {
-  public:
-
-    ///Constructor
+public:
+    /// Constructor
     AudioEngine();
 
-    ///Disabled copy constructor
-    AudioEngine(const AudioEngine&) = delete;
+    /// Disabled copy constructor
+    AudioEngine(const AudioEngine &) = delete;
 
-    ///Destructor
+    /// Destructor
     ~AudioEngine();
 
-    ///Disabled copy constructor
-    void operator=(const AudioEngine&) = delete;
+    /// Disabled copy constructor
+    void operator=(const AudioEngine &) = delete;
 
     /*!
      * \brief Loads the background music from disk
@@ -56,21 +56,20 @@ class AudioEngine
      * \brief Start playing background music
      * \return true on success
      */
-    bool startPlaying();
+    bool startPlayingBackgroundMusic(short volume = -1);
 
     /*!
      * \brief Toggles pause/play music
      */
-    void togglePausePlay();
+    void togglePausePlayBackgroundMusic();
 
-  private:
+private:
+    /// Background music
+    Mix_Music *background_music_{};
 
-    ///Background music
-    Mix_Music *background_music_;
+    /// Start sound effect
+    Mix_Chunk *star_effect_{};
 
-    ///Start sound effect
-    Mix_Chunk *star_effect_;
-
-    ///Keeps track if music is paused or playing
-    bool is_playing_;
+    /// Keeps track if music is paused or playing
+    bool is_playing_{};
 };

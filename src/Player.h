@@ -1,6 +1,6 @@
 #pragma once
 
-/*! 
+/*!
  * \file Player.hh
  * \brief File containing the Player class Header
  *
@@ -14,15 +14,14 @@
 /*!
  * \brief Player class
  */
-class Player: public Sprite
+class Player : public Sprite
 {
-  public:
-
-    ///Constructor
+public:
+    /// Constructor
     Player();
 
-    ///Destructor
-    ~Player();
+    /// Destructor
+    ~Player() override;
 
     /*!
      * \brief resets player to starting position
@@ -46,7 +45,7 @@ class Player: public Sprite
      * \brief Jump a short distance into the air
      * \param force_push if true, this is not due to the player jumping
      */
-    void jump(bool force_push=false);
+    void jump(bool force_push = false);
 
     /*!
      * \brief Set player to in movement on the x-axis
@@ -63,15 +62,14 @@ class Player: public Sprite
      * Player image is a bit special so it has its own imageX()
      * \return x of the image the Sprite wants to draw
      */
-    short imageX();
+    short imageX() override;
 
     /*!
      * \returns y of the image the Sprite wants to draw
      */
     short imageY() const;
 
-
-  private:
+private:
     short dx_;               /*!< Current x-axis movement */
     short dy_;               /*!< Current y-axis movement */
     bool standing_on_floor_; /*!< True if player has not yet jumped */

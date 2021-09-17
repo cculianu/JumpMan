@@ -1,5 +1,7 @@
 #pragma once
 
+#include <array>
+#include <cstdint>
 #include <string>
 #include <utility>
 
@@ -20,19 +22,18 @@
 
 class Highscore
 {
-  public:
-
-    ///Constructor
+public:
+    /// Constructor
     Highscore(const std::string &filename);
 
-    ///Disabled copy constructor
-    Highscore(const Highscore&) = delete;
+    /// Disabled copy constructor
+    Highscore(const Highscore &) = delete;
 
-    ///Destructor
+    /// Destructor
     ~Highscore();
 
-    ///Disabled copy constructor
-    void operator=(const Highscore&) = delete;
+    /// Disabled copy constructor
+    void operator=(const Highscore &) = delete;
 
     /*!
      * Returns the score at the nth position
@@ -59,8 +60,7 @@ class Highscore
      */
     size_t size() const;
 
-  private:
-
+private:
     /*!
      * \brief Reads the highscore-file to a given string
      * \param highscore_string the string to overwrite
@@ -74,7 +74,9 @@ class Highscore
      */
     void readStringToArray(const std::string &highscore_string);
 
-    const std::string filename_;
-    std::pair<size_t, std::string> highscore_[10];
+    /// Save high scores to the .highscore file
+    void save() const;
 
+    const std::string filename_;
+    std::array<std::pair<size_t, std::string>, 10> highscore_;
 };

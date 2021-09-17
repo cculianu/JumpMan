@@ -1,6 +1,6 @@
 #pragma once
 
-/*! 
+/*!
  * \file Sprite.hh
  * \brief File containing the Sprite class Header
  *
@@ -18,7 +18,6 @@
 class Sprite
 {
 public:
-    
     /*!
      * \brief Constructor
      * \param filename Name of the object's image-file inside graphics/
@@ -28,22 +27,10 @@ public:
      * \param height height of image
      * \param num_images how many images this Sprite has
      */
-    Sprite(std::string filename, short x, short y, 
-           unsigned short width, unsigned short height, short num_images);
-    /*!
-     * \brief Copy Constructor
-     * \param other Sprite to copy
-     */
-    Sprite(const Sprite &other);
+    Sprite(const std::string &filename, short x, short y, unsigned short width, unsigned short height, short num_images);
 
-    ///Destructor
+    /// Destructor
     virtual ~Sprite();
-
-    /*!
-     * \brief Copy Constructor
-     * \param other Sprite to copy
-     */
-    Sprite &operator=(const Sprite &other);
 
     /*!
      * \return filename of image file
@@ -73,7 +60,7 @@ public:
     /*!
      * \return x of the image the Sprite wants to draw
      */
-    virtual short imageX(); 
+    virtual short imageX();
 
     /*!
      * \brief the position of the y-axis this sprite was initiated at
@@ -87,14 +74,12 @@ public:
     void modifyY(int mod);
 
 protected:
-    short current_image_; /*!< If the sprite has many images, this handles them */
-    short num_images_;    /*!< How many images a Sprite has */
-    short x_; /*!< Sprite's position on the x-axis */
-    short y_; /*!< Sprite's position on the y-acis */
-    short initial_y_; /*! Sprite's original position on the y-axis */
+    short current_image_;         /*!< If the sprite has many images, this handles them */
+    short num_images_;            /*!< How many images a Sprite has */
+    short x_;                     /*!< Sprite's position on the x-axis */
+    short y_;                     /*!< Sprite's position on the y-acis */
+    short initial_y_;             /*! Sprite's original position on the y-axis */
     const unsigned short width_;  /*!< Sprite's image's width */
     const unsigned short height_; /*!< Sprite's image's height */
-    std::string filename_; /*!< Sprite's image's filename */
-
-private:
+    std::string filename_;        /*!< Sprite's image's filename */
 };

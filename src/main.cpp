@@ -4,7 +4,7 @@
 
 int main()
 {
-    SDL_SetMainReady();  // tell libsdl we have our own main, so that it sets things up for us
+    SDL_SetMainReady(); // tell libsdl we have our own main, so that it sets things up for us
     Game game;
     int return_value;
 

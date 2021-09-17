@@ -1,6 +1,6 @@
 #pragma once
 
-/*! 
+/*!
  * \file MovingStar.hh
  * \brief File containing the MovingStar class Header
  *
@@ -17,8 +17,7 @@
  */
 class MovingStar : public BasicStar
 {
-  public:
-
+public:
     /*!
      * \brief Constructor
      * \param y position of last BasicStar
@@ -26,15 +25,13 @@ class MovingStar : public BasicStar
      */
     MovingStar(short y, int edge_coord);
 
-    ///Destructor
-    ~MovingStar();
+    /// Destructor
+    ~MovingStar() override;
 
-    ///Overloaded from BasicStar
-    void takeAction();
+    /// Overloaded from BasicStar
+    void takeAction() override;
 
-  private:
+private:
     short dx_;
     short dy_;
-
-
 };
