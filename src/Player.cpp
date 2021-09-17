@@ -78,6 +78,7 @@ void Player::jump(int force_push_level)
             this->dy_ = 10.0;
         this->dy_ += 10.0 * force_push_level /* moving star bonus */;
         dy_ = std::min(dy_, SPEED_LIMIT); // limit speed to something sane (if too high, game becomes too easy)
+        this->standing_on_floor_ = false; // never allow them to use the jetpack again!
     }
 
     else if (this->standing_on_floor_) {

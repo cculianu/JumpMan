@@ -76,9 +76,9 @@ private:
 
     /*!
      * \brief handles player input
-     * \return 1 if user want to quit the game
+     * \return true if user wants to quit the game, false otherwise
      */
-    int handlePlayerInput();
+    bool handlePlayerInput();
 
     /*!
      * All action happens here
@@ -91,22 +91,21 @@ private:
 
     /*!
      * \brief draw updates to screen
-     * \return 1 on graphics failure
+     * \return false on graphics failure, true on success
      */
-    int drawObjectsToScreen();
+    bool drawObjectsToScreen();
 
     /// Add stars to star_list_ until they fill up the screen
     void addStars();
 
     /*!
      * \brief Triggers when the player fails
-     * \return always returns 2
      *
      * This basically adds a "You have lost"-text to the screen and
      * restarts the players game upon keypress. It will also
      * handle player's highscore
      */
-    int gameOver();
+    void gameOver();
 
 public:
     class RandGen {

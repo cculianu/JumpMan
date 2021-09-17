@@ -86,14 +86,16 @@ int Game::run()
             /* Main loop */
             const auto refresh_rate = 1000 / FRAME_RATE;
             for (Uint32 ticksLast = SDL_GetTicks(); /**/; ticksLast = SDL_GetTicks()) {
-                if (handlePlayerInput() == 1)
-                    return 0;
+                if (handlePlayerInput())
+                    return 0; // user quit
 
-                if (letObjectsInteract(refresh_rate / PHYSICS_RATE) == 1)
-                    return gameOver();
+                if (letObjectsInteract(refresh_rate / PHYSICS_RATE) == 1) {
+                    gameOver(); // TODO: fix this to not use a local event loop
+                    return 2;
+                }
 
-                if (drawObjectsToScreen() == 1)
-                    return 1;
+                if (!drawObjectsToScreen())
+                    return 1; // graphics failure
 
                 // throttle game frame-rate
                 const auto tdiff = SDL_GetTicks() - ticksLast;
@@ -101,11 +103,11 @@ int Game::run()
                     SDL_Delay(refresh_rate - tdiff);
             }
         }();
-    } while(retval == 2);
+    } while (retval == 2);
     return retval;
 }
 
-int Game::handlePlayerInput()
+bool Game::handlePlayerInput()
 {
     event_t event = NOTHING;
     while (graphics_->getEvent(event))
@@ -126,12 +128,12 @@ int Game::handlePlayerInput()
             audio_->togglePausePlayBackgroundMusic();
             break;
         case QUIT:
-            return 1;
+            return true;
             break;
         default:
             break;
         }
-    return 0;
+    return false;
 }
 
 int Game::letObjectsInteract(double dt)
@@ -167,7 +169,7 @@ int Game::letObjectsInteract(double dt)
     return 0;
 }
 
-int Game::drawObjectsToScreen()
+bool Game::drawObjectsToScreen()
 {
     rect_t draw_to;
     rect_t draw_from;
@@ -192,10 +194,7 @@ int Game::drawObjectsToScreen()
     graphics_->drawText(score_string, 20);
 
     /* Flush */
-    if (graphics_->updateScreen() == false)
-        return 1;
-
-    return 0;
+    return graphics_->updateScreen();
 }
 
 void Game::addStars()
@@ -221,7 +220,7 @@ void Game::addStars()
     }
 }
 
-int Game::gameOver()
+void Game::gameOver()
 {
     Highscore highscore(".highscore");
     bool new_highscore = highscore.add(player_->score());
@@ -258,5 +257,4 @@ int Game::gameOver()
     graphics_->drawText("Press any key to continue", screen_height + 440);
     graphics_->updateScreen();
     graphics_->waitForKeypress();
-    return 2;
 }
