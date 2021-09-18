@@ -45,7 +45,9 @@ struct Game::GameOver
     State state = Begin;
     std::string nick{};
     size_t new_idx{};
-    Highscore highscore{".highscore"};
+    Highscore highscore;
+
+    GameOver(const std::string &filename, std::function<void()> on_save = {}) : highscore{filename, on_save} {}
 };
 
 
@@ -69,6 +71,18 @@ Game::Game()
     audio_->startPlayingBackgroundMusic(50);
 
     player_ = std::make_unique<Player>(graphics_->screen_width());
+
+    // If we are running under emscripten, set up the /data mountpoint
+#ifdef __EMSCRIPTEN__
+    EM_ASM(
+        // Make a directory other than '/'
+        FS.mkdir('/persistent_data');
+        // Then mount with IDBFS type
+        FS.mount(IDBFS, {}, '/persistent_data');
+        // Then sync
+        FS.syncfs(true, function (err) {});
+    );
+#endif
 }
 
 Game::~Game()
@@ -124,8 +138,17 @@ auto Game::runStep() -> RunStepResult
         if (handlePlayerInput())
             return R::Quit; // user quit
 
-        if (letObjectsInteract(tdiff / PHYSICS_RATE) == 1)
-            game_over = std::make_unique<GameOver>(); // indicates game over if this is set
+        if (letObjectsInteract(tdiff / PHYSICS_RATE) == 1) {
+            // indicates game over if this is set
+#ifdef __EMSCRIPTEN__
+            game_over = std::make_unique<GameOver>("/persistent_data/highscore", []{
+                // sync
+                EM_ASM(FS.syncfs(false, function (err) {}););
+            });
+#else
+            game_over = std::make_unique<GameOver>(".highscore");
+#endif
+        }
     }
 
     drawObjectsToScreen();
@@ -151,8 +174,8 @@ void Game::reset()
     /* Reset Starlist */
     star_list_.clear();
 
-    game_over.reset()
-;
+    game_over.reset();
+
     ticks_last_ = start_ticks_ = SDL_GetTicks();
 }
 

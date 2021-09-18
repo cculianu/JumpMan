@@ -12,6 +12,7 @@
 
 #include <array>
 #include <cstdint>
+#include <functional>
 #include <string>
 #include <optional>
 #include <utility>
@@ -26,7 +27,7 @@ class Highscore
 {
 public:
     /// Constructor
-    Highscore(const std::string &filename);
+    Highscore(const std::string &filename, const std::function<void()> & on_save_callback = {});
 
     /// Disabled copy constructor
     Highscore(const Highscore &) = delete;
@@ -80,5 +81,6 @@ private:
     void save() const;
 
     const std::string filename_;
+    const std::function<void()> on_save_cb;
     std::array<std::pair<size_t, std::string>, 10> highscore_;
 };

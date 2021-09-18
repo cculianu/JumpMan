@@ -16,8 +16,8 @@
 #include <fstream>
 
 
-Highscore::Highscore(const std::string &filename)
-    : filename_(filename)
+Highscore::Highscore(const std::string &filename, const std::function<void()> &on_save)
+    : filename_(filename), on_save_cb(on_save)
 {
     for (auto & [score, xx] : highscore_) score = 0; // clear scores
 
@@ -38,7 +38,7 @@ void Highscore::save() const
             highscore_of << score << name << '\n';
         highscore_of.close();
     }
-
+    if (on_save_cb) on_save_cb();
 }
 std::pair<size_t, std::string> Highscore::get(unsigned n) const
 {
