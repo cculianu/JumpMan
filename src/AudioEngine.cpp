@@ -79,7 +79,7 @@ bool AudioEngine::loadStarSoundEffect(const std::string &filename1, const std::s
     return ret;
 }
 
-bool AudioEngine::loadJetPackSoundEffect(const std::string &filename)
+bool AudioEngine::loadJetpackSoundEffect(const std::string &filename)
 {
     if (jetpack_effect_ != nullptr) {
         Game::Warning("JetPack sound effect already loaded!");
@@ -100,13 +100,13 @@ bool AudioEngine::playStarSound(bool which) const
     return Mix_PlayChannel(-1, star_effects_[which], 0) == 0;
 }
 
-bool AudioEngine::playJetPackSound() const
+bool AudioEngine::playJetpackSound() const
 {
     last_played_jetpack_effect_ = SDL_GetTicks();
     return Mix_PlayChannel(-1, jetpack_effect_, 0) == 0;
 }
 
-unsigned AudioEngine::lastPlayedJetPackSoundAgeMS() const
+unsigned AudioEngine::lastPlayedJetpackSoundAgeMS() const
 {
     return SDL_GetTicks() - last_played_jetpack_effect_;
 }

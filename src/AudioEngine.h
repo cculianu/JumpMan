@@ -41,7 +41,7 @@ public:
 
     /*!
      * \brief Loads the player-touching-star sound effect
-     * \param path to file
+     * \param path to files
      * \return true on success
      */
     bool loadStarSoundEffect(const std::string &filename1, const std::string &filename2);
@@ -50,17 +50,17 @@ public:
      * \param path to file
      * \return true on success
      */
-    bool loadJetPackSoundEffect(const std::string &filename);
+    bool loadJetpackSoundEffect(const std::string &filename);
 
     /*!
      * \brief Attempts to play the star sound effect
      * \return true on success
      */
     bool playStarSound(bool movingStar = false) const;
-    bool playJetPackSound() const;
+    bool playJetpackSound() const;
 
     /// Returns the age in milliseconds of the last time we played the jetpack sound
-    unsigned lastPlayedJetPackSoundAgeMS() const;
+    unsigned lastPlayedJetpackSoundAgeMS() const;
 
     /*!
      * \brief Start playing background music
