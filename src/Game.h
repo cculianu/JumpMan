@@ -77,6 +77,9 @@ private:
     /// The last time the game was started
     unsigned start_ticks_{};
 
+    /// The tick count the last time runStep() was called
+    unsigned ticks_last_{};
+
     /// The current FPS
     double fps_ = 0.;
 
@@ -87,6 +90,9 @@ private:
     /// Advances the game forward by 1 frame. Called from run().
     /// \return 0 if user quit, 1 on error, 2 if the game should restart, 3 if game should keep going
     int runStep();
+
+    /// Reset the game to start state
+    void reset();
 
     /*!
      * \brief handles player input

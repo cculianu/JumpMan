@@ -19,7 +19,19 @@
 #include <cstdlib>
 #include <iostream>
 
-inline constexpr unsigned FRAME_RATE = 60; /* desired game framerate */
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+inline constexpr bool IS_EMSCRIPTEN = true;
+#else
+inline constexpr bool IS_EMSCRIPTEN = false;
+// emulated function so we can use if constexpr below....
+template <typename ...Args>
+void emscripten_set_main_loop_arg(Args && ...args [[maybe_unused]]) {
+    assert(!"emscripten_set_main_loop_arg called in non-EMSCRIPTEN code! FIXME!");
+}
+#endif // __EMSCRIPTEN__
+
+inline constexpr unsigned FRAME_RATE = 60; /* desired game framerate (non-EMSCRIPTEN only) */
 inline constexpr unsigned REFRESH_RATE = 1000 / FRAME_RATE;
 inline constexpr double   PHYSICS_RATE = 1000.0 / 24.0; /* internal physics originally assumed this framerate */
 inline constexpr unsigned JETPACK_SOUND_DURATION_MS = 388;
@@ -76,11 +88,27 @@ Game::RandGen Game::GetRandGen(int from, int to)
 
 int Game::runStep()
 {
+    unsigned tdiff = SDL_GetTicks() - ticks_last_;
+
+    // throttle game frame-rate (non-emscripten mode only)
+    if constexpr (!IS_EMSCRIPTEN) {
+        if (tdiff < REFRESH_RATE) {
+            SDL_Delay(REFRESH_RATE - tdiff);
+            tdiff = SDL_GetTicks() - ticks_last_;
+        }
+    }
+
+    // take rolling average of last 10 values
+    fps_ = fps_ * 10.0 + 1000.0 / tdiff;
+    fps_ /= 11.0;
+
+    ticks_last_ = SDL_GetTicks();
+
     if (handlePlayerInput())
         return 0; // user quit
 
-    if (letObjectsInteract(REFRESH_RATE / PHYSICS_RATE) == 1) {
-        gameOver(); // TODO: fix this to not use a local event loop
+    if (letObjectsInteract(tdiff / PHYSICS_RATE) == 1) {
+        gameOver(); // TODO: fix this to not use a local event loop (hangs on emscripten)
         return 2;
     }
 
@@ -90,37 +118,51 @@ int Game::runStep()
     return 3;
 }
 
+void Game::reset()
+{
+    /* Reset Player */
+    player_->reset();
+
+    /* Reset Starlist */
+    star_list_.clear();
+
+    ticks_last_ = start_ticks_ = SDL_GetTicks();
+}
+
 int Game::run()
 {
-    int retval = 2;
-    /* Main loop */
-    for (Uint32 ticksLast = SDL_GetTicks(); retval == 2 || retval == 3; ticksLast = SDL_GetTicks()) {
+    reset();
+    if constexpr (!IS_EMSCRIPTEN) {
+        // Regular desktop app main loop
+        int retval;
+        do {
+            // Advance game forward by 1 frame
+            retval = runStep();
 
-        if (retval == 2) { // retval == 2 indicates game restart
-            /* Reset Player */
-            player_->reset();
-
-            /* Reset Starlist */
-            if (star_list_.size() > 0) {
-                star_list_.clear();
-            }
-
-            start_ticks_ = SDL_GetTicks();
-        }
-
-        // Advance game forward by 1 frame
-        retval = runStep();
-
-        // throttle game frame-rate
-        const auto tdiff = SDL_GetTicks() - ticksLast;
-        if (tdiff < REFRESH_RATE)
-            SDL_Delay(REFRESH_RATE - tdiff);
-
-        // take rolling average of last 10 values
-        fps_ = fps_ * 10.0 + 1000.0 / (SDL_GetTicks() - ticksLast);
-        fps_ /= 11.0;
+            if (retval == 2) // retval == 2 indicates game restart
+                reset();
+        } while (retval == 2 || retval == 3);
+        return retval;
+    } else {
+        // EMSCRIPTEN, use the weird callback mechanism to continually pass control to JS and not hang browser.
+        try {
+            emscripten_set_main_loop_arg([](void *arg){
+                Game * const self = static_cast<Game *>(arg);
+                switch (const int r = self->runStep()) {
+                case 2: // game restart
+                    self->reset();
+                    break;
+                case 3: // continue as normal
+                    break;
+                default:
+                    // otherwise game exit (doesn't seem to work in emscripten :/)
+                    std::_Exit(r);
+                    break;
+                }
+            }, this, 0, 1);
+        } catch (...) {}
+        return 0;
     }
-    return retval;
 }
 
 bool Game::handlePlayerInput()
