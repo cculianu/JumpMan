@@ -1,10 +1,12 @@
 /*!
- * \file GraphicsEngine.cc
+ * \file GraphicsEngine.cpp
  * \brief File containing the GraphicsEngine source code
  *
  * \author Olle Kvarnström
  * \date 2013
  * \copyright GNU Public License
+ *
+ * Heavily modified by Calin A. Culianu <calin.culianu@gmail.com>
  */
 #include "GraphicsEngine.h"
 #include "Game.h"
@@ -14,9 +16,8 @@
 
 #include <algorithm>
 
-GraphicsEngine::GraphicsEngine(const std::string &title, const unsigned screen_width, const unsigned screen_height,
-                               const unsigned screen_bpp)
-    : TITLE(title), SCREEN_WIDTH(screen_width), SCREEN_HEIGHT(screen_height), SCREEN_BPP(screen_bpp)
+GraphicsEngine::GraphicsEngine(const std::string &title, const unsigned screen_width, const unsigned screen_height)
+    : TITLE(title), SCREEN_WIDTH(screen_width), SCREEN_HEIGHT(screen_height)
 {
     /* Init SDL*/
     if (SDL_Init(SDL_INIT_VIDEO) == -1)
@@ -176,119 +177,6 @@ void GraphicsEngine::drawText(const std::string &text, unsigned y, text_color_t 
 bool GraphicsEngine::updateScreen()
 {
     return SDL_UpdateWindowSurface(win) == 0;
-}
-
-bool GraphicsEngine::getEvent(event_t &event) const
-{
-    SDL_Event sdl_event;
-    bool status = SDL_PollEvent(&sdl_event);
-
-    /* If user presses the X in the upper right corner: quit */
-    if (sdl_event.type == SDL_QUIT)
-        event = QUIT;
-
-    /* User presses a relevant key, return info */
-    else if (sdl_event.type == SDL_KEYDOWN)
-        switch (sdl_event.key.keysym.sym) {
-        case SDLK_q:
-            event = QUIT;
-            break;
-        case SDLK_p:
-            event = PAUSEPLAY;
-            break;
-        case SDLK_LEFT:
-            event = LEFT;
-            break;
-        case SDLK_RIGHT:
-            event = RIGHT;
-            break;
-        case SDLK_UP:
-            event = UP;
-            break;
-        case SDLK_f:
-            event = FPS_TOGGLE;
-            break;
-        default:
-            event = NOTHING;
-            break;
-        }
-
-    /* If user releases
-     * 1. Right arrow key but still holds the left: event = LEFT
-     * 2. Left arrow key but still hold the right: event = RIGHT
-     * 3. Any arrow key and does not hold any arrow key: event = STILL
-     */
-    else if (sdl_event.type == SDL_KEYUP) {
-        const auto *state = SDL_GetKeyboardState(nullptr);
-        switch (sdl_event.key.keysym.sym) {
-        case SDLK_LEFT:
-            if (state[SDL_SCANCODE_RIGHT])
-                event = RIGHT;
-            else
-                event = STILL;
-            break;
-
-        case SDLK_RIGHT:
-            if (state[SDL_SCANCODE_LEFT])
-                event = LEFT;
-            else
-                event = STILL;
-            break;
-
-        default:
-            event = NOTHING;
-            break;
-        }
-    }
-
-    /* All other SDL_Events are set to NOTHING */
-    else
-        event = NOTHING;
-
-    return status;
-}
-
-void GraphicsEngine::getStringFromPlayer(unsigned max_letters, std::string &target, unsigned y)
-{
-    /* Make a backup of the part of the screen where we will write */
-    SDL_Surface *scratch_surface = SDL_CreateRGBSurface(SDL_SWSURFACE, 100, 20, 32, 0, 0, 0, 0);
-    SDL_Rect scrrect = {static_cast<short>(SCREEN_WIDTH / 2 - scratch_surface->w / 2),
-                        static_cast<short>(y / 2 - scratch_surface->h / 2), 100, 20};
-    SDL_BlitSurface(screen_, &scrrect, scratch_surface, nullptr);
-
-    target.clear();
-    SDL_Event event;
-    for (;;) {
-        /* Clear the screen and draw the string */
-        SDL_BlitSurface(scratch_surface, nullptr, screen_, &scrrect);
-        this->drawText(target.size() ? target : " ", y, ORANGE);
-        SDL_UpdateWindowSurface(win);
-
-        SDL_WaitEvent(&event);
-        if (event.type == SDL_KEYDOWN) {
-            /* If player types A-Z, add it to string */
-            if (SDLK_a <= event.key.keysym.sym && event.key.keysym.sym <= SDLK_z && target.size() < max_letters)
-                target += static_cast<char>('A' + event.key.keysym.sym - SDLK_a);
-            /* If player presses enter - return */
-            else if (event.key.keysym.sym == SDLK_RETURN && target.size() > 0)
-                break;
-            /* If player pressed backspace - remove letter */
-            else if (event.key.keysym.sym == SDLK_BACKSPACE && target.size() > 0)
-                target = target.substr(0, target.size() - 1);
-        }
-    }
-
-    SDL_FreeSurface(scratch_surface);
-}
-
-void GraphicsEngine::waitForKeypress() const
-{
-    SDL_Event event;
-    for (;;) {
-        SDL_WaitEvent(&event);
-        if (event.type == SDL_KEYDOWN)
-            break;
-    }
 }
 
 unsigned GraphicsEngine::screen_width() const { return this->SCREEN_WIDTH; }

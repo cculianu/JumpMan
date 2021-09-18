@@ -1,13 +1,14 @@
-#pragma once
-
 /*!
- * \file AudioEngine.hh
+ * \file AudioEngine.h
  * \brief File containing the AudioEngine class Header
  *
  * \author Olle Kvarnström
  * \date 2013
  * \copyright GNU Public License
+ *
+ * Heavily modified by Calin A. Culianu <calin.culianu@gmail.com>
  */
+#pragma once
 
 #include <SDL_mixer.h>
 

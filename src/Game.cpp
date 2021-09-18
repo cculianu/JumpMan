@@ -1,10 +1,12 @@
 /*!
- * \file Game.cc
+ * \file Game.cpp
  * \brief File containing the Game class source code
  *
  * \author Olle Kvarnström
  * \date 2013
  * \copyright GNU Public License
+ *
+ * Heavily modified by Calin A. Culianu <calin.culianu@gmail.com>
  */
 #include "Game.h"
 
@@ -13,6 +15,7 @@
 #include "GraphicsEngine.h"
 #include "Highscore.h"
 #include "MovingStar.h"
+#include "tinyformat.h"
 
 #include <cassert>
 #include <chrono>
@@ -36,12 +39,21 @@ inline constexpr unsigned REFRESH_RATE = 1000 / FRAME_RATE;
 inline constexpr double   PHYSICS_RATE = 1000.0 / 24.0; /* internal physics originally assumed this framerate */
 inline constexpr unsigned JETPACK_SOUND_DURATION_MS = 388;
 
+struct Game::GameOver
+{
+    enum State { Begin, InputHS, PressAnyKey };
+    State state = Begin;
+    std::string nick{};
+    size_t new_idx{};
+    Highscore highscore{".highscore"};
+};
+
+
 Game::Game()
 {
     /* Initialize graphics */
     graphics_ = std::make_unique<GraphicsEngine>("Jumpman" /* Title */,
-                                                 1000 /* Screen width */, 600 /* Screen height */,
-                                                 32 /* Bits per pixel */);
+                                                 1000 /* Screen width */, 600 /* Screen height */);
 
     /* Load images from disk */
     if (graphics_->loadImage("player") == false || graphics_->loadImage("basic_star") == false ||
@@ -86,8 +98,10 @@ Game::RandGen Game::GetRandGen(int from, int to)
     return RandGen(gen, from, to);
 }
 
-int Game::runStep()
+auto Game::runStep() -> RunStepResult
 {
+    using R = RunStepResult;
+
     unsigned tdiff = SDL_GetTicks() - ticks_last_;
 
     // throttle game frame-rate (non-emscripten mode only)
@@ -104,18 +118,29 @@ int Game::runStep()
 
     ticks_last_ = SDL_GetTicks();
 
-    if (handlePlayerInput())
-        return 0; // user quit
+    if (!game_over) {
+        /* Normal gameplay */
 
-    if (letObjectsInteract(tdiff / PHYSICS_RATE) == 1) {
-        gameOver(); // TODO: fix this to not use a local event loop (hangs on emscripten)
-        return 2;
+        if (handlePlayerInput())
+            return R::Quit; // user quit
+
+        if (letObjectsInteract(tdiff / PHYSICS_RATE) == 1)
+            game_over = std::make_unique<GameOver>(); // indicates game over if this is set
     }
 
-    if (!drawObjectsToScreen())
-        return 1; // graphics failure
+    drawObjectsToScreen();
 
-    return 3;
+    if (game_over) {
+        /* Draw game over screen */
+        if (const auto r = drawGameOverScreen(); r != R::Continue)
+            return r; // restart, quit, or error
+    }
+
+    /* Flush backbuffer to screen */
+    if (!graphics_->updateScreen())
+        return R::Error; // graphics failure
+
+    return R::Continue;
 }
 
 void Game::reset()
@@ -126,37 +151,40 @@ void Game::reset()
     /* Reset Starlist */
     star_list_.clear();
 
+    game_over.reset()
+;
     ticks_last_ = start_ticks_ = SDL_GetTicks();
 }
 
 int Game::run()
 {
+    using R = RunStepResult;
     reset();
     if constexpr (!IS_EMSCRIPTEN) {
         // Regular desktop app main loop
-        int retval;
+        R retval;
         do {
             // Advance game forward by 1 frame
             retval = runStep();
 
-            if (retval == 2) // retval == 2 indicates game restart
+            if (retval == R::Restart) // retval == 2 indicates game restart
                 reset();
-        } while (retval == 2 || retval == 3);
-        return retval;
+        } while (retval == R::Continue || retval == R::Restart);
+        return retval == R::Error ? 1 : 0;
     } else {
         // EMSCRIPTEN, use the weird callback mechanism to continually pass control to JS and not hang browser.
         try {
             emscripten_set_main_loop_arg([](void *arg){
                 Game * const self = static_cast<Game *>(arg);
-                switch (const int r = self->runStep()) {
-                case 2: // game restart
+                switch (const R r = self->runStep()) {
+                case R::Restart: // game restart
                     self->reset();
                     break;
-                case 3: // continue as normal
+                case R::Continue: // continue as normal
                     break;
                 default:
                     // otherwise game exit (doesn't seem to work in emscripten :/)
-                    std::_Exit(r);
+                    std::_Exit(r == R::Error ? 1 : 0);
                     break;
                 }
             }, this, 0, 1);
@@ -168,7 +196,8 @@ int Game::run()
 bool Game::handlePlayerInput()
 {
     event_t event = NOTHING;
-    while (graphics_->getEvent(event))
+    while (auto optEvent = getEvent()) {
+        event = *optEvent;
         switch (event) {
         case LEFT:
             player_->move(-1);
@@ -195,6 +224,7 @@ bool Game::handlePlayerInput()
         default:
             break;
         }
+    }
     return false;
 }
 
@@ -238,7 +268,7 @@ int Game::letObjectsInteract(double dt)
     return 0;
 }
 
-bool Game::drawObjectsToScreen()
+void Game::drawObjectsToScreen()
 {
     rect_t draw_to;
     rect_t draw_from;
@@ -276,9 +306,6 @@ bool Game::drawObjectsToScreen()
         graphics_->drawText(" FPS: " + std::to_string(int(std::round(fps_))),
                             graphics_->screen_height()*2 - 20,  GREEN, AlignLeft, true, true);
     }
-
-    /* Flush */
-    return graphics_->updateScreen();
 }
 
 void Game::addStars()
@@ -304,16 +331,26 @@ void Game::addStars()
     }
 }
 
-void Game::gameOver()
+auto Game::drawGameOverScreen() -> RunStepResult
 {
-    if constexpr (IS_EMSCRIPTEN) {
-        // The below blocks the main loop and hangs the app under emscripten.
-        // TODO: fix the below to not hang the app and to just be a regular step-render function!
-        return;
-    }
+    assert(bool(game_over));
 
-    Highscore highscore(".highscore");
-    bool new_highscore = highscore.add(player_->score());
+    using ST = Game::GameOver::State;
+    using R = RunStepResult;
+    auto & state = game_over->state;
+    auto & highscore = game_over->highscore;
+    size_t & new_idx = game_over->new_idx;
+    std::string & nick = game_over->nick;
+
+    if (state == ST::Begin) {
+        if (highscore.add(player_->score(), &new_idx)) {
+            // new high score
+            state = ST::InputHS;
+        } else {
+            // not new high score
+            state = ST::PressAnyKey;
+        }
+    }
 
     const signed screen_height = graphics_->screen_height();
 
@@ -321,30 +358,147 @@ void Game::gameOver()
     graphics_->drawText("Highscore", 250);
 
     /* Draw every score from highscore */
-    bool highlight_next = new_highscore;
-    for (size_t i = 0; i < highscore.size(); ++i) {
+    bool want_highlight = state == ST::InputHS;
+    for (size_t i = 0, y = 300; i < game_over->highscore.size(); ++i) {
         text_color_t text_color = YELLOW;
-        std::string new_score = highscore.get(i);
+        auto [score, name] = highscore.get(i);
 
         /* If we managed to get into the highscore, write the score in orange */
-        if (highlight_next && player_->score() == stoul(new_score)) {
+        if (want_highlight && i == new_idx) {
             text_color = ORANGE;
-            highlight_next = false;
+            want_highlight = false;
             graphics_->drawText("New highscore!", screen_height + 150);
+            if (!nick.empty())
+                name = nick; // overwrite with current user inputted nickname in high scores
         }
-        graphics_->drawText(new_score, 300 + (i * 40), text_color);
+        if (score != 0 && !name.empty()) {
+            if (name.size() < 5) name.resize(5, ' ');
+            const std::string text = strprintf("%s  %7i", name, score);
+            graphics_->drawText(text, y, text_color);
+            y += 40;
+        }
     }
 
-    /* If we managed to get into the highscore: Ask for nickname */
-    if (new_highscore) {
-        std::string nick;
+    if (state == ST::InputHS) {
+        /* If we managed to get into the highscore: Ask for nickname */
         graphics_->drawText("Enter your name (1-5 letters) and press enter", screen_height + 200);
-        graphics_->getStringFromPlayer(5, nick, screen_height + 250);
-        highscore.setNickname(nick);
+        graphics_->drawText(nick.empty() ? " " : nick, screen_height + 250, ORANGE);
+    } else if (state == ST::PressAnyKey) {
+        /* Draw message that tells player that the game is over */
+        graphics_->drawText("Press any key to continue", screen_height + 440);
+
     }
 
-    /* Draw message that tells player that the game is over */
-    graphics_->drawText("Press any key to continue", screen_height + 440);
-    graphics_->updateScreen();
-    graphics_->waitForKeypress();
+    // Drain event queue looking for keyboard or quit events
+    while (const auto optPair = getKeyEvent()) {
+        auto & [key, quit] = *optPair;
+        if (quit) return R::Quit; // indicate user quit
+        if (!key) continue; // was not a key event, keep processing events
+        if (state == ST::InputHS) {
+            if (key >= SDLK_a && key <= SDLK_z && nick.size() < 5)
+                nick += static_cast<char>('A' + key - SDLK_a);
+            else if (key == SDLK_RETURN && !nick.empty()) {
+                highscore.setNickname(nick, new_idx); // save user nickname
+                state = ST::PressAnyKey; // advance state
+                break; // break out of while loop
+            }
+            else if (key == SDLK_BACKSPACE && !nick.empty())
+                nick.resize(nick.size() - 1);
+        } else if (state == ST::PressAnyKey) {
+            // they pressed a key, indicate restart
+            return R::Restart;
+        }
+    }
+
+    return R::Continue;
+}
+
+std::optional<std::pair<int, bool>> Game::getKeyEvent() const
+{
+    std::optional<std::pair<int, bool>> ret;
+    SDL_Event e;
+
+    if (SDL_PollEvent(&e)) {
+        /* If user presses the X in the upper right corner: quit */
+        if (e.type == SDL_QUIT) {
+            ret.emplace(0, true);
+        } else if (e.type == SDL_KEYDOWN) {
+            ret.emplace(e.key.keysym.sym, false);
+        }
+    }
+    return ret;
+}
+
+auto Game::getEvent() const -> std::optional<event_t>
+{
+    std::optional<event_t> ret;
+    SDL_Event sdl_event;
+
+    // no events available
+    if (SDL_PollEvent(&sdl_event) == 0)
+        return ret;
+
+    /* If user presses the X in the upper right corner: quit */
+    if (sdl_event.type == SDL_QUIT)
+        ret = QUIT;
+
+    /* User presses a relevant key, return info */
+    else if (sdl_event.type == SDL_KEYDOWN)
+        switch (sdl_event.key.keysym.sym) {
+        case SDLK_q:
+            ret = QUIT;
+            break;
+        case SDLK_p:
+            ret = PAUSEPLAY;
+            break;
+        case SDLK_LEFT:
+            ret = LEFT;
+            break;
+        case SDLK_RIGHT:
+            ret = RIGHT;
+            break;
+        case SDLK_UP:
+            ret = UP;
+            break;
+        case SDLK_f:
+            ret = FPS_TOGGLE;
+            break;
+        default:
+            ret = NOTHING;
+            break;
+        }
+
+    /* If user releases
+     * 1. Right arrow key but still holds the left: event = LEFT
+     * 2. Left arrow key but still hold the right: event = RIGHT
+     * 3. Any arrow key and does not hold any arrow key: event = STILL
+     */
+    else if (sdl_event.type == SDL_KEYUP) {
+        const auto *state = SDL_GetKeyboardState(nullptr);
+        switch (sdl_event.key.keysym.sym) {
+        case SDLK_LEFT:
+            if (state[SDL_SCANCODE_RIGHT])
+                ret = RIGHT;
+            else
+                ret = STILL;
+            break;
+
+        case SDLK_RIGHT:
+            if (state[SDL_SCANCODE_LEFT])
+                ret = LEFT;
+            else
+                ret = STILL;
+            break;
+
+        default:
+            ret = NOTHING;
+            break;
+        }
+    }
+
+    /* All other SDL_Events are set to NOTHING */
+    else
+        ret = NOTHING;
+
+    return ret;
 }

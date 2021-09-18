@@ -1,10 +1,12 @@
 /*!
- * \file Highscore.cc
+ * \file Highscore.cpp
  * \brief File containing the Highscore class source code
  *
  * \author Olle Kvarnström
  * \date 2013
  * \copyright GNU Public License
+ *
+ * Heavily modified by Calin A. Culianu <calin.culianu@gmail.com>
  */
 
 #include "Highscore.h"
@@ -25,7 +27,7 @@ Highscore::Highscore(const std::string &filename)
         this->readStringToArray(highscore_str);
 }
 
-Highscore::~Highscore() { save(); }
+Highscore::~Highscore() {}
 
 void Highscore::save() const
 {
@@ -38,14 +40,15 @@ void Highscore::save() const
     }
 
 }
-std::string Highscore::get(unsigned n) const
+std::pair<size_t, std::string> Highscore::get(unsigned n) const
 {
-    if (n < this->size())
-        return std::to_string(this->highscore_[n].first) + " (" + this->highscore_[n].second + ")";
-    return "0";
+    std::pair<size_t, std::string> ret;
+    if (n < highscore_.size())
+        ret = highscore_[n];
+    return ret;
 }
 
-bool Highscore::add(size_t new_score)
+bool Highscore::add(size_t new_score, size_t *new_idx)
 {
     bool new_highscore = false;
     std::pair<size_t, std::string> temp;
@@ -56,6 +59,7 @@ bool Highscore::add(size_t new_score)
         } else if (new_score >= this->highscore_[i].first) {
             temp = this->highscore_[i];
             this->highscore_[i] = {new_score, "YOU!"};
+            if (new_idx) *new_idx = i;
             new_highscore = true;
         }
     }
@@ -65,13 +69,14 @@ bool Highscore::add(size_t new_score)
     return new_highscore;
 }
 
-void Highscore::setNickname(const std::string &nickname)
+void Highscore::setNickname(const std::string &nickname, std::optional<size_t> hint)
 {
     bool found = false;
-    for (size_t i = 0; i < this->size(); ++i)
+    for (size_t i = hint.value_or(0); i < this->size(); ++i)
         if (this->highscore_[i].second == "YOU!") {
             this->highscore_[i].second = nickname;
             found = true;
+            if (hint) break;
         }
     if (found) save();
 }

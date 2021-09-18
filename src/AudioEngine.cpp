@@ -1,10 +1,12 @@
 /*!
- * \file AudioEngine.cc
+ * \file AudioEngine.cpp
  * \brief File containing the AudioEngine source code
  *
  * \author Olle Kvarnström
  * \date 2013
  * \copyright GNU Public License
+ *
+ * Heavily modified by Calin A. Culianu <calin.culianu@gmail.com>
  */
 
 #include "AudioEngine.h"

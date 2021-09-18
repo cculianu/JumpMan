@@ -1,13 +1,15 @@
-#pragma once
-
 /*!
- * \file Player.hh
+ * \file Player.h
  * \brief File containing the Player class Header
  *
  * \author Olle Kvarnström
  * \date 2013
  * \copyright GNU Public License
+ *
+ * Heavily modified by Calin A. Culianu <calin.culianu@gmail.com>
  */
+#pragma once
+
 #include "Sprite.h"
 #include <cstdint>
 

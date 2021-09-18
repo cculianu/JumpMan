@@ -1,18 +1,20 @@
-#pragma once
-
-#include <array>
-#include <cstdint>
-#include <string>
-#include <utility>
-
 /*!
- * \file Highscore.hh
+ * \file Highscore.h
  * \brief File containing the Highscore class Header
  *
  * \author Olle Kvarnström
  * \date 2013
  * \copyright GNU Public License
+ *
+ * Heavily modified by Calin A. Culianu <calin.culianu@gmail.com>
  */
+#pragma once
+
+#include <array>
+#include <cstdint>
+#include <string>
+#include <optional>
+#include <utility>
 
 /*!
  * \class Highscore
@@ -38,22 +40,22 @@ public:
     /*!
      * Returns the score at the nth position
      * \param n the score's position, top scorer would be n:0
-     * \return value of the score as string
+     * \return The pair of score, playername
      */
-    std::string get(unsigned n) const;
+    std::pair<size_t, std::string> get(unsigned n) const;
 
     /*!
      * \brief Adds score to highscore if applicable
      * \param new_score The score to add to highscore
      * \return true if value was added
      */
-    bool add(size_t new_score);
+    bool add(size_t new_score, size_t *new_idx = nullptr);
 
     /*!
      * \brief Set nickname of new highscore
      * \param nickname new nickname
      */
-    void setNickname(const std::string &nickname);
+    void setNickname(const std::string &nickname, std::optional<size_t> indexHint = {});
 
     /*!
      * \return the numbers of elements in highscore

@@ -1,10 +1,12 @@
 /*!
- * \file Sprite.cc
+ * \file Sprite.cpp
  * \brief File containing the Sprite class source
  *
  * \author Olle Kvarnström
  * \date 2013
  * \copyright GNU Public License
+ *
+ * Heavily modified by Calin A. Culianu <calin.culianu@gmail.com>
  */
 
 #include "Sprite.h"

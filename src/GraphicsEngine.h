@@ -1,13 +1,15 @@
-#pragma once
-
 /*!
- * \file GraphicsEngine.hh
+ * \file GraphicsEngine.h
  * \brief File containing the GraphicsEngine class Header
  *
  * \author Olle Kvarnström
  * \date 2013
  * \copyright GNU Public License
+ *
+ * Heavily modified by Calin A. Culianu <calin.culianu@gmail.com>
  */
+#pragma once
+
 #include <SDL.h>
 #include <SDL_ttf.h>
 
@@ -15,21 +17,6 @@
 #include <string>
 
 using rect_t = SDL_Rect;
-
-/*!
- * \enum event_t
- * \brief events describing user input
- */
-enum event_t {
-    LEFT,      /*!< Player wants to move left */
-    RIGHT,     /*!< Player wants to move right */
-    UP,        /*!< Player wants to jump */
-    STILL,     /*!< Player wants to stop moving */
-    PAUSEPLAY, /*!< Player wants to pause/play music */
-    NOTHING,   /*!< Unknown input received */
-    QUIT,      /*!< User wants to exit the game */
-    FPS_TOGGLE /*!< User hit F to toggle fps display */
-};
 
 /*!
  * \enum text_color_t
@@ -65,11 +52,8 @@ public:
      * \param title The title that will be seen on the titlebar
      * \param screen_width Size of game screen's width
      * \param screen_height Size of the game screen's height
-     * \param screen_bpp The amount of bits per pixel (color)
-     * \param frame_rate The frames per second we want to display
      */
-    GraphicsEngine(const std::string &title, const unsigned screen_width, const unsigned screen_height,
-                   const unsigned screen_bpp);
+    GraphicsEngine(const std::string &title, const unsigned screen_width, const unsigned screen_height);
 
     /// Disabled copy constructor
     GraphicsEngine(const GraphicsEngine &) = delete;
@@ -116,28 +100,10 @@ public:
                   bool small = false, bool bright = false);
 
     /*!
-     * \brief Flushes the screen so it's visible to the user
+     * \brief Swap backbuffer to screen
      * \return true on success
      */
     bool updateScreen();
-
-    /*!
-     * \brief Get a string from player
-     * \param max_letters how many letters are the max
-     * \param target string to store the received string
-     * \param y the center on the y-axis where we will draw
-     */
-    void getStringFromPlayer(unsigned max_letters, std::string &target, unsigned y);
-
-    /*!
-     * \brief Non-blocking function to check event depending on user input.
-     * \param event The event received from user
-     * \return true if there are more pending events
-     */
-    bool getEvent(event_t &event) const;
-
-    /// Waits until a key is pressed
-    void waitForKeypress() const;
 
     /// Returns width of game screen
     unsigned screen_width() const;
@@ -154,9 +120,6 @@ private:
 
     /// Height of the game screen
     const unsigned SCREEN_HEIGHT;
-
-    /// Screen bits per pixel (color)
-    const unsigned SCREEN_BPP;
 
     /// Map of filename and image we have loaded from disk
     std::map<std::string, SDL_Surface *> images_;

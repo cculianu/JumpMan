@@ -1,10 +1,12 @@
 /*!
- * \file BasicStar.cc
+ * \file BasicStar.cpp
  * \brief File containing the BasicStar source code
  *
  * \author Olle Kvarnström
  * \date 2013
  * \copyright GNU Public License
+ *
+ * Heavily modified by Calin A. Culianu <calin.culianu@gmail.com>
  */
 #include "BasicStar.h"
 

@@ -1,5 +1,3 @@
-#pragma once
-
 /*!
  * \file Sprite.hh
  * \brief File containing the Sprite class Header
@@ -7,7 +5,10 @@
  * \author Olle Kvarnström
  * \date 2013
  * \copyright GNU Public License
+ *
+ * Heavily modified by Calin A. Culianu <calin.culianu@gmail.com>
  */
+#pragma once
 
 #include <string>
 

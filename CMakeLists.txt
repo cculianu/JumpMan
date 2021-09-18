@@ -5,6 +5,14 @@ project(JumpMan LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+if (MSVC)
+    # warning level 4
+    add_compile_options(/W4)
+else()
+    # lots of warnings
+    add_compile_options(-Wall -Wextra -pedantic)
+endif()
+
 file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 include_directories(${PROJECT_SOURCE_DIR}/src)
 add_executable(jumpman ${SRC_FILES})

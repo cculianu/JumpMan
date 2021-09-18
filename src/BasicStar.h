@@ -1,13 +1,14 @@
-#pragma once
-
 /*!
- * \file BasicStar.hh
+ * \file BasicStar.h
  * \brief File containing the BasicStar class Header
  *
  * \author Olle Kvarnström
  * \date 2013
  * \copyright GNU Public License
+ *
+ * Heavily modified by Calin A. Culianu <calin.culianu@gmail.com>
  */
+#pragma once
 
 #include "Sprite.h"
 
