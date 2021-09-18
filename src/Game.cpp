@@ -21,6 +21,7 @@
 
 inline constexpr unsigned FRAME_RATE = 60; /* desired game framerate */
 inline constexpr double PHYSICS_RATE = 1000.0 / 24.0; /* internal physics originally assumed this framerate */
+inline constexpr unsigned JETPACK_SOUND_DURATION_MS = 388;
 
 Game::Game()
 {
@@ -35,14 +36,14 @@ Game::Game()
         FatalError(graphics_->getLastError(), "Failed to Load Image");
     }
 
-    player_ = std::make_unique<Player>(graphics_->screen_width());
-
     /* Initialize audio */
     audio_ = std::make_unique<AudioEngine>();
     audio_->loadBackgroundMusic("audio/ambient1.mp3");
     audio_->loadJetPackSoundEffect("audio/jetpack1.wav");
     audio_->loadStarSoundEffect("audio/starsound1.wav", "audio/starsound2.wav");
     audio_->startPlayingBackgroundMusic(50);
+
+    player_ = std::make_unique<Player>(graphics_->screen_width());
 }
 
 Game::~Game()
@@ -155,17 +156,14 @@ int Game::letObjectsInteract(double dt)
     for (auto & star : star_list_)
         star->takeAction(dt);
 
-    bool playedJetSound = false;
     /* Remove stars if the player touches them or they disappear off screen */
     for (auto it = star_list_.begin(); it != star_list_.end();)
         if (bool touches = player_->touches(it->get()); touches || (*it)->y() < 0) {
             if (touches) {
                 bool const moving_star = bool(dynamic_cast<MovingStar *>(it->get()));
                 bool const ok = player_->jump(1 + moving_star);
-                if (ok && !playedJetSound) {
-                    //audio_->playJetPackSound();
-                    playedJetSound = true;
-                }
+                if (ok && audio_->lastPlayedJetPackSoundAgeMS() > JETPACK_SOUND_DURATION_MS)
+                    audio_->playJetPackSound();
                 audio_->playStarSound();
                 if (moving_star) audio_->playStarSound(true);
             }
@@ -226,7 +224,8 @@ bool Game::drawObjectsToScreen()
 
     /* Draw FPS */
     if (show_fps_) {
-        graphics_->drawText(" FPS: " + std::to_string(int(std::round(fps_))), 20, GREEN, AlignLeft, true, true);
+        graphics_->drawText(" FPS: " + std::to_string(int(std::round(fps_))),
+                            graphics_->screen_height()*2 - 20,  GREEN, AlignLeft, true, true);
     }
 
     /* Flush */

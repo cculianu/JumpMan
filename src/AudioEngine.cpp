@@ -95,8 +95,21 @@ bool AudioEngine::loadJetPackSoundEffect(const std::string &filename)
     return true;
 }
 
-bool AudioEngine::playStarSound(bool which) const { return Mix_PlayChannel(-1, star_effects_[which], 0) == 0; }
-bool AudioEngine::playJetPackSound() const { return Mix_PlayChannel(-1, jetpack_effect_, 0) == 0; }
+bool AudioEngine::playStarSound(bool which) const
+{
+    return Mix_PlayChannel(-1, star_effects_[which], 0) == 0;
+}
+
+bool AudioEngine::playJetPackSound() const
+{
+    last_played_jetpack_effect_ = SDL_GetTicks();
+    return Mix_PlayChannel(-1, jetpack_effect_, 0) == 0;
+}
+
+unsigned AudioEngine::lastPlayedJetPackSoundAgeMS() const
+{
+    return SDL_GetTicks() - last_played_jetpack_effect_;
+}
 
 bool AudioEngine::startPlayingBackgroundMusic(short volume)
 {

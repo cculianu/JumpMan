@@ -79,6 +79,11 @@ public:
      */
     bool isStandingOnFloor() const { return standing_on_floor_; }
 
+    /*!
+     * \return true if the player has positive vertical velocity and his jetpack is lit (recently gained velocity)
+     */
+    bool isJetpackLit() const;
+
 private:
     const unsigned screen_width;  /*!< X-axis width of play area */
     double dx_ = 0.;              /*!< Current x-axis movement */
@@ -86,4 +91,5 @@ private:
     bool standing_on_floor_;      /*!< True if player has not yet jumped */
     size_t score_;                /*!< Current player score */
     bool facing_direction_;       /*!< Direction the player is facing, false = right */
+    unsigned last_jump_ticks_ = 0;
 };

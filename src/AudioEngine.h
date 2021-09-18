@@ -57,8 +57,10 @@ public:
      * \return true on success
      */
     bool playStarSound(bool movingStar = false) const;
-
     bool playJetPackSound() const;
+
+    /// Returns the age in milliseconds of the last time we played the jetpack sound
+    unsigned lastPlayedJetPackSoundAgeMS() const;
 
     /*!
      * \brief Start playing background music
@@ -80,6 +82,9 @@ private:
 
     /// Jetpack sound effect
     Mix_Chunk *jetpack_effect_{};
+
+    /// The tick count at which we last played the jetpack effect
+    mutable unsigned last_played_jetpack_effect_{};
 
     /// Keeps track if music is paused or playing
     bool is_playing_{};

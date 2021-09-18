@@ -9,6 +9,8 @@
 
 #include "Player.h"
 
+#include <SDL.h>
+
 #include <algorithm>
 #include <cmath>
 
@@ -31,6 +33,7 @@ void Player::reset()
     this->standing_on_floor_ = true;
     this->score_ = 0;
     this->facing_direction_ = true;
+    last_jump_ticks_ = 0;
 }
 
 bool Player::touches(Sprite *other)
@@ -79,6 +82,7 @@ bool Player::jump(int force_push_level)
         this->dy_ += 10.0 * force_push_level /* moving star bonus */;
         dy_ = std::min(dy_, SPEED_LIMIT); // limit speed to something sane (if too high, game becomes too easy)
         this->standing_on_floor_ = false; // never allow them to use the jetpack again!
+        last_jump_ticks_ = SDL_GetTicks();
         return true;
     } else if (this->standing_on_floor_) {
         /* If we manually jump, remove standing_on_floor_ and recurse */
@@ -110,11 +114,17 @@ short Player::imageX()
         return ((getRoundedCumImageIndex() % 2) + 3) * this->width_;
 
     /* If player is gaining speed, use images 1-2 */
-    else if (this->dy_ > 0.0)
+    else if (isJetpackLit())
         return ((getRoundedCumImageIndex() % 2) + 1) * this->width_;
 
     else
         return 0;
+}
+
+bool Player::isJetpackLit() const
+{
+    constexpr unsigned recent_ms = 500;
+    return dy_ > 0.0 && SDL_GetTicks() - last_jump_ticks_ < recent_ms;
 }
 
 short Player::imageY() const { return this->facing_direction_ * this->height_; }
