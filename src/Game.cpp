@@ -20,7 +20,8 @@
 #include <iostream>
 
 inline constexpr unsigned FRAME_RATE = 60; /* desired game framerate */
-inline constexpr double PHYSICS_RATE = 1000.0 / 24.0; /* internal physics originally assumed this framerate */
+inline constexpr unsigned REFRESH_RATE = 1000 / FRAME_RATE;
+inline constexpr double   PHYSICS_RATE = 1000.0 / 24.0; /* internal physics originally assumed this framerate */
 inline constexpr unsigned JETPACK_SOUND_DURATION_MS = 388;
 
 Game::Game()
@@ -73,11 +74,29 @@ Game::RandGen Game::GetRandGen(int from, int to)
     return RandGen(gen, from, to);
 }
 
+int Game::runStep()
+{
+    if (handlePlayerInput())
+        return 0; // user quit
+
+    if (letObjectsInteract(REFRESH_RATE / PHYSICS_RATE) == 1) {
+        gameOver(); // TODO: fix this to not use a local event loop
+        return 2;
+    }
+
+    if (!drawObjectsToScreen())
+        return 1; // graphics failure
+
+    return 3;
+}
+
 int Game::run()
 {
-    int retval;
-    do {
-        retval = [&] {
+    int retval = 2;
+    /* Main loop */
+    for (Uint32 ticksLast = SDL_GetTicks(); retval == 2 || retval == 3; ticksLast = SDL_GetTicks()) {
+
+        if (retval == 2) { // retval == 2 indicates game restart
             /* Reset Player */
             player_->reset();
 
@@ -87,32 +106,20 @@ int Game::run()
             }
 
             start_ticks_ = SDL_GetTicks();
+        }
 
-            /* Main loop */
-            const auto refresh_rate = 1000 / FRAME_RATE;
-            for (Uint32 ticksLast = SDL_GetTicks(); /**/; ticksLast = SDL_GetTicks()) {
-                if (handlePlayerInput())
-                    return 0; // user quit
+        // Advance game forward by 1 frame
+        retval = runStep();
 
-                if (letObjectsInteract(refresh_rate / PHYSICS_RATE) == 1) {
-                    gameOver(); // TODO: fix this to not use a local event loop
-                    return 2;
-                }
+        // throttle game frame-rate
+        const auto tdiff = SDL_GetTicks() - ticksLast;
+        if (tdiff < REFRESH_RATE)
+            SDL_Delay(REFRESH_RATE - tdiff);
 
-                if (!drawObjectsToScreen())
-                    return 1; // graphics failure
-
-                // throttle game frame-rate
-                const auto tdiff = SDL_GetTicks() - ticksLast;
-                if (tdiff < refresh_rate)
-                    SDL_Delay(refresh_rate - tdiff);
-
-                // take rolling average of last 10 values
-                fps_ = fps_ * 10.0 + 1000.0 / (SDL_GetTicks() - ticksLast);
-                fps_ /= 11.0;
-            }
-        }();
-    } while (retval == 2);
+        // take rolling average of last 10 values
+        fps_ = fps_ * 10.0 + 1000.0 / (SDL_GetTicks() - ticksLast);
+        fps_ /= 11.0;
+    }
     return retval;
 }
 

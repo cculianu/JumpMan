@@ -83,6 +83,11 @@ private:
     /// If 'f' is pressed, this becomes true
     bool show_fps_ = false;
 
+
+    /// Advances the game forward by 1 frame. Called from run().
+    /// \return 0 if user quit, 1 on error, 2 if the game should restart, 3 if game should keep going
+    int runStep();
+
     /*!
      * \brief handles player input
      * \return true if user wants to quit the game, false otherwise
