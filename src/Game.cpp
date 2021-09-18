@@ -51,7 +51,7 @@ Game::Game()
 
     /* Initialize audio */
     audio_ = std::make_unique<AudioEngine>();
-    audio_->loadBackgroundMusic("audio/ambient1.mp3");
+    audio_->loadBackgroundMusic("audio/ambient1.ogg");
     audio_->loadJetPackSoundEffect("audio/jetpack1.wav");
     audio_->loadStarSoundEffect("audio/starsound1.wav", "audio/starsound2.wav");
     audio_->startPlayingBackgroundMusic(50);
@@ -306,6 +306,12 @@ void Game::addStars()
 
 void Game::gameOver()
 {
+    if constexpr (IS_EMSCRIPTEN) {
+        // The below blocks the main loop and hangs the app under emscripten.
+        // TODO: fix the below to not hang the app and to just be a regular step-render function!
+        return;
+    }
+
     Highscore highscore(".highscore");
     bool new_highscore = highscore.add(player_->score());
 
