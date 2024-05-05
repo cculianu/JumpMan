@@ -10,6 +10,7 @@
  */
 #pragma once
 
+#include "Common.h"
 #include "Player.h"
 
 #include <list>
@@ -90,6 +91,9 @@ private:
     /// If 'f' is pressed, this becomes true
     bool show_fps_ = false;
 
+    /// If true game is paused
+    bool paused_ = false;
+
     enum class RunStepResult { Quit, Error, Restart, Continue };
 
     /// Advances the game forward by 1 frame. Called from run().
@@ -161,6 +165,9 @@ private:
      * \return One of the 3 RunStepResults values: Continue, Restart, or Quit
      */
     RunStepResult drawGameOverScreen();
+
+    /// Only used on iOS
+    mutable event_t lastMouseDir = NOTHING;
 
 public:
     class RandGen {

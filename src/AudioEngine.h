@@ -70,9 +70,11 @@ public:
     bool startPlayingBackgroundMusic(short volume = -1);
 
     /*!
-     * \brief Toggles pause/play music
+     * \brief Toggles pause/play music. Returns true if this results in music being paused, false if not paused.
      */
-    void togglePausePlayBackgroundMusic();
+    bool togglePausePlayBackgroundMusic();
+
+    bool isBackgroundMusicPlaying() const { return is_playing_; }
 
 private:
     /// Background music

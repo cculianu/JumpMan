@@ -15,7 +15,8 @@ endif()
 
 file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 include_directories(${PROJECT_SOURCE_DIR}/src)
-add_executable(jumpman ${SRC_FILES})
+add_executable(jumpman ${SRC_FILES}
+    src/Common.h)
 
 find_package(PkgConfig REQUIRED)
 

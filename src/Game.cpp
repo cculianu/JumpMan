@@ -18,7 +18,6 @@
 #include "tinyformat.h"
 
 #include <cassert>
-#include <chrono>
 #include <cstdlib>
 #include <iostream>
 
@@ -36,7 +35,6 @@ void emscripten_set_main_loop_arg(Args && ...args [[maybe_unused]]) {
 
 inline constexpr unsigned FRAME_RATE = 60; /* desired game framerate (non-EMSCRIPTEN only) */
 inline constexpr unsigned REFRESH_RATE = 1000 / FRAME_RATE;
-inline constexpr double   PHYSICS_RATE = 1000.0 / 24.0; /* internal physics originally assumed this framerate */
 inline constexpr unsigned JETPACK_SOUND_DURATION_MS = 388;
 
 struct Game::GameOver
@@ -54,8 +52,11 @@ struct Game::GameOver
 Game::Game()
 {
     /* Initialize graphics */
-    graphics_ = std::make_unique<GraphicsEngine>("Jumpman" /* Title */,
-                                                 1000 /* Screen width */, 600 /* Screen height */);
+    if constexpr (IS_IOS) {
+        graphics_ = std::make_unique<GraphicsEngine>("Jumpman" /* Title */, 375 /* Screen width */, 667 /* Screen height */);
+    } else {
+        graphics_ = std::make_unique<GraphicsEngine>("Jumpman" /* Title */, 1000 /* Screen width */, 600 /* Screen height */);
+    }
 
     /* Load images from disk */
     if (graphics_->loadImage("player") == false || graphics_->loadImage("basic_star") == false ||
@@ -138,16 +139,18 @@ auto Game::runStep() -> RunStepResult
         if (handlePlayerInput())
             return R::Quit; // user quit
 
-        if (letObjectsInteract(tdiff / PHYSICS_RATE) == 1) {
-            // indicates game over if this is set
+        if (!paused_) {
+            if (letObjectsInteract(tdiff / PHYSICS_RATE) == 1) {
+                // indicates game over if this is set
 #ifdef __EMSCRIPTEN__
-            game_over = std::make_unique<GameOver>("/persistent_data/highscore", []{
-                // sync
-                EM_ASM(FS.syncfs(false, function (err) {}););
-            });
+                game_over = std::make_unique<GameOver>("/persistent_data/highscore", []{
+                    // sync
+                    EM_ASM(FS.syncfs(false, function (err) {}););
+                });
 #else
-            game_over = std::make_unique<GameOver>(".highscore");
+                game_over = std::make_unique<GameOver>(".highscore");
 #endif
+            }
         }
     }
 
@@ -236,7 +239,7 @@ bool Game::handlePlayerInput()
                 audio_->playJetpackSound(); // only play sound if jumping did occur
             break;
         case PAUSEPLAY:
-            audio_->togglePausePlayBackgroundMusic();
+            paused_ = audio_->togglePausePlayBackgroundMusic();
             break;
         case QUIT:
             return true;
@@ -522,6 +525,41 @@ auto Game::getEvent() const -> std::optional<event_t>
     /* All other SDL_Events are set to NOTHING */
     else
         ret = NOTHING;
+
+    if constexpr (IS_IOS) {
+        if (ret == NOTHING) {
+            if (bool will{}; ((will=sdl_event.type == SDL_APP_WILLENTERBACKGROUND) || sdl_event.type == SDL_APP_DIDENTERBACKGROUND)
+                             && !paused_) {
+                // handle iOS pause due to app going into BG
+                ret = PAUSEPLAY;
+                SDL_Log("App %s go into background, pausing.", will ? "will" : "did");
+            }
+            else if (sdl_event.type == SDL_APP_DIDENTERFOREGROUND && paused_) {
+                // handle iOS unpause due to app going into FG
+                ret = PAUSEPLAY;
+                SDL_Log("App went into foreground, unpausing.");
+            }
+            else if (sdl_event.type == SDL_MOUSEMOTION) {
+                // handle mouse (touch) motion on iOS
+                constexpr int LRTHRESH = 3, UDTHRESH = 4;
+                int dx, dy;
+                Uint8 const state = SDL_GetRelativeMouseState(&dx, &dy);  /* get its location */
+                if (state & SDL_BUTTON_LMASK) {     /* is the mouse (touch) down? */
+                    SDL_LogVerbose(SDL_LOG_CATEGORY_INPUT, "Mouse: dx: %d, dy: %d", dx, dy);
+                    bool const mostlyVertical = std::abs(dx) < std::abs(dy);
+                    ret = lastMouseDir;
+                    if (mostlyVertical) {
+                        if (dy < 0 && std::abs(dy) >= UDTHRESH) ret = lastMouseDir = UP;
+                    } else {
+                        if (dx >= LRTHRESH) ret = lastMouseDir = RIGHT;
+                        else if (dx < 0 && dx <= LRTHRESH) ret = lastMouseDir = LEFT;
+                    }
+                }
+            } else if (sdl_event.type == SDL_MOUSEBUTTONUP) {
+                ret = lastMouseDir = STILL;
+            }
+        }
+    }
 
     return ret;
 }

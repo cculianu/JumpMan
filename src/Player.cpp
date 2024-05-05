@@ -50,6 +50,8 @@ bool Player::touches(Sprite *other)
 
 void Player::takeAction(double dt)
 {
+    incrTicksElapsed(dt);
+
     /* X-axis - Make sure that the player does not escape the screen
      * NB that x:0 is in the middle of the screen */
     const double NEW_X = this->x_ + this->dx_ * dt;
@@ -82,7 +84,7 @@ bool Player::jump(int force_push_level)
         this->dy_ += 10.0 * force_push_level /* moving star bonus */;
         dy_ = std::min(dy_, SPEED_LIMIT); // limit speed to something sane (if too high, game becomes too easy)
         this->standing_on_floor_ = false; // never allow them to use the jetpack again!
-        last_jump_ticks_ = SDL_GetTicks();
+        last_jump_ticks_ = ticks_elapsed_;
         return true;
     } else if (this->standing_on_floor_) {
         /* If we manually jump, remove standing_on_floor_ and recurse */
@@ -124,7 +126,7 @@ short Player::imageX()
 bool Player::isJetpackLit() const
 {
     constexpr unsigned recent_ms = 500;
-    return dy_ > 0.0 && SDL_GetTicks() - last_jump_ticks_ < recent_ms;
+    return dy_ > 0.0 && ticks_elapsed_ - last_jump_ticks_ < recent_ms;
 }
 
 short Player::imageY() const { return this->facing_direction_ * this->height_; }

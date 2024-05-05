@@ -81,6 +81,7 @@ public:
 protected:
     short getRoundedCumImageIndex() const;
     void incrCumImageIndex(double dt);
+    void incrTicksElapsed(double dt);
 
     double cum_image_dt{0.0};     /*!< If the sprite has many images, this handles them */
     short num_images_;            /*!< How many images a Sprite has */
@@ -90,4 +91,5 @@ protected:
     const unsigned short width_;  /*!< Sprite's image's width */
     const unsigned short height_; /*!< Sprite's image's height */
     std::string filename_;        /*!< Sprite's image's filename */
+    unsigned ticks_elapsed_ = 0;  /*!< Total number of ticks accumulated as a result of calling takeAction() */
 };

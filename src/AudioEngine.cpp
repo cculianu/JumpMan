@@ -120,12 +120,12 @@ bool AudioEngine::startPlayingBackgroundMusic(short volume)
     return Mix_PlayMusic(this->background_music_, -1) == 0;
 }
 
-void AudioEngine::togglePausePlayBackgroundMusic()
+bool AudioEngine::togglePausePlayBackgroundMusic()
 {
     if (this->is_playing_)
         Mix_PauseMusic();
     else
         Mix_ResumeMusic();
 
-    this->is_playing_ = !this->is_playing_;
+    return !(this->is_playing_ = !this->is_playing_);
 }

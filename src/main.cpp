@@ -2,7 +2,8 @@
 
 #include <SDL.h>
 
-int main()
+extern "C"
+int main(int, char **)
 {
     SDL_SetMainReady(); // tell libsdl we have our own main, so that it sets things up for us
     return Game{}.run();

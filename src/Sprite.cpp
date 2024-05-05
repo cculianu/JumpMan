@@ -9,6 +9,7 @@
  * Heavily modified by Calin A. Culianu <calin.culianu@gmail.com>
  */
 
+#include "Common.h"
 #include "Sprite.h"
 
 #include <cmath>
@@ -30,7 +31,7 @@ unsigned short Sprite::width() const { return this->width_; }
 
 unsigned short Sprite::height() const { return this->height_; }
 
-void Sprite::takeAction(double dt) { incrCumImageIndex(dt); }
+void Sprite::takeAction(double dt) { incrCumImageIndex(dt); incrTicksElapsed(dt); }
 
 short Sprite::getRoundedCumImageIndex() const { return int(std::round(cum_image_dt)) % num_images_; }
 
@@ -38,6 +39,11 @@ void Sprite::incrCumImageIndex(double dt)
 {
     cum_image_dt += dt;
     if (cum_image_dt >= num_images_) cum_image_dt = 0.0;
+}
+
+void Sprite::incrTicksElapsed(double dt)
+{
+    ticks_elapsed_ += dt * PHYSICS_RATE;
 }
 
 short Sprite::imageX()
