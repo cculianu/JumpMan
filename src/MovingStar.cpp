@@ -12,9 +12,6 @@
 
 #include "Game.h"
 
-#include <chrono>
-#include <random>
-
 
 MovingStar::MovingStar(short y, int edge_coord) : BasicStar(y, edge_coord)
 {

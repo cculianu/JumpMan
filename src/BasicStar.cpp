@@ -12,8 +12,6 @@
 
 #include "Game.h"
 
-#include <chrono>
-
 
 BasicStar::BasicStar(short y, int edge_coord) : Sprite("basic_star", 0, y + 50, 20, 20, 4)
 {
